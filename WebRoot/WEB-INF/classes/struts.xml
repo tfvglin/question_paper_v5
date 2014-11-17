@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="all" namespace="/" extends="struts-default,tiles-default">
+		<default-action-ref name="error"></default-action-ref>
+		<action name="error">
+			<result>action_error.jsp</result>
+		</action>
+	</package>
+	
+	
+	<package name="students" namespace="/" extends="all">
+		<global-results>
+			<result name="login">/index.jsp</result>
+		</global-results>
+		<action name="begin" class="studentsAction" method="login">
+			<interceptor-ref name="token"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result type="redirect" name="invalid.token" >/token.jsp</result>
+			<result name="success">/paper.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="answer" namespace="/" extends="all">
+	
+		<action name="answer_*" class="answerAction" method="{1}">
+			<result name="success">/success.jsp</result>
+			<result name="input">/paper.jsp</result>
+		</action>
+	</package>
+	<package name="admin" namespace="/" extends="all">
+	
+	
+		<action name="admin_*" class="adminAction" method="{1}">
+			<result type="tiles">
+				adminTiles
+			</result>
+			<result name="addtiles" type="tiles">
+				adminaddquestionTiles
+			</result>
+			<result name="resulttiles" type="tiles">
+				adminresultquestionTiles
+			</result>
+			<result name="input">/admin.jsp</result>
+		</action>
+	</package>
+</struts>    

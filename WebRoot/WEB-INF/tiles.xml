@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+ 
+<tiles-definitions>
+   <definition  name="adminTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/WEB-INF/commons/welcome.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+
+   <definition  name="adminaddquestionTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/questionadd.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+
+  <definition  name="adminresultquestionTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/ansresult.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+<!--    <definition  name="studentsTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/stu_list.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+    <definition  name="courseTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/cou_list.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+    <definition  name="teacherTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/tea_list.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+    <definition  name="userTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/user_list.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+      <definition  name="departmentsTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/dep_list.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>
+      <definition  name="majorsTiles" template="/WEB-INF/commons/layout.jsp">
+       <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
+       <put-attribute name="CONTENT" value="/jsp/major_list.jsp" ></put-attribute>
+       <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
+    </definition>  -->
+</tiles-definitions>

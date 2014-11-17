@@ -1,0 +1,22 @@
+.center
+{
+	margin:0 auto;
+}
+
+.hide
+{
+	display:none;
+}
+li
+{
+	padding-top:5px;
+}
+li.dropdown
+{
+	padding-top:8px;
+	
+}
+input
+{
+	margin:5px 5px;
+}

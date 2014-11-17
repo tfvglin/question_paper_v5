@@ -1,0 +1,77 @@
+
+
+.center
+{
+	margin:0 auto;
+}
+.question
+	{
+	text-align:left;
+	margin: 10px auto;
+	padding: 5px ;
+	
+	}
+.bold
+{
+	font-weight:bold;
+}
+
+.area
+{
+	padding: 10px 5%;
+}
+
+.graytips
+	{
+	max-width:150px;
+	width:40%;
+	position: static;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	border-bottom-width:1px;
+	border-style:solid;
+	border-color:#9933FF;
+	margin-left: 5px;
+	}
+.text
+{
+	width:100%;
+	resize: none;
+	font-size:150%;
+
+}
+
+.questiontype
+{
+	text-align:left;
+	color:#0000FF;
+	font-family: cursive;
+	font-size:25;
+	
+	
+}
+
+.listtext
+{
+	margin:5px 5px;
+}
+
+#papersubmit{
+    border:2px solid #e5e5e5;
+    background:#8DEEEE;
+    padding:10px 30px;
+	color:#fff;
+	font-size:20px;
+	cursor:pointer;
+	}
+	
+.title
+{
+	font-size:100%;
+}
+
+input.other
+{
+	display:none;
+}
