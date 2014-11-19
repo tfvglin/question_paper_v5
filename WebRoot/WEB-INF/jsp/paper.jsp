@@ -32,9 +32,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <s:debug></s:debug>
   <div class="center" align="center" style="width:90%;padding-top: 30px;padding-bottom: 30px;" id="all">
   <h1>新生调查问卷 </h1><br/>
   <s:form name="reform" action="answer_add.action" method="post" theme="simple">
+ 	<s:token></s:token>
  	<s:actionmessage cssStyle="color:red"/><s:fielderror cssStyle="color:red" />
  	  <s:hidden name="stuname" value="%{#parameters.stuname}" id="stuname" />
  	  <s:hidden name="stunum" value="%{#parameters.stunum}"/> 
@@ -133,7 +135,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	<s:submit value="提交问卷" id="papersubmit"></s:submit>
     </s:form>
     </div>
-    <div align="center"><s:include value="jsp/footer.jsp"></s:include>	</div>	
+    <div align="center"><s:include value="footer.jsp"></s:include>	</div>	
   </body>
 </html>
     			 	

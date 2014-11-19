@@ -1,3 +1,2 @@
 eclipse.preferences.version=1
-encoding//WebRoot/action_error.jsp=UTF-8
-encoding//WebRoot/token.jsp=UTF-8
+encoding//WebRoot/WEB-INF/errorjsp/error.jsp=UTF-8

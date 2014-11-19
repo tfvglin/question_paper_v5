@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<fieldset >
     		<legend align="left">身份认证</legend>
     			<div class="form" align="center">
-    			<s:form  name="loginform" action="/paper.jsp" method="post" theme="simple">
+    			<s:form  name="loginform" action="begin.action" method="post" theme="simple">
 				<s:actionmessage cssStyle="color:red"/><s:fielderror cssStyle="color:red" />
     			<div style="margin:10px;"><label for="stuname">姓名</label><s:textfield name="stuname" id="stuname" /></div>
    				<div style="margin:10px;"><label for="stunum">学号</label><s:textfield name="stunum" id="stunum" /></div>

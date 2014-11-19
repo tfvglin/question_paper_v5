@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="center" style="padding-top:15px">
 		<ul style="padding:0 auto;margin:0 auto">
 			<li  class="dropdown"><a href="<%=path%>/admin_resultquestion.action">查询结果</a></li>
-			<li  class="dropdown"><a href="#">题目管理</a>
+			<li  class="dropdown"><a>题目管理</a>
 				<ul class="childmenu hide">
 					<li><a href="<%=path%>/admin_addquestion.action">增加题目</a></li>
 					<li><a href="">删除题目</a></li>

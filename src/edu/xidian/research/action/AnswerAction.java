@@ -166,12 +166,26 @@ public class AnswerAction extends SuperAction{
 		}
 		if(answerServiceImpl.addAnswerPaper(ap))
 		{
+			request.getSession().removeAttribute("stuname");
+			request.getSession().removeAttribute("stunum");
+			
+			request.getSession().removeAttribute("listlist");
+			request.getSession().removeAttribute("textlist");
+			request.getSession().removeAttribute("qsinmap");
+			request.getSession().removeAttribute("qmulmap");
+			request.getSession().removeAttribute("sqsinlist");
+			request.getSession().removeAttribute("sqmullist");
+		
 			return SUCCESS;
 		}
 		else
 		{
 			return INPUT;
 		}
+		
+		
+		
+		
 	}
 	
 	

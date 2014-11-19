@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
    请勿重复提交 <br>
-   <a href="javascript:window.history.back(-2)">返回</a>
+   <a href="javascript:window.history.back(-1)">返回上一页</a> 
+ 
   </body>
 </html>

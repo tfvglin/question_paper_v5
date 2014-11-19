@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<meta http-equiv="description" content="success"/>
 	<meta name="viewport" content="width = device-width,initial-scale =1.0,minimum-scale=1.0,maximum-scale=1.0"/> 
-	<meta http-equiv="refresh" content="4;url= http://zsxt.xidian.edu.cn "/>
+	<!-- <meta http-equiv="refresh" content="4;url= http://zsxt.xidian.edu.cn "/> -->
 	
 
 	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
@@ -26,6 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body style="height:100%">
+  <s:debug></s:debug>
   <div style="width:60%;height:70%; margin:0 auto;padding-top:10%" align="center">
     
    
