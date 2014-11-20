@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import jxl.Workbook;
@@ -71,7 +72,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		{
 	
 			
-			return SUCCESS;
+			return "loginsuccess";
 		}
 		else
 		{
@@ -94,14 +95,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	}
 	
 	
-	public String addquestion()
-	{
-		return "addtiles";
-	}
-	public String resultquestion()
-	{
-		return "resulttiles";
-	}
+
 	public String creatExcel()
 	{
 		

@@ -175,7 +175,7 @@ public class AnswerAction extends SuperAction{
 			request.getSession().removeAttribute("sqsinlist");
 			request.getSession().removeAttribute("sqmullist");
 		
-			return SUCCESS;
+			return "addsuccess";
 		}
 		else
 		{

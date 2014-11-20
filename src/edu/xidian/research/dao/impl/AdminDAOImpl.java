@@ -23,7 +23,8 @@ public class AdminDAOImpl extends MyHibernateTemplate implements AdminDAO{
 		{
 		
 			List<Admin> admin = this.getHibernateTemplate().find(hql, ad.getAdminname(),ad.getAdminpassword());
-			System.out.println(admin.size());if(admin.size()<=0)
+			
+			if(admin.size()<=0)
 			{
 				return false;
 				
