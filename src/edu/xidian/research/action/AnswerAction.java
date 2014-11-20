@@ -51,7 +51,6 @@ public class AnswerAction extends SuperAction{
 	public String add()
 	{
 	
-	
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		

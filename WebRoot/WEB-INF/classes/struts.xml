@@ -2,17 +2,25 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="default" namespace="/" extends="struts-default,tiles-default">
+		
+	
 		<default-action-ref name="error"></default-action-ref>
+		
+		<global-results>
+			<result name="login">/index.jsp</result>
+		</global-results>
+		
 		<action name="error">
 			<result>/WEB-INF/errorjsp/error.jsp</result>
 		</action>
+
+
+
 	</package>
 	
 	
 	<package name="students" namespace="/" extends="default">
-		<global-results>
-			<result name="login">/index.jsp</result>
-		</global-results>
+	
 		<action name="begin" class="studentsAction" method="login">
 		<!--  	<interceptor-ref name="token"></interceptor-ref> 	-->
 			<interceptor-ref name="defaultStack"></interceptor-ref>
@@ -35,18 +43,19 @@
 	</package>
 	<package name="admin" namespace="/" extends="default">
 	
-	
 		<action name="admin_*" class="adminAction" method="{1}">
-			<result type="tiles">
+			<result type="tiles" name="loginsuccess">
 				adminTiles
-			</result>
-			<result name="addtiles" type="tiles">
-				adminaddquestionTiles
-			</result>
-			<result name="resulttiles" type="tiles">
-				adminresultquestionTiles
 			</result>
 			<result name="input">/admin.jsp</result>
 		</action>
+	
+		<action name="adminuser_*" class="adminAction" method="{1}">
+			<result type="tiles" name="{1}">
+				adminTiles_{1}
+			</result>
+	
+		</action>
+		
 	</package>
 </struts>    
