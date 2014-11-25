@@ -14,11 +14,12 @@
             			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd  
             			http://www.springframework.org/schema/context
 						http://www.springframework.org/schema/context/spring-context-3.0.xsd
+					
 						">
 
 	<!-- 启动自动扫描机制 -->
 	<context:annotation-config />
-	<context:component-scan base-package="edu.xidian"/>
+	<context:component-scan base-package="edu.xidian.research"/>
 	
 	<!-- 启动@AspectJ 的支持 -->
 	<aop:aspectj-autoproxy/>
@@ -31,7 +32,7 @@
 		</property>
 		<property name="username" value="root">
 		</property>
-		<property name="password" value="">
+		<property name="password" value="0510">
 		</property>
 	</bean>
 
@@ -54,7 +55,6 @@
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.hbm?ddl.auto">update</prop>
 				<prop key="current_session_context_class">thread</prop>
-				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop> 
 			</props>
 		</property>
 	</bean>
@@ -86,23 +86,4 @@
 	 <bean id="myHibernateTemplate" class="edu.xidian.research.template.MyHibernateTemplate">
 	 	<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	 </bean>
-	 
-	 
-	 <bean id="openSessionInViewInterceptor" class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor"> 
-        <property name="sessionFactory" ref="sessionFactory" /> 
-    </bean> 
-
-    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">  
-        <property name="interceptors">  
-          <list>  
-            <ref bean="openSessionInViewInterceptor" />  
-          </list>  
-        </property>  
-     <!--     <property name="mappings">  
-          <props>  
-            <prop key="/adminuser_creatExcel.action">adminAction</prop>  
-          </props>  
-        </property>  
-        -->
-    </bean>
 </beans>

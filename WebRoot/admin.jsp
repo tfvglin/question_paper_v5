@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="center">
     <fieldset >
     	<legend align="left">身份认证</legend>
-    	<s:form action="admin_login.action"  method="post" theme="simple">
+    	<s:form action="adminuser_login.action"  method="post" theme="simple">
     		<div><label for="adminname">用户名：</label><s:textfield name="adminname" id="adminname"></s:textfield></div>
     		<div><label for="adminpassword">密&nbsp&nbsp码：</label><s:password name="adminpassword" id="adminpassword" ></s:password></div>
     		<div><s:submit value="登陆"></s:submit> </div>

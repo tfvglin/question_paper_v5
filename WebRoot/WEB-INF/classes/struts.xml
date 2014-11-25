@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+<<<<<<< HEAD
 	<package name="default" namespace="/" extends="struts-default,tiles-default">
 		
 	
 		<default-action-ref name="error"></default-action-ref>
+=======
+ 	<package name="default" namespace="/" extends="struts-default,tiles-default">
+
+	<!--  <default-action-ref name="error"></default-action-ref>-->	
+>>>>>>> 58a75b0097d012e72da6c8b47cc9b4a2edc12eaa
 		
 		<global-results>
 			<result name="login">/index.jsp</result>
@@ -14,11 +20,13 @@
 			<result>/WEB-INF/errorjsp/error.jsp</result>
 		</action>
 
-
-
 	</package>
 	
+<<<<<<< HEAD
  	
+=======
+	
+>>>>>>> 58a75b0097d012e72da6c8b47cc9b4a2edc12eaa
 	<package name="students" namespace="/" extends="default">
 	
 		<action name="begin" class="studentsAction" method="login">
@@ -28,41 +36,51 @@
 			<result name="success" >/WEB-INF/jsp/paper.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>
+	
+
 	</package>
 	
-	<package name="answer" namespace="/" extends="struts-default">
-	<default-action-ref name="error"></default-action-ref>
-		<action name="answer_*" class="answerAction" method="{1}">
+	<package name="answer" namespace="/" extends="default">
+	
+	  	<action name="answer_*" class="answerAction" method="{1}">
 		   	
-		<!--     	<interceptor-ref name="token"></interceptor-ref> 	-->
+		 <!--   	<interceptor-ref name="token"></interceptor-ref>-->
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result  name="invalid.token" >/WEB-INF/errorjsp/token.jsp</result>
 			<result name="addsuccess" type="redirect">/success.jsp</result>
 			<result name="success" type="redirect">/success.jsp</result>
 			<result name="input">/WEB-INF/jsp/paper.jsp</result>
-		</action>
-		<action name="error">
-			<result>/WEB-INF/errorjsp/error.jsp</result>
-		</action>
+		</action>	
+		
 	<!--	<action name="answer">
 			<result>/WEB-INF/errorjsp/error.jsp</result>
 		</action>-->
 	</package>
+<<<<<<< HEAD
 	
 	<package name="admin" namespace="" extends="default">
+=======
+	<package name="admin" namespace="/" extends="default">
+>>>>>>> 58a75b0097d012e72da6c8b47cc9b4a2edc12eaa
 	
-		<action name="admin_*" class="adminAction" method="{1}">
-			<result type="tiles" name="loginsuccess">
-				adminTiles
+		<action name="adminuser_*" class="adminAction" method="{1}">
+	
+			
+			<result type="tiles" name="success">
+				adminTiles_{1}
 			</result>
+			
 			<result name="input">/admin.jsp</result>
 		</action>
 	
-		<action name="adminuser_*">
+		<action name="adminsidebar_*">
+			 
 			<result type="tiles" >
 				adminTiles_{1}
 			</result>
 		</action>
+		
+	
 		
 	</package>
 </struts>    
