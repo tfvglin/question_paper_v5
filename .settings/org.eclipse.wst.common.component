@@ -3,6 +3,7 @@
     <wb-module deploy-name="question_paper_v5">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/test"/>
         <property name="context-root" value="/question_paper_v5"/>
         <property name="java-output-path" value="/question_paper_v5/WebRoot/WEB-INF/classes"/>
     </wb-module>

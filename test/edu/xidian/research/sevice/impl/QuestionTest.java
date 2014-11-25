@@ -1,27 +1,27 @@
 package edu.xidian.research.sevice.impl;
 
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import junit.framework.TestCase;
 import edu.xidian.research.service.impl.AdminServiceImpl;
+import edu.xidian.research.service.impl.QuestionServiceImpl;
 import edu.xidian.research.vo.Admin;
 
-public class AdminTest extends TestCase{
+public class QuestionTest extends TestCase{
 	
-	private AdminServiceImpl asimpl;
+	private QuestionServiceImpl questionServiceImpl;
 	
-	public void testaddAdmin()
+	public void testgetquestionnum()
 	{
 		ApplicationContext context = new ClassPathXmlApplicationContext(  
                 "applicationContext.xml");  
-		asimpl = (AdminServiceImpl) context.getBean("adminServiceImpl");
+		questionServiceImpl = (QuestionServiceImpl) context.getBean("questionServiceImpl");
 		Admin ad = new Admin();
 		ad.setAdminname("haha");
 		ad.setAdminpassword("123");
-		asimpl.addAdmin(ad);
-		
+		int a = questionServiceImpl.getquestionnum(1);
+		System.out.println(a);
 	}
 
 }

@@ -43,7 +43,7 @@
     <param-value>/WEB-INF/classes/applicationContext.xml </param-value>
 </context-param>
   
-<!--  
+ 
   	 <filter>     
    		<filter-name>OpenSessionInViewFilter</filter-name>     
    		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
@@ -52,7 +52,7 @@
     <filter-name>OpenSessionInViewFilter</filter-name>    
      	<url-pattern>*.action</url-pattern> 
  	 </filter-mapping>
-   --> 
+ 
   
   
   <filter>

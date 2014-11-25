@@ -13,5 +13,7 @@ public interface QuestionDAO {
 	public boolean addSelMulOption(SelMulOption so);
 	
 	public int getquestionnum(int sqtype);
+	
+	public int getSingleQuestionOptionNum(int sqnum);
 
 }
