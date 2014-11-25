@@ -72,7 +72,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		{
 	
 			
-			return "loginsuccess";
+			return "success";
 		}
 		else
 		{

@@ -9,12 +9,16 @@
        <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>
     </definition>
 
+   <definition  name="adminTiles_login" extends="adminTiles">
+    </definition>
    <definition  name="adminTiles_addquestion" extends="adminTiles">
       <put-attribute name="CONTENT" value="/jsp/questionadd.jsp" ></put-attribute>
     </definition>
 
   	<definition  name="adminTiles_resultquestion" extends="adminTiles">
        <put-attribute name="CONTENT" value="/jsp/ansresult.jsp" ></put-attribute>
+    </definition>
+  	<definition  name="adminTiles_creatExcel" extends="adminTiles">
     </definition>
 <!--    <definition  name="studentsTiles" template="/WEB-INF/commons/layout.jsp">
        <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
