@@ -113,7 +113,8 @@ public class QuestionDAOImpl extends MyHibernateTemplate implements QuestionDAO{
 					query.setParameter("sqnum", sqnum);
 					if( query.uniqueResult()!=null)
 					{
-						return (Integer) query.uniqueResult();
+						long a =(Long) query.uniqueResult();
+						return (int)a;
 					}
 					else{
 						return null;
@@ -129,6 +130,47 @@ public class QuestionDAOImpl extends MyHibernateTemplate implements QuestionDAO{
 			return sqonum;
 		}
 	}
-		
+	
+	
+	public int getQuestionOptionNum(final int sqnum,final int sqtype)
+	{
+		int sqonum = 0;
+		String answertable = null;
+		if(sqtype==1)
+		{
+			answertable="SingleAnswer";
+		}
+		else if(sqtype==2)
+		{
+			answertable="MultipleAnswer";
+		}
+		try
+		{
+			
+			final String hql = "select count(*) from "+answertable+" where sqnum=:sqnum";
+			sqonum =this.getHibernateTemplate().execute(new HibernateCallback() {
+				public Object doInHibernate(Session session)
+				{
+					Query query = session.createQuery(hql);
+					query.setParameter("sqnum", sqnum);
+					if( query.uniqueResult()!=null)
+					{
+						long a =(Long) query.uniqueResult();
+						return (int)a;
+					}
+					else{
+						return null;
+					}
+			
+				}
+			});
+			return sqonum;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return sqonum;
+		}
+	}
 	
 	}

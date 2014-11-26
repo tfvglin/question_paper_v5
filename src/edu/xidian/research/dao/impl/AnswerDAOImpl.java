@@ -139,6 +139,83 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	}
 	
 	
+	
+	public int getAnswersOptionNum(final int qnum,final String sans ) {
+		int answeronum = 0;
+		try
+		{
+			final String hql = "select count(*) from SingleAnswer where qnum=:qnum and sans=:sans";
+		
+			answeronum =  this.getHibernateTemplate().execute(
+					new HibernateCallback(){
+                        public Object doInHibernate(Session session)
+                        {
+                        	
+                        	Query query = session.createQuery(hql);
+                        	query.setParameter("qnum", qnum);
+                        	query.setParameter("sans", sans);
+                        	long a = (Long) query.uniqueResult();
+                        	return (int)a;
+                        }
+					});
+			
+			return answeronum;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return answeronum;
+		}
+	}
+
+	
+	
+	
+	public List<Integer> getAnswersOptionNumList(int sqtype, final int qnum,final int questionOptionNum) {
+		List<Integer> numlist =new ArrayList<Integer>();
+		
+		String answertable = null;
+		if(sqtype==1)
+		{
+			answertable="SingleAnswer";
+		}
+		else if(sqtype==2)
+		{
+			answertable="MultipleAnswer";
+		}
+		final String hql = "select count(*) from "+answertable+" where qnum=:qnum and sans=:sans";
+		
+		try
+		{
+			
+			
+			return this.getHibernateTemplate().execute(
+						new HibernateCallback(){
+	                        public Object doInHibernate(Session session)
+	                        {
+	                        	List<Integer> list =new ArrayList<Integer>();
+	                        	Query query = session.createQuery(hql);
+	                        	query.setParameter("qnum", qnum);
+	                        	for(int i=0;i<questionOptionNum;i++)
+	                			{
+	                        		query.setParameter("sans",String.valueOf((char)(65+i)));
+	                        		System.out.println(String.valueOf((char)(65+i)));
+	                        		long a = (Long) query.uniqueResult();
+	                        		System.out.println(a);
+	                        		list.add((int)a);
+	                        		
+	                			}
+	                        	return list;
+	                        }
+						});	 
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return numlist;
+		}
+	}
+
 	public boolean checkStudents(Students stu)
 	{
 		try

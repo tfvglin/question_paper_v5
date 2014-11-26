@@ -15,5 +15,7 @@ public interface QuestionDAO {
 	public int getquestionnum(int sqtype);
 	
 	public int getSingleQuestionOptionNum(int sqnum);
+	
+	public int getQuestionOptionNum(final int sqnum,final int sqtype);
 
 }

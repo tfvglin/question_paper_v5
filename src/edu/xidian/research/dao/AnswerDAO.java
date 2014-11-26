@@ -22,6 +22,10 @@ public interface AnswerDAO {
 	
 	public long getAnswersNum();
 	
+	public int getAnswersOptionNum(int qnum,String sans);
+	
+	public List<Integer> getAnswersOptionNumList(int sqtype,int qnum,int questionOptionNum);
+	
 	public boolean checkStudents(Students stu);
 
 }

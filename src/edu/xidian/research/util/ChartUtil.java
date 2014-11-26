@@ -20,7 +20,7 @@ import org.jfree.ui.TextAnchor;
 
 public class ChartUtil {
 	
-	public void creatBarChart(int sqtype,int sqnum,int sqonum,List<Integer> olist )
+	public void creatBarChart(int sqtype,int sqnum,int questionOptionNum,List<Integer> olist )
 	{	
 		//创建主题样式  
 		   StandardChartTheme standardChartTheme=new StandardChartTheme("CN");  
@@ -56,10 +56,10 @@ public class ChartUtil {
 
 		String yTitle = "人数";     // Y轴标题
 
-		String category[] = new String[sqonum] ;   // 统计种类
-		int[] data = new int[sqonum];
+		String category[] = new String[ questionOptionNum] ;   // 统计种类
+		int[] data = new int[ questionOptionNum];
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		for(int i=0;i<sqonum;i++)
+		for(int i=0;i<questionOptionNum;i++)
 		{
 			char car = (char) (65+i);
 			category[i]=String.valueOf(car) ;

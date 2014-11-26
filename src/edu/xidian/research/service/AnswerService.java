@@ -22,6 +22,10 @@ public interface AnswerService {
 	
 	public long getAnswersNum();
 	
+	public int getAnswersOptionNum(final int qnum,final String sans );
+	
+	public List<Integer> getAnswersOptionNumList(int sqtype, final int qnum,final int questionOptionNum);
+	
 	public boolean checkStudents(Students stu);
 
 }

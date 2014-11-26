@@ -17,11 +17,10 @@ public class QuestionTest extends TestCase{
 		ApplicationContext context = new ClassPathXmlApplicationContext(  
                 "applicationContext.xml");  
 		questionServiceImpl = (QuestionServiceImpl) context.getBean("questionServiceImpl");
-		Admin ad = new Admin();
-		ad.setAdminname("haha");
-		ad.setAdminpassword("123");
+
 		int a = questionServiceImpl.getquestionnum(1);
-		System.out.println(a);
+		long b = questionServiceImpl.getSingleQuestionOptionNum(1);
+		System.out.println(b);
 	}
 
 }

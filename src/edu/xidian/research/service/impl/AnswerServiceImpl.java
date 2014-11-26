@@ -18,7 +18,7 @@ import edu.xidian.research.vo.Students;
 import edu.xidian.research.vo.TextAnswer;
 
 
-@Service("anserServiceImpl")
+@Service("answerServiceImpl")
 public class AnswerServiceImpl implements AnswerService {
 
 	private AnswerDAOImpl answerDAOImpl;
@@ -76,6 +76,21 @@ public class AnswerServiceImpl implements AnswerService {
 	public long getAnswersNum() {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getAnswersNum();
+	}
+
+	
+	
+	public int getAnswersOptionNum(int qnum, String sans) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getAnswersOptionNum(qnum, sans);
+	}
+
+	
+	
+	public List<Integer> getAnswersOptionNumList(int sqtype, int qnum,
+			int questionOptionNum) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getAnswersOptionNumList(sqtype, qnum, questionOptionNum);
 	}
 
 	@Override
