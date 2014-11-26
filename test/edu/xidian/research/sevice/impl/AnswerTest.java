@@ -40,5 +40,22 @@ public class AnswerTest extends TestCase{
 			System.out.println(it.next());
 		}
 	}
+	
+	
+	public void testgetmulans()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext(  
+                "applicationContext.xml");  
+		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
+		List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswer(1);
+		Iterator it = list.iterator();
+		while(it.hasNext())
+		{
+			System.out.println(it.next());
+		}
+		
+		
+		
+	}
 
 }

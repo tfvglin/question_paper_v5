@@ -87,10 +87,26 @@ public class AnswerServiceImpl implements AnswerService {
 
 	
 	
+	@Override
+	public List<Integer> getSingleAnswerOptionNum(int qnum,
+			int questionOptionNum) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getSingleAnswerOptionNum(qnum, questionOptionNum);
+	}
+
 	public List<Integer> getAnswersOptionNumList(int sqtype, int qnum,
 			int questionOptionNum) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getAnswersOptionNumList(sqtype, qnum, questionOptionNum);
+	}
+
+	
+	
+	
+	@Override
+	public List<String[]> getMultipleQuestionOptionAnswer(int sqnum) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getMultipleQuestionOptionAnswer(sqnum);
 	}
 
 	@Override
@@ -99,4 +115,5 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerDAOImpl.checkStudents(stu);
 	}
 
+	
 }

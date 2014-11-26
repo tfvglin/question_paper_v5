@@ -1,5 +1,7 @@
 package edu.xidian.research.dao;
 
+import java.util.List;
+
 import edu.xidian.research.vo.Question;
 import edu.xidian.research.vo.SelMulOption;
 import edu.xidian.research.vo.SelSinOption;
@@ -17,5 +19,7 @@ public interface QuestionDAO {
 	public int getSingleQuestionOptionNum(int sqnum);
 	
 	public int getQuestionOptionNum(final int sqnum,final int sqtype);
+	
+
 
 }
