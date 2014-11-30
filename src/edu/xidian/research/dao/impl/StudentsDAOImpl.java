@@ -2,8 +2,12 @@ package edu.xidian.research.dao.impl;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
 import edu.xidian.research.dao.StudentsDAO;
@@ -16,26 +20,58 @@ public class StudentsDAOImpl extends MyHibernateTemplate implements StudentsDAO 
 	
 	
 	
-	public boolean stuLogin(Students stu)
+	public Students stuLogin(Students stu)
 	{
 		//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		
+		Students student =null;
 		try
 		{
 			//System.out.println(stu.getStuname()+stu.getStunum());
-			String hql = "from Students t where t.stuname=? and  t.stunum=? ";
+			String hql = "from Students t where t.stuname=? and  t.cardid=? ";
 			
-			List<Students> s = this.getHibernateTemplate().find(hql, stu.getStuname(),stu.getStunum());
+			List<Students> s = this.getHibernateTemplate().find(hql, stu.getStuname(),stu.getCardid());
 			if(s.size()>0)
 			{
-			
-				return true;
+				student = s.get(0);
+				return student;
 			}
 			else
 			{
-				return false;
+				return student;
 			}
 			
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return student;
+		}
+	}
+
+	
+	
+	@Override
+	public List<Students> list() {
+		String hql="from Students";
+		List<Students> list= new ArrayList<Students>();
+		try
+		{
+			list=this.getHibernateTemplate().find(hql);
+			return list;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return list;
+		}
+	}
+
+	public boolean addStudent(Students stu) {
+		// TODO Auto-generated method stub
+		try
+		{
+			this.getHibernateTemplate().save(stu);
+			return true;
 		}
 		catch(Exception ex)
 		{
@@ -44,17 +80,42 @@ public class StudentsDAOImpl extends MyHibernateTemplate implements StudentsDAO 
 		}
 	}
 
-	@Override
-	public boolean list() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
-	public boolean checkstu(Students stu) {
-		// TODO Auto-generated method stub
-		return false;
+	public String getStuDepartment(final Students stu) {
+		String studepartment = null;
+		try
+		{
+			
+			final String hql = "select studepartment from Students where stuname=:stuname and cardid=:cardid";
+			studepartment =this.getHibernateTemplate().execute(new HibernateCallback() {
+				public Object doInHibernate(Session session)
+				{
+					Query query = session.createQuery(hql);
+					query.setParameter("stuname", stu.getStuname());
+					query.setParameter("cardid", stu.getCardid());
+					if( query.uniqueResult()!=null)
+					{
+						return (String) query.uniqueResult();
+					}
+					else{
+						return null;
+					}
+			
+				}
+			});
+			return studepartment;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return studepartment;
+		}
 	}
+
+
+	
 	
 	/*public boolean list()
 	{

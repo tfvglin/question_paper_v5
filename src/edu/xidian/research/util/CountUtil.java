@@ -7,8 +7,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import edu.xidian.research.service.impl.AnswerServiceImpl;
 
+@Component("countUtil")
 public class CountUtil {
 	
 	private AnswerServiceImpl answerServiceImpl;
@@ -23,35 +27,37 @@ public class CountUtil {
 	
 	public List<Integer> multipleAnswerOptionNum(List<String[]> maonlist,int questionoptionnum)
 	{
+		int Anum=0,Bnum=0,Cnum=0,Dnum=0,Enum=0,Fnum=0,Gnum=0;
 		List<Integer> list =new ArrayList<Integer>();
 		int[] maon= new  int[questionoptionnum];
 		Iterator<String[]> it = maonlist.iterator();
 		while(it.hasNext())
 		{
+			
 			String[] mulanswer = it.next();
 			for(int i=0;i<mulanswer.length;i++)
 			{
 				switch (mulanswer[i]) {
 				case "A":
-					maon[0]++;
+					Anum++;
 					break;
 				case "B":
-					maon[1]++;
+					Bnum++;
 					break;
 				case "C":
-					maon[2]++;
+					Cnum++;
 					break;
 				case "D":
-					maon[3]++;
+					Dnum++;
 					break;
 				case "E":
-					maon[4]++;
+					Enum++;
 					break;
 				case "F":
-					maon[5]++;
+					Fnum++;
 					break;
 				case "G":
-					maon[6]++;
+					Gnum++;
 					break;
 					
 				default:
@@ -60,10 +66,13 @@ public class CountUtil {
 			}
 			
 		}
-		for(int num:maon)
-		{
-			list.add(num);
-		}
+		list.add(Anum);
+		list.add(Bnum);
+		list.add(Cnum);
+		list.add(Dnum);
+		list.add(Enum);
+		list.add(Fnum);
+		list.add(Gnum);
 		return list;
 	}
 

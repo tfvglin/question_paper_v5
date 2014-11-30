@@ -1,5 +1,7 @@
 package edu.xidian.research.dao;
 
+import java.util.List;
+
 import edu.xidian.research.vo.Students;
 
 
@@ -8,14 +10,14 @@ import edu.xidian.research.vo.Students;
 public  interface StudentsDAO {
 	
 	
-	public boolean stuLogin(Students stu);
+	public Students stuLogin(Students stu);
+	
+	public String getStuDepartment(Students stu);
+	
+	public List<Students> list();
+	
+	public boolean addStudent(Students stu);
 	
 	
-	
-	public boolean list();
-	
-	
-	
-	public boolean checkstu(Students stu);
 
 }

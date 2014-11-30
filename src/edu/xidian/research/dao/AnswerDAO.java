@@ -33,7 +33,7 @@ public interface AnswerDAO {
 	
 	
 	//得到多选结果集
-	List<String[]> getMultipleQuestionOptionAnswer(int sqnum);
+	List<String> getMultipleQuestionOptionAnswer(int sqnum);
 	
 	public boolean checkStudents(Students stu);
 

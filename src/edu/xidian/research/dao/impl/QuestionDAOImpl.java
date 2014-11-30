@@ -140,11 +140,11 @@ public class QuestionDAOImpl extends MyHibernateTemplate implements QuestionDAO{
 		String answertable = null;
 		if(sqtype==1)
 		{
-			answertable="SingleAnswer";
+			answertable="SelSinOption";
 		}
 		else if(sqtype==2)
 		{
-			answertable="MultipleAnswer";
+			answertable="SelMulOption";
 		}
 		try
 		{

@@ -17,10 +17,12 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.TextAnchor;
+import org.springframework.stereotype.Component;
 
+@Component("chartUtil")
 public class ChartUtil {
 	
-	public void creatBarChart(int sqtype,int sqnum,int questionOptionNum,List<Integer> olist )
+	public JFreeChart creatBarChart(int sqtype,int sqnum,int questionOptionNum,List<Integer> olist )
 	{	
 		//创建主题样式  
 		   StandardChartTheme standardChartTheme=new StandardChartTheme("CN");  
@@ -33,9 +35,9 @@ public class ChartUtil {
 		   //应用主题样式  
 		   ChartFactory.setChartTheme(standardChartTheme); 
 		   
-			int width = 500;     // 图像宽度
+			int width = 100;     // 图像宽度
 
-			int height = 375;      // 图像高度
+			int height = 75;      // 图像高度
 		
 		
 		String qtitle=null;
@@ -56,6 +58,8 @@ public class ChartUtil {
 
 		String yTitle = "人数";     // Y轴标题
 
+		System.out.println(questionOptionNum);
+		
 		String category[] = new String[ questionOptionNum] ;   // 统计种类
 		int[] data = new int[ questionOptionNum];
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
@@ -89,19 +93,21 @@ public class ChartUtil {
 	        renderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(
 	                ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_CENTER));
 		
-		FileOutputStream fos_jpg = null;
-	     try {
-	    	 fos_jpg = new FileOutputStream("D:\\Bar3DChartselect.jpg");
-	         ChartUtilities.writeChartAsJPEG(fos_jpg, 1.0f, chart, 400, 300,null);
-	     } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-	         try {
-	             fos_jpg.close();
-	         } catch (Exception e) {
-	         }
-	     }
+	     return chart;   
+	        
+//		FileOutputStream fos_jpg = null;
+//	     try {
+//	    	 fos_jpg = new FileOutputStream("D:\\chart\\"+qtitle+"第"+sqnum+"题结果分析.jpg");
+//	         ChartUtilities.writeChartAsJPEG(fos_jpg, 1.0f, chart, 400, 300,null);
+//	     } catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} finally {
+//	         try {
+//	             fos_jpg.close();
+//	         } catch (Exception e) {
+//	         }
+//	     }
 
 		
 	

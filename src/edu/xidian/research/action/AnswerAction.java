@@ -63,7 +63,8 @@ public class AnswerAction extends SuperAction{
 		AnswersPaper ap = new AnswersPaper();
 		ap.setPhone(request.getParameter("phone"));
 		ap.setStuname((String)request.getSession().getAttribute("stuname"));
-		ap.setStunum((String)request.getSession().getAttribute("stunum"));
+		ap.setCardid((String)request.getSession().getAttribute("cardid"));
+		ap.setStudepartment((String)request.getSession().getAttribute("studepartment"));
 		ap.setTime(df.format(date));
 		//添加单选题结果
 		for(int i = 1 ; i<=singlecount ; i++)
@@ -174,12 +175,12 @@ public class AnswerAction extends SuperAction{
 			request.getSession().removeAttribute("qmulmap");
 			request.getSession().removeAttribute("sqsinlist");
 			request.getSession().removeAttribute("sqmullist");
-		
+			request.getSession().removeAttribute("studepartment");
 			return "addsuccess";
 		}
 		else
 		{
-			return INPUT;
+			return "error";
 		}
 		
 		

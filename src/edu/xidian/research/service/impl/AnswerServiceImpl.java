@@ -1,5 +1,7 @@
 package edu.xidian.research.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -106,7 +108,20 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public List<String[]> getMultipleQuestionOptionAnswer(int sqnum) {
 		// TODO Auto-generated method stub
-		return answerDAOImpl.getMultipleQuestionOptionAnswer(sqnum);
+		List<String> list = new ArrayList<String>();
+		List<String[]> mulanslist = new ArrayList<String[]>();
+	 	list = answerDAOImpl.getMultipleQuestionOptionAnswer(sqnum);
+	 	Iterator<String> it = list.iterator();
+		while(it.hasNext())
+		{
+			String str = it.next();
+			String sig="[\\]\\[\\s]";
+			str=str.replaceAll(sig, "");
+			String[] strl = str.split(",");
+			mulanslist.add(strl);
+			
+		}
+		return mulanslist;
 	}
 
 	@Override

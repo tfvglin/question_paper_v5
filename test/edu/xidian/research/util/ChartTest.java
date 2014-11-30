@@ -26,7 +26,7 @@ public class ChartTest extends TestCase {
 		questionServiceImpl = (QuestionServiceImpl) context.getBean("questionServiceImpl");
 		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
 		chartutil = new ChartUtil();
-		int sqtype =2 ;
+		int sqtype =1 ;
 		int qnum=5 ;
 		int questionOptionNum = questionServiceImpl.getSingleQuestionOptionNum(qnum);
 		if(sqtype==1)

@@ -253,8 +253,8 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	}
 
 	@Override
-	public List<String[]> getMultipleQuestionOptionAnswer(final int sqnum) {
-		List<String[]> anslist = new ArrayList<String[]>();
+	public List<String> getMultipleQuestionOptionAnswer(final int sqnum) {
+		List<String> anslist = new ArrayList<String>();
 		try
 		{
 			
@@ -281,8 +281,8 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	{
 		try
 		{
-			String hql ="from AnswersPaper where stuname=? and stunum=?";
-			List<Students> stulist = this.getHibernateTemplate().find(hql,stu.getStuname(),stu.getStunum());
+			String hql ="from AnswersPaper where stuname=? and cardid=?";
+			List<Students> stulist = this.getHibernateTemplate().find(hql,stu.getStuname(),stu.getCardid());
 			if(stulist.size()<=0)
 			{
 				return false;

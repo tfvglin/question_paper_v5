@@ -51,7 +51,7 @@ public class AnswerTest extends TestCase{
 		Iterator it = list.iterator();
 		while(it.hasNext())
 		{
-			System.out.println(it.next());
+			System.out.println(it.next().toString());
 		}
 		
 		

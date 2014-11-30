@@ -1,5 +1,7 @@
 package edu.xidian.research.action;
 
+
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,10 +13,14 @@ import com.opensymphony.xwork2.ModelDriven;
 
 import edu.xidian.research.service.impl.AdminServiceImpl;
 import edu.xidian.research.service.impl.AnswerServiceImpl;
+import edu.xidian.research.service.impl.PaperServiceImpl;
 import edu.xidian.research.service.impl.QuestionServiceImpl;
+import edu.xidian.research.service.impl.StudentsServiceImpl;
 import edu.xidian.research.util.ExcelUtil;
+import edu.xidian.research.util.PagerUtil;
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
+import edu.xidian.research.vo.Students;
 
 
 @Controller("adminAction")
@@ -25,8 +31,10 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	private AdminServiceImpl adminServiceImpl ;
 	private QuestionServiceImpl questionServiceImpl;
 	private AnswerServiceImpl answerServiceImpl;
+	private PaperServiceImpl paperServiceImpl;
+	private StudentsServiceImpl studentsServiceImpl;
 	private ExcelUtil excelUtil;
-	
+	private PagerUtil pageUtil;
 	
 	
 	public AdminServiceImpl getAdminServiceImpl() {
@@ -52,7 +60,23 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setAnswerServiceImpl(AnswerServiceImpl answerServiceImpl) {
 		this.answerServiceImpl = answerServiceImpl;
 	}
+	
+	
+	public PaperServiceImpl getPaperServiceImpl() {
+		return paperServiceImpl;
+	}
+	@Resource
+	public void setPaperServiceImpl(PaperServiceImpl paperServiceImpl) {
+		this.paperServiceImpl = paperServiceImpl;
+	}
 
+	public StudentsServiceImpl getStudentsServiceImpl() {
+		return studentsServiceImpl;
+	}
+	@Resource
+	public void setStudentsServiceImpl(StudentsServiceImpl studentsServiceImpl) {
+		this.studentsServiceImpl = studentsServiceImpl;
+	}
 	public ExcelUtil getExcelUtil() {
 		return excelUtil;
 	}
@@ -60,14 +84,29 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setExcelUtil(ExcelUtil excelUtil) {
 		this.excelUtil = excelUtil;
 	}
+	
+	public PagerUtil getPageUtil() {
+		return pageUtil;
+	}
+	@Resource
+	public void setPageUtil(PagerUtil pageUtil) {
+		this.pageUtil = pageUtil;
+	}
 	public String login()
 	{
-		request.getSession().setAttribute("c", answerServiceImpl.getAnswersNum());
 		
 		if(adminServiceImpl.adminLogin(admin))
 		{
 	
-			
+			request.getSession().setAttribute("c", answerServiceImpl.getAnswersNum());
+//			List<Question> sqsinlist = paperServiceImpl.getSelsinQuestion();
+//			List<Question> sqmullist = paperServiceImpl.getSelmulQuestion();
+//			Map<Integer, List<SelSinOption>> qsinmap = paperServiceImpl.getSelSinOption();
+//			Map<Integer, List<SelMulOption>> qmulmap = paperServiceImpl.getSelMulOption();
+			request.getSession().setAttribute("qsinmap", paperServiceImpl.getSelSinOption());
+			request.getSession().setAttribute("qmulmap", paperServiceImpl.getSelMulOption());
+			request.getSession().setAttribute("sqsinlist", paperServiceImpl.getSelsinQuestion());
+			request.getSession().setAttribute("sqmullist", paperServiceImpl.getSelmulQuestion());
 			return "success";
 		}
 		else
@@ -111,7 +150,39 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		}
 	}
 
-
+	
+public String showStudents()
+{
+	List<Students> stus=studentsServiceImpl.list();
+	if(request.getSession().getAttribute("pager")==null)
+	{
+		
+		request.getSession().setAttribute("pager", pageUtil);
+	}
+	pageUtil =(PagerUtil)request.getSession().getAttribute("pager");
+	pageUtil.setBigList(stus);
+	//System.out.println(request.getParameter("PageIndex")==null||request.getParameter("pageIndex").equals(""));
+	if(request.getParameter("PageIndex")==null)
+	{
+		pageUtil.setCurentPageIndex(1);
+//		System.out.println("aa-------------------");
+//		List<Students> list = pageUtil.getSmallList();
+//		Iterator<Students> it = list.iterator();
+//		while(it.hasNext())
+//		{
+//			System.out.println(it.next().getStuname());
+//		}
+//		
+	}
+	else
+	{
+	//	System.out.println("bb-------------------");
+		pageUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
+	}
+	request.getSession().setAttribute("pager", pageUtil);
+	return SUCCESS;
+}
+	
 	@Override
 	public Admin getModel() {
 		// TODO Auto-generated method stub

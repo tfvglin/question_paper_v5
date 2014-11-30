@@ -50,7 +50,7 @@
     </filter>
 	<filter-mapping>
     <filter-name>OpenSessionInViewFilter</filter-name>    
-     	<url-pattern>*.action</url-pattern> 
+     	<url-pattern>/adminuser_creatExcel.action</url-pattern> 
  	 </filter-mapping>
  
   
@@ -66,10 +66,9 @@
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
- <error-page>
+  <error-page>
  	<error-code>404</error-code>
- 	<location>/WEB-INF/errorjsp/error.jsp</location>
+ 	<location>/WEB-INF/errorjsp/paper_error.jsp</location>
  </error-page>
- 
-  
+
   </web-app>
