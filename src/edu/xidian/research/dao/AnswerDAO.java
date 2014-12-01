@@ -22,6 +22,21 @@ public interface AnswerDAO {
 	
 	public long getAnswersNum();
 	
+	//由题号和选项得到选择该选项的人数
+	public int getAnswersOptionNum(int qnum,String sans);
+	
+	//由单选题号得到该题各选项人数list
+	public List<Integer> getSingleAnswerOptionNum(int qnum,int questionOptionNum);
+	
+	//单选多选合并得到结果人数
+	public List<Integer> getAnswersOptionNumList(int sqtype,int qnum,int questionOptionNum);
+	
+	
+	//得到多选结果集
+	List<String> getMultipleQuestionOptionAnswer(int sqnum);
+	
 	public boolean checkStudents(Students stu);
+
+	
 
 }

@@ -1,5 +1,7 @@
 package edu.xidian.research.service.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -18,7 +20,7 @@ import edu.xidian.research.vo.Students;
 import edu.xidian.research.vo.TextAnswer;
 
 
-@Service("anserServiceImpl")
+@Service("answerServiceImpl")
 public class AnswerServiceImpl implements AnswerService {
 
 	private AnswerDAOImpl answerDAOImpl;
@@ -78,10 +80,55 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerDAOImpl.getAnswersNum();
 	}
 
+	
+	
+	public int getAnswersOptionNum(int qnum, String sans) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getAnswersOptionNum(qnum, sans);
+	}
+
+	
+	
+	@Override
+	public List<Integer> getSingleAnswerOptionNum(int qnum,
+			int questionOptionNum) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getSingleAnswerOptionNum(qnum, questionOptionNum);
+	}
+
+	public List<Integer> getAnswersOptionNumList(int sqtype, int qnum,
+			int questionOptionNum) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getAnswersOptionNumList(sqtype, qnum, questionOptionNum);
+	}
+
+	
+	
+	
+	@Override
+	public List<String[]> getMultipleQuestionOptionAnswer(int sqnum) {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<String>();
+		List<String[]> mulanslist = new ArrayList<String[]>();
+	 	list = answerDAOImpl.getMultipleQuestionOptionAnswer(sqnum);
+	 	Iterator<String> it = list.iterator();
+		while(it.hasNext())
+		{
+			String str = it.next();
+			String sig="[\\]\\[\\s]";
+			str=str.replaceAll(sig, "");
+			String[] strl = str.split(",");
+			mulanslist.add(strl);
+			
+		}
+		return mulanslist;
+	}
+
 	@Override
 	public boolean checkStudents(Students stu) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.checkStudents(stu);
 	}
 
+	
 }

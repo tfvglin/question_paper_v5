@@ -21,7 +21,9 @@ public class AnswersPaper {
 	private Integer pnum;
 	private String stuname;
 	private String stunum;
+	private String cardid;
 	private String phone;
+	private String studepartment;
 	private String time;
 	@OneToMany(fetch=FetchType.LAZY,targetEntity=SingleAnswer.class,cascade={CascadeType.ALL})
 	@JoinColumns(value={@JoinColumn(name="pID",referencedColumnName="pID")})
@@ -64,6 +66,14 @@ public class AnswersPaper {
 	public void setStunum(String stunum) {
 		this.stunum = stunum;
 	}
+	
+	
+	public String getCardid() {
+		return cardid;
+	}
+	public void setCardid(String cardid) {
+		this.cardid = cardid;
+	}
 	public String getPhone() {
 		return phone;
 	}
@@ -71,6 +81,12 @@ public class AnswersPaper {
 		this.phone = phone;
 	}
 	
+	public String getStudepartment() {
+		return studepartment;
+	}
+	public void setStudepartment(String studepartment) {
+		this.studepartment = studepartment;
+	}
 	public String getTime() {
 		return time;
 	}

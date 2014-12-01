@@ -65,10 +65,18 @@ public class StudentsAction extends SuperAction implements ModelDriven<Students>
 	
 	public String login()
 	{
+<<<<<<< HEAD
 		System.out.println("studentsloginaction执行————————————");
 		
 	
 		if(studentsServiceImpl.stuLogin(stu))
+=======
+		
+		System.out.println(stu.getCardid());
+		System.out.println("studentsaction执行————————————");
+		Students student =studentsServiceImpl.stuLogin(stu);
+		if(student!=null)
+>>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
 		{
 			if(answerServiceImpl.checkStudents(stu))
 			{
@@ -92,16 +100,16 @@ public class StudentsAction extends SuperAction implements ModelDriven<Students>
 			request.getSession().setAttribute("sqsinlist", sqsinlist);
 			request.getSession().setAttribute("sqmullist", sqmullist);
 			
-			request.getSession().setAttribute("stuname", stu.getStuname());
-			request.getSession().setAttribute("stunum", stu.getStunum());
+			request.getSession().setAttribute("stuname", student.getStuname());
+			request.getSession().setAttribute("cardid", student.getCardid());
+			request.getSession().setAttribute("studepartment",student.getStudepartment());
 			
-	
 			return SUCCESS;
 			}
 		}
 		else{
-			this.addActionMessage("姓名或学号错误");
-			return INPUT;
+			this.addActionMessage("姓名或身份证号错误");
+			return "error";
 		}
 		
 	}

@@ -10,10 +10,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div style=" height:100%">
 		<div class="center" style="padding-top:15px">
 		<ul style="padding:0 auto;margin:0 auto">
-			<li  class="dropdown"><a href="<%=path%>/adminsidebar_resultquestion.action">查询结果</a></li>
+			<li  class="dropdown"><a>结果管理</a>
+				<ul class="childmenu hide">
+					<li><a href="<%=path%>/adminsidebar_resultquestion.action">结果导出</a></li>
+					<li><a href="<%=path%>/adminsidebar_creatChart.action">生成图表</a></li>
+					<li><a href="">修改题目</a></li>
+				</ul>
+			</li>
 			<li  class="dropdown"><a>题目管理</a>
 				<ul class="childmenu hide">
 					<li><a href="<%=path%>/adminsidebar_addquestion.action">增加题目</a></li>
+					<li><a href="">删除题目</a></li>
+					<li><a href="">修改题目</a></li>
+				</ul>
+			</li>
+			<li  class="dropdown"><a>学生管理</a>
+				<ul class="childmenu hide">
+					<li><a href="<%=path%>/adminuser_showStudents.action">所有学生</a></li>
 					<li><a href="">删除题目</a></li>
 					<li><a href="">修改题目</a></li>
 				</ul>

@@ -14,9 +14,15 @@
    <definition  name="adminTiles_addquestion" extends="adminTiles">
       <put-attribute name="CONTENT" value="/jsp/questionadd.jsp" ></put-attribute>
     </definition>
+   <definition  name="adminTiles_creatChart" extends="adminTiles">
+      <put-attribute name="CONTENT" value="/jsp/anschart.jsp" ></put-attribute>
+    </definition>
 
   	<definition  name="adminTiles_resultquestion" extends="adminTiles">
        <put-attribute name="CONTENT" value="/jsp/ansresult.jsp" ></put-attribute>
+    </definition>
+  	<definition  name="adminTiles_showStudents" extends="adminTiles">
+       <put-attribute name="CONTENT" value="/jsp/allstu_list.jsp" ></put-attribute>
     </definition>
   	<definition  name="adminTiles_creatExcel" extends="adminTiles">
     </definition>

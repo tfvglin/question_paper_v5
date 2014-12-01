@@ -1,5 +1,7 @@
 package edu.xidian.research.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -28,23 +30,24 @@ public class StudentsServiceImpl implements StudentsService {
 
 	@Override
 	@Transactional
-	public boolean stuLogin(Students stu) {
+	public Students stuLogin(Students stu) {
 		// TODO Auto-generated method stub
 		return studentsDAOImpl.stuLogin(stu);
 	}
 
 	@Override
 	@Transactional
-	public boolean list() {
+	public List<Students> list() {
 		// TODO Auto-generated method stub
 		return studentsDAOImpl.list();
 	}
 
 	@Override
-	@Transactional
-	public boolean checkstu(Students stu) {
+	public String getStuDepartment(Students stu) {
 		// TODO Auto-generated method stub
-		return studentsDAOImpl.checkstu(stu);
+		return studentsDAOImpl.getStuDepartment(stu);
 	}
 
+
+	
 }

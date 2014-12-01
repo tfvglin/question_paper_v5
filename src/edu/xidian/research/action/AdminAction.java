@@ -1,32 +1,30 @@
 package edu.xidian.research.action;
 
-import java.io.File;
+
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-
-import jxl.Workbook;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
 
 import com.opensymphony.xwork2.ModelDriven;
 
 import edu.xidian.research.service.impl.AdminServiceImpl;
 import edu.xidian.research.service.impl.AnswerServiceImpl;
+import edu.xidian.research.service.impl.PaperServiceImpl;
 import edu.xidian.research.service.impl.QuestionServiceImpl;
+<<<<<<< HEAD
 import edu.xidian.research.util.ExcelUtil;
+=======
+import edu.xidian.research.service.impl.StudentsServiceImpl;
+import edu.xidian.research.util.ExcelUtil;
+import edu.xidian.research.util.PagerUtil;
+>>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
-import edu.xidian.research.vo.ListAnswer;
-import edu.xidian.research.vo.MultipleAnswer;
-import edu.xidian.research.vo.SingleAnswer;
-import edu.xidian.research.vo.TextAnswer;
+import edu.xidian.research.vo.Students;
 
 
 @Controller("adminAction")
@@ -37,8 +35,15 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	private AdminServiceImpl adminServiceImpl ;
 	private QuestionServiceImpl questionServiceImpl;
 	private AnswerServiceImpl answerServiceImpl;
+<<<<<<< HEAD
 	private ExcelUtil excelUtil;
 	
+=======
+	private PaperServiceImpl paperServiceImpl;
+	private StudentsServiceImpl studentsServiceImpl;
+	private ExcelUtil excelUtil;
+	private PagerUtil pageUtil;
+>>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
 	
 	
 	public AdminServiceImpl getAdminServiceImpl() {
@@ -64,9 +69,28 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setAnswerServiceImpl(AnswerServiceImpl answerServiceImpl) {
 		this.answerServiceImpl = answerServiceImpl;
 	}
+	
+	
+	public PaperServiceImpl getPaperServiceImpl() {
+		return paperServiceImpl;
+	}
+	@Resource
+	public void setPaperServiceImpl(PaperServiceImpl paperServiceImpl) {
+		this.paperServiceImpl = paperServiceImpl;
+	}
 
+<<<<<<< HEAD
 	
 	
+=======
+	public StudentsServiceImpl getStudentsServiceImpl() {
+		return studentsServiceImpl;
+	}
+	@Resource
+	public void setStudentsServiceImpl(StudentsServiceImpl studentsServiceImpl) {
+		this.studentsServiceImpl = studentsServiceImpl;
+	}
+>>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
 	public ExcelUtil getExcelUtil() {
 		return excelUtil;
 	}
@@ -74,14 +98,32 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setExcelUtil(ExcelUtil excelUtil) {
 		this.excelUtil = excelUtil;
 	}
+<<<<<<< HEAD
+=======
+	
+	public PagerUtil getPageUtil() {
+		return pageUtil;
+	}
+	@Resource
+	public void setPageUtil(PagerUtil pageUtil) {
+		this.pageUtil = pageUtil;
+	}
+>>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
 	public String login()
 	{
-		request.getSession().setAttribute("c", answerServiceImpl.getAnswersNum());
 		
 		if(adminServiceImpl.adminLogin(admin))
 		{
 	
-			
+			request.getSession().setAttribute("c", answerServiceImpl.getAnswersNum());
+//			List<Question> sqsinlist = paperServiceImpl.getSelsinQuestion();
+//			List<Question> sqmullist = paperServiceImpl.getSelmulQuestion();
+//			Map<Integer, List<SelSinOption>> qsinmap = paperServiceImpl.getSelSinOption();
+//			Map<Integer, List<SelMulOption>> qmulmap = paperServiceImpl.getSelMulOption();
+			request.getSession().setAttribute("qsinmap", paperServiceImpl.getSelSinOption());
+			request.getSession().setAttribute("qmulmap", paperServiceImpl.getSelMulOption());
+			request.getSession().setAttribute("sqsinlist", paperServiceImpl.getSelsinQuestion());
+			request.getSession().setAttribute("sqmullist", paperServiceImpl.getSelmulQuestion());
 			return "success";
 		}
 		else
@@ -116,7 +158,11 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		int listcount = questionServiceImpl.getquestionnum(4);
 		 try {
 			
+<<<<<<< HEAD
 			 excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist);
+=======
+			excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist);
+>>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
             return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -125,7 +171,39 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		}
 	}
 
-
+	
+public String showStudents()
+{
+	List<Students> stus=studentsServiceImpl.list();
+	if(request.getSession().getAttribute("pager")==null)
+	{
+		
+		request.getSession().setAttribute("pager", pageUtil);
+	}
+	pageUtil =(PagerUtil)request.getSession().getAttribute("pager");
+	pageUtil.setBigList(stus);
+	//System.out.println(request.getParameter("PageIndex")==null||request.getParameter("pageIndex").equals(""));
+	if(request.getParameter("PageIndex")==null)
+	{
+		pageUtil.setCurentPageIndex(1);
+//		System.out.println("aa-------------------");
+//		List<Students> list = pageUtil.getSmallList();
+//		Iterator<Students> it = list.iterator();
+//		while(it.hasNext())
+//		{
+//			System.out.println(it.next().getStuname());
+//		}
+//		
+	}
+	else
+	{
+	//	System.out.println("bb-------------------");
+		pageUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
+	}
+	request.getSession().setAttribute("pager", pageUtil);
+	return SUCCESS;
+}
+	
 	@Override
 	public Admin getModel() {
 		// TODO Auto-generated method stub

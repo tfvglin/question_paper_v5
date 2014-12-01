@@ -1,5 +1,7 @@
 package edu.xidian.research.service;
 
+import java.util.List;
+
 import edu.xidian.research.vo.Students;
 
 
@@ -8,14 +10,14 @@ import edu.xidian.research.vo.Students;
 public  interface StudentsService {
 	
 	
-	public boolean stuLogin(Students stu);
+	public Students stuLogin(Students stu);
 	
 	
 	
-	public boolean list();
+	public List<Students> list();
 	
+	public String getStuDepartment( Students stu);
 	
-	
-	public boolean checkstu(Students stu);
+
 
 }

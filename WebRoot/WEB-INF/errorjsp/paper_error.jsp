@@ -23,9 +23,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
  		
  		<div style="width:400px ;margin:0 auto;" align="center">
- 		<img src="<%=path%>/img/error.gif" alt="404error"/>
+ 		<img src="<%=path%>/img/404error.jpg" alt="404error"/>
   
-    	<div>出错了！</div>
+    	<div>出错了！页面不存在，检查地址是否输入正确！</div>
     	<div><a href="javascript:history.go(-1)">返回上一页</a></div>
     	</div>
   </body>

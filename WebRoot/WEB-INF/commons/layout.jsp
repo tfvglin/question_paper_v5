@@ -29,10 +29,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			<tiles:insertAttribute name="HEADER" ></tiles:insertAttribute>
     	</div>
     	<div>
-    	<div style="float: left;width:200px;height:350px;background-color:#FFFF99">
+    	<div style="float: left;width:200px;height:600px;background-color:#FFFF99">
 			<tiles:insertAttribute name="SIDEBAR" ></tiles:insertAttribute>
 		</div>	
-		<div style="float: left;width:800px;height:350px;background-color:#FFEBCD ">	
+		<div style="float: left;width:800px;height:600px;background-color:#FFEBCD ;overflow-y:auto; overflow-x:auto;">	
 			
 			<tiles:insertAttribute name="CONTENT" ></tiles:insertAttribute>
 			
