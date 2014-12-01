@@ -2,6 +2,8 @@ package edu.xidian.research.dao.impl;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

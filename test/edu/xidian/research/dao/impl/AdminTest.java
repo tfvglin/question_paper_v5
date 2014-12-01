@@ -1,12 +1,12 @@
-package edu.xidian.research.sevice.impl;
-
+package edu.xidian.research.dao.impl;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import junit.framework.TestCase;
 import edu.xidian.research.service.impl.AdminServiceImpl;
 import edu.xidian.research.vo.Admin;
+
+import junit.framework.TestCase;
 
 public class AdminTest extends TestCase{
 	
@@ -18,10 +18,10 @@ public class AdminTest extends TestCase{
                 "applicationContext.xml");  
 		asimpl = (AdminServiceImpl) context.getBean("adminServiceImpl");
 		Admin ad = new Admin();
-		ad.setAdminname("haha");
+		ad.setAdminname("ажи╜");
 		ad.setAdminpassword("123");
-		asimpl.addAdmin(ad);
+		
 		
 	}
-
 }
+

@@ -27,7 +27,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver">
 		</property>
-		<property name="url" value="jdbc:mysql://localhost:3306/question_paper">
+		<property name="url" value="jdbc:mysql://localhost:3306/question_paper?useUnicode=true&amp;characterEncoding=UTF-8">
 		</property>
 		<property name="username" value="root">
 		</property>
@@ -54,7 +54,7 @@
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.hbm?ddl.auto">update</prop>
 				<prop key="current_session_context_class">thread</prop>
-				<prop key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</prop> 
+				
 			</props>
 		</property>
 	</bean>
@@ -88,7 +88,7 @@
 	 </bean>
 	 
 	 
-	 <bean id="openSessionInViewInterceptor" class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor"> 
+ <!-- 	 <bean id="openSessionInViewInterceptor" class="org.springframework.orm.hibernate3.support.OpenSessionInViewInterceptor"> 
         <property name="sessionFactory" ref="sessionFactory" /> 
     </bean> 
 
@@ -98,11 +98,11 @@
             <ref bean="openSessionInViewInterceptor" />  
           </list>  
         </property>  
-     <!--     <property name="mappings">  
+        <property name="mappings">  
           <props>  
             <prop key="/adminuser_creatExcel.action">adminAction</prop>  
           </props>  
         </property>  
-        -->
-    </bean>
+       
+    </bean> -->
 </beans>
