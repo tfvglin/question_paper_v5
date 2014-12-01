@@ -15,9 +15,13 @@ import edu.xidian.research.service.impl.AdminServiceImpl;
 import edu.xidian.research.service.impl.AnswerServiceImpl;
 import edu.xidian.research.service.impl.PaperServiceImpl;
 import edu.xidian.research.service.impl.QuestionServiceImpl;
-import edu.xidian.research.service.impl.StudentsServiceImpl;
+
 import edu.xidian.research.util.ExcelUtil;
+
+import edu.xidian.research.service.impl.StudentsServiceImpl;
+
 import edu.xidian.research.util.PagerUtil;
+
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
 import edu.xidian.research.vo.Students;
@@ -31,10 +35,15 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	private AdminServiceImpl adminServiceImpl ;
 	private QuestionServiceImpl questionServiceImpl;
 	private AnswerServiceImpl answerServiceImpl;
+
+	private ExcelUtil excelUtil;
+	
+
 	private PaperServiceImpl paperServiceImpl;
 	private StudentsServiceImpl studentsServiceImpl;
-	private ExcelUtil excelUtil;
+
 	private PagerUtil pageUtil;
+
 	
 	
 	public AdminServiceImpl getAdminServiceImpl() {
@@ -70,6 +79,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		this.paperServiceImpl = paperServiceImpl;
 	}
 
+
 	public StudentsServiceImpl getStudentsServiceImpl() {
 		return studentsServiceImpl;
 	}
@@ -77,6 +87,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setStudentsServiceImpl(StudentsServiceImpl studentsServiceImpl) {
 		this.studentsServiceImpl = studentsServiceImpl;
 	}
+
 	public ExcelUtil getExcelUtil() {
 		return excelUtil;
 	}
@@ -84,6 +95,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setExcelUtil(ExcelUtil excelUtil) {
 		this.excelUtil = excelUtil;
 	}
+
 	
 	public PagerUtil getPageUtil() {
 		return pageUtil;
@@ -92,6 +104,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setPageUtil(PagerUtil pageUtil) {
 		this.pageUtil = pageUtil;
 	}
+
 	public String login()
 	{
 		
@@ -141,7 +154,10 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		int listcount = questionServiceImpl.getquestionnum(4);
 		 try {
 			
-			excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist);
+
+			 excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist);
+
+
             return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

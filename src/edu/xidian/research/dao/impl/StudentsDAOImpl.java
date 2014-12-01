@@ -20,16 +20,49 @@ public class StudentsDAOImpl extends MyHibernateTemplate implements StudentsDAO 
 	
 	
 	
-	public Students stuLogin(Students stu)
+
+	public Students stuLogin(final Students stu)
 	{
 		//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Students student =null;
 		try
 		{
+			 final String hql = "from Students t where t.stuname=:stuname and  t.cardid=:cardid ";
+		
+			 student =  this.getHibernateTemplate().execute(
+					new HibernateCallback(){
+                        public Object doInHibernate(Session session)
+                        {
+                        	Query query = session.createQuery(hql);
+                        	query.setParameter("stuname", stu.getStuname());
+                        	query.setParameter("cardid", stu.getCardid());
+                        	return query.uniqueResult();
+                        }
+					});
+			 return student;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return student;
+		}
+		
+
+	}
+
+
+/*		try
+		{
 			//System.out.println(stu.getStuname()+stu.getStunum());
+<<<<<<< HEAD
+			String hql = "from Students t where t.stuname=? and  t.stunum=? ";
+			System.out.println(stu.getStuname());
+			List<Students> s = this.getHibernateTemplate().find(hql, stu.getStuname(),stu.getStunum());
+=======
 			String hql = "from Students t where t.stuname=? and  t.cardid=? ";
 			
 			List<Students> s = this.getHibernateTemplate().find(hql, stu.getStuname(),stu.getCardid());
+>>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
 			if(s.size()>0)
 			{
 				student = s.get(0);
@@ -44,9 +77,10 @@ public class StudentsDAOImpl extends MyHibernateTemplate implements StudentsDAO 
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-			return student;
-		}
-	}
+<<<<<<< HEAD
+			return false;
+		}*/
+
 
 	
 	

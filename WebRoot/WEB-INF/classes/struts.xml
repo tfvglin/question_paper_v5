@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+
+
+
  	<package name="default" namespace="/" extends="struts-default,tiles-default">
 
 	<!--  <default-action-ref name="error"></default-action-ref>-->	
+
 		
 		<global-results>
 			<result name="error">/WEB-INF/errorjsp/error.jsp</result>
@@ -15,7 +19,7 @@
 
 	</package>
 	
-	
+
 	<package name="students" namespace="/" extends="default">
 	
 		<action name="begin" class="studentsAction" method="login">
@@ -41,6 +45,7 @@
 		
 	
 	</package>
+
 	<package name="admin" namespace="/" extends="default">
 
 	
