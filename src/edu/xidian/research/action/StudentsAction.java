@@ -65,18 +65,15 @@ public class StudentsAction extends SuperAction implements ModelDriven<Students>
 	
 	public String login()
 	{
-<<<<<<< HEAD
+
 		System.out.println("studentsloginaction峇佩！！！！！！！！！！！！");
-		
-	
-		if(studentsServiceImpl.stuLogin(stu))
-=======
+
 		
 		System.out.println(stu.getCardid());
 		System.out.println("studentsaction峇佩！！！！！！！！！！！！");
 		Students student =studentsServiceImpl.stuLogin(stu);
 		if(student!=null)
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
+
 		{
 			if(answerServiceImpl.checkStudents(stu))
 			{

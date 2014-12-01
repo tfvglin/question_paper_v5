@@ -15,13 +15,13 @@ import edu.xidian.research.service.impl.AdminServiceImpl;
 import edu.xidian.research.service.impl.AnswerServiceImpl;
 import edu.xidian.research.service.impl.PaperServiceImpl;
 import edu.xidian.research.service.impl.QuestionServiceImpl;
-<<<<<<< HEAD
+
 import edu.xidian.research.util.ExcelUtil;
-=======
+
 import edu.xidian.research.service.impl.StudentsServiceImpl;
-import edu.xidian.research.util.ExcelUtil;
+
 import edu.xidian.research.util.PagerUtil;
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
+
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
 import edu.xidian.research.vo.Students;
@@ -35,15 +35,15 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	private AdminServiceImpl adminServiceImpl ;
 	private QuestionServiceImpl questionServiceImpl;
 	private AnswerServiceImpl answerServiceImpl;
-<<<<<<< HEAD
+
 	private ExcelUtil excelUtil;
 	
-=======
+
 	private PaperServiceImpl paperServiceImpl;
 	private StudentsServiceImpl studentsServiceImpl;
-	private ExcelUtil excelUtil;
+
 	private PagerUtil pageUtil;
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
+
 	
 	
 	public AdminServiceImpl getAdminServiceImpl() {
@@ -79,10 +79,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		this.paperServiceImpl = paperServiceImpl;
 	}
 
-<<<<<<< HEAD
-	
-	
-=======
+
 	public StudentsServiceImpl getStudentsServiceImpl() {
 		return studentsServiceImpl;
 	}
@@ -90,7 +87,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setStudentsServiceImpl(StudentsServiceImpl studentsServiceImpl) {
 		this.studentsServiceImpl = studentsServiceImpl;
 	}
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
+
 	public ExcelUtil getExcelUtil() {
 		return excelUtil;
 	}
@@ -98,8 +95,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setExcelUtil(ExcelUtil excelUtil) {
 		this.excelUtil = excelUtil;
 	}
-<<<<<<< HEAD
-=======
+
 	
 	public PagerUtil getPageUtil() {
 		return pageUtil;
@@ -108,7 +104,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	public void setPageUtil(PagerUtil pageUtil) {
 		this.pageUtil = pageUtil;
 	}
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
+
 	public String login()
 	{
 		
@@ -158,11 +154,10 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		int listcount = questionServiceImpl.getquestionnum(4);
 		 try {
 			
-<<<<<<< HEAD
+
 			 excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist);
-=======
-			excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist);
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
+
+
             return SUCCESS;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

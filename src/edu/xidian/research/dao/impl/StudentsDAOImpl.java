@@ -20,47 +20,36 @@ public class StudentsDAOImpl extends MyHibernateTemplate implements StudentsDAO 
 	
 	
 	
-<<<<<<< HEAD
-	public boolean stuLogin(final Students stu)
-	{
-		//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Students s  = new Students();
-=======
-	public Students stuLogin(Students stu)
+
+	public Students stuLogin(final Students stu)
 	{
 		//SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Students student =null;
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
 		try
 		{
-			 final String hql = "from Students t where t.stuname=:stuname and  t.stunum=:stunum ";
+			 final String hql = "from Students t where t.stuname=:stuname and  t.cardid=:cardid ";
 		
-			s =  this.getHibernateTemplate().execute(
+			 student =  this.getHibernateTemplate().execute(
 					new HibernateCallback(){
                         public Object doInHibernate(Session session)
                         {
                         	Query query = session.createQuery(hql);
                         	query.setParameter("stuname", stu.getStuname());
-                        	query.setParameter("stunum", stu.getStunum());
+                        	query.setParameter("cardid", stu.getCardid());
                         	return query.uniqueResult();
                         }
 					});
-			
-			if(s != null)
-			{
-			
-				return true;
-			}
-			else
-			{
-				return false;
-			}
+			 return student;
 		}
 		catch(Exception ex)
 		{
 			ex.printStackTrace();
-			return false;
+			return student;
 		}
+		
+
+	}
+
 
 /*		try
 		{
@@ -91,11 +80,7 @@ public class StudentsDAOImpl extends MyHibernateTemplate implements StudentsDAO 
 <<<<<<< HEAD
 			return false;
 		}*/
-=======
-			return student;
-		}
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a
-	}
+
 
 	
 	

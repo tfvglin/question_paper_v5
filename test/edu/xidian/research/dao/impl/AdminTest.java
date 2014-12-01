@@ -26,10 +26,8 @@ public class AdminTest extends TestCase{
 		
 		
 	}
-<<<<<<< HEAD:test/edu/xidian/research/dao/impl/AdminTest.java
-}
 
-=======
+
 	
 	
 	public void testadminaddstu()
@@ -47,4 +45,3 @@ public class AdminTest extends TestCase{
 	}
 
 }
->>>>>>> 0f9145965d41481705da22ae35b4abf323d22b1a:test/edu/xidian/research/sevice/impl/AdminTest.java
