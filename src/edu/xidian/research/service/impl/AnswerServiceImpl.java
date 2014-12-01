@@ -14,6 +14,7 @@ import edu.xidian.research.service.AdminService;
 import edu.xidian.research.service.AnswerService;
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
+import edu.xidian.research.vo.ListAnswer;
 import edu.xidian.research.vo.MultipleAnswer;
 import edu.xidian.research.vo.SingleAnswer;
 import edu.xidian.research.vo.Students;
@@ -122,6 +123,33 @@ public class AnswerServiceImpl implements AnswerService {
 			
 		}
 		return mulanslist;
+	}
+
+	
+	
+	
+	@Override
+	public List<SingleAnswer> getSingleQuestionAnswer(int pID) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getSingleQuestionAnswer(pID);
+	}
+
+	@Override
+	public List<MultipleAnswer> getMultipleQuestionAnswer(int pID) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getMultipleQuestionAnswer(pID);
+	}
+
+	@Override
+	public List<TextAnswer> getTextQuestionAnswer(int pID) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getTextQuestionAnswer(pID);
+	}
+
+	@Override
+	public List<ListAnswer> getListQuestionAnswer(int pID) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getListQuestionAnswer(pID);
 	}
 
 	@Override

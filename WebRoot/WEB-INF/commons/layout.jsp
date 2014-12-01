@@ -42,5 +42,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<tiles:insertAttribute name="FOOTER" ></tiles:insertAttribute>
     	</div>	
     </div>	
+    <s:debug></s:debug>
   </body>
 </html>

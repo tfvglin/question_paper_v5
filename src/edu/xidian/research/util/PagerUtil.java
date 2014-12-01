@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class PagerUtil {
 	private List bigList;                        //大的集合
 	private int curentPageIndex = 1 ;            //当前页号
-	private int countPerpage = 50 ;              //每页条数
+	private int countPerpage = 5 ;              //每页条数
 	private List smallList;                      //小的集合
 	private int pageCount;						//页数
 	private int recordCount;					//记录条数

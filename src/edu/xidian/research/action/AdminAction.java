@@ -1,7 +1,6 @@
 package edu.xidian.research.action;
 
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,13 +14,9 @@ import edu.xidian.research.service.impl.AdminServiceImpl;
 import edu.xidian.research.service.impl.AnswerServiceImpl;
 import edu.xidian.research.service.impl.PaperServiceImpl;
 import edu.xidian.research.service.impl.QuestionServiceImpl;
-
-import edu.xidian.research.util.ExcelUtil;
-
 import edu.xidian.research.service.impl.StudentsServiceImpl;
-
+import edu.xidian.research.util.ExcelUtil;
 import edu.xidian.research.util.PagerUtil;
-
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
 import edu.xidian.research.vo.Students;
@@ -42,7 +37,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	private PaperServiceImpl paperServiceImpl;
 	private StudentsServiceImpl studentsServiceImpl;
 
-	private PagerUtil pageUtil;
+	private PagerUtil pagerUtil;
 
 	
 	
@@ -98,11 +93,11 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 
 	
 	public PagerUtil getPageUtil() {
-		return pageUtil;
+		return pagerUtil;
 	}
 	@Resource
 	public void setPageUtil(PagerUtil pageUtil) {
-		this.pageUtil = pageUtil;
+		this.pagerUtil = pageUtil;
 	}
 
 	public String login()
@@ -173,14 +168,14 @@ public String showStudents()
 	if(request.getSession().getAttribute("pager")==null)
 	{
 		
-		request.getSession().setAttribute("pager", pageUtil);
+		request.getSession().setAttribute("pager", pagerUtil);
 	}
-	pageUtil =(PagerUtil)request.getSession().getAttribute("pager");
-	pageUtil.setBigList(stus);
+	pagerUtil =(PagerUtil)request.getSession().getAttribute("pager");
+	pagerUtil.setBigList(stus);
 	//System.out.println(request.getParameter("PageIndex")==null||request.getParameter("pageIndex").equals(""));
 	if(request.getParameter("PageIndex")==null)
 	{
-		pageUtil.setCurentPageIndex(1);
+		pagerUtil.setCurentPageIndex(1);
 //		System.out.println("aa-------------------");
 //		List<Students> list = pageUtil.getSmallList();
 //		Iterator<Students> it = list.iterator();
@@ -193,17 +188,53 @@ public String showStudents()
 	else
 	{
 	//	System.out.println("bb-------------------");
-		pageUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
+		pagerUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
 	}
-	request.getSession().setAttribute("pager", pageUtil);
+	request.getSession().setAttribute("pager", pagerUtil);
 	return SUCCESS;
 }
 
 	public String showAnswerStudents()
 	{
+		List<AnswersPaper> ansStudents = answerServiceImpl.getAnswersPaper();
 		
+		if(request.getSession().getAttribute("pager")==null)
+		{
+			
+			request.getSession().setAttribute("pager", pagerUtil);
+		}
+		pagerUtil =(PagerUtil)request.getSession().getAttribute("pager");
+		pagerUtil.setBigList(ansStudents);
+		if(request.getParameter("PageIndex")==null)
+		{
+			pagerUtil.setCurentPageIndex(1);
+		
+		}
+		else
+		{
+			pagerUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
+		}
+		request.getSession().setAttribute("pager", pagerUtil);
+		return SUCCESS;
 	}
 	
+	public String showStudentsAnswer()
+	{
+		int num =Integer.parseInt(request.getParameter("num")) ;
+		pagerUtil = (PagerUtil) request.getSession().getAttribute("pager");
+		
+		List<AnswersPaper> smalllist=pagerUtil.getSmallList();
+		request.getSession().setAttribute("studentcontent",smalllist.get(num));
+		int pID = smalllist.get(num).getpID();
+		
+		request.getSession().setAttribute("singlelist",answerServiceImpl.getSingleQuestionAnswer(pID) );
+		request.getSession().setAttribute("multiplelist",answerServiceImpl.getMultipleQuestionAnswer(pID) );
+		request.getSession().setAttribute("textlist",answerServiceImpl.getTextQuestionAnswer(pID) );
+		request.getSession().setAttribute("listlist",answerServiceImpl.getListQuestionAnswer(pID) );
+		
+		
+		return SUCCESS;
+	}
 	@Override
 	public Admin getModel() {
 		// TODO Auto-generated method stub

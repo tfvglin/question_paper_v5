@@ -16,3 +16,4 @@ hs_err_pid*
 .mymetadata
 .settings/
 .settings
+WebRoot/WEB-INF/classes/

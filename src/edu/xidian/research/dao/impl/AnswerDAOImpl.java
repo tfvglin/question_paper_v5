@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import edu.xidian.research.dao.AnswerDAO;
 import edu.xidian.research.template.MyHibernateTemplate;
 import edu.xidian.research.vo.AnswersPaper;
+import edu.xidian.research.vo.ListAnswer;
 import edu.xidian.research.vo.MultipleAnswer;
 import edu.xidian.research.vo.SingleAnswer;
 import edu.xidian.research.vo.Students;
@@ -277,6 +278,83 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 		}
 	}
 	
+	
+	@Override
+	public List<SingleAnswer> getSingleQuestionAnswer(int pID) {
+		List<SingleAnswer> singlelist = new ArrayList<SingleAnswer>();
+		try
+		{
+			String hql = "from SingleAnswer where pID=?";
+			
+			singlelist = this.getHibernateTemplate().find(hql,pID);
+			
+			return singlelist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return singlelist;
+		}
+	}
+
+	@Override
+	public List<MultipleAnswer> getMultipleQuestionAnswer(int pID) {
+		List<MultipleAnswer> Multiplelist = new ArrayList<MultipleAnswer>();
+		try
+		{
+			String hql = "from MultipleAnswer where pID=?";
+			
+			Multiplelist = this.getHibernateTemplate().find(hql,pID);
+			
+			return Multiplelist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return Multiplelist;
+		}
+	}
+
+	@Override
+	public List<TextAnswer> getTextQuestionAnswer(int pID) {
+		List<TextAnswer> textlist = new ArrayList<TextAnswer>();
+		try
+		{
+			String hql = "from TextAnswer where pID=?";
+			
+			textlist = this.getHibernateTemplate().find(hql,pID);
+			
+			return textlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return textlist;
+		}
+	}
+
+	@Override
+	public List<ListAnswer> getListQuestionAnswer(int pID) {
+		List<ListAnswer> listlist = new ArrayList<ListAnswer>();
+		try
+		{
+			String hql = "from ListAnswer where pID=?";
+			
+			listlist = this.getHibernateTemplate().find(hql,pID);
+			
+			return listlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return listlist;
+		}
+	}
+
 	public boolean checkStudents(Students stu)
 	{
 		try
