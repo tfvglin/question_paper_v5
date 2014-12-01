@@ -182,6 +182,11 @@ public String showStudents()
 	request.getSession().setAttribute("pager", pageUtil);
 	return SUCCESS;
 }
+
+	public String showAnswerStudents()
+	{
+		
+	}
 	
 	@Override
 	public Admin getModel() {
