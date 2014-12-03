@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 @Component
 @Aspect
+//学生类切面
 public class StudentsAspect {
 	
 	
@@ -21,15 +22,13 @@ public class StudentsAspect {
 	 public void studentspointcut(){}
 	 
 	 
+	 //添加答案前验证学生是否处于认证通过状态，防止提交成功后回退重复提交
 	@Around(value="answerpointcut()")
 	public Object studentsLoginCheck(ProceedingJoinPoint jp) throws Throwable
 	{
-		System.out.println("切面执行————————————");
 		HttpServletRequest request = ServletActionContext.getRequest();
-		//System.out.println(request.getParameter("stuname")+"----------");
 		if(request.getSession().getAttribute("stuname")==null||request.getSession().getAttribute("stuname").equals(""))
 		{
-			System.out.println("姓名为空————————————————");
 			return "login";
 		}
 		else

@@ -62,15 +62,12 @@ public class ChartAction extends SuperAction{
 		this.answerServiceImpl = answerServiceImpl;
 	}
 	
-	
+	//显示图表
 	public void showChart()
 	{
 		int sqtype=Integer.parseInt(request.getParameter("sqtype"));
 		int sqnum = Integer.parseInt(request.getParameter("sqnum"));
-		System.out.println(sqtype);
-		System.out.println(sqnum);
 		int questionOptionNum=questionServiceImpl.getQuestionOptionNum(sqnum, sqtype);
-		System.out.println(questionOptionNum);
 		List<Integer> olist= new ArrayList<Integer>();
 				if(sqtype==1)
 				{
@@ -84,20 +81,17 @@ public class ChartAction extends SuperAction{
 					olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
 					
 				}
-		JFreeChart chart =chartUtil.creatBarChart(sqtype, sqnum, questionOptionNum, olist);
+		JFreeChart chart =chartUtil.creatBarChart(sqtype, sqnum, questionOptionNum, olist);   //生成图表对象
 	
-		 //BufferedImage buffImg = new BufferedImage();
-		
-		
+		//设置响应方式
 		 response.setHeader("Pragma", "no-cache");
 		 response.setHeader("Cache-Control", "no-cache");
 		 response.setDateHeader("Expires", 0);
+		 response.setContentType("image/jpeg");
 		  
-		  response.setContentType("image/jpeg");
-		  
-		  ServletOutputStream sos;
+		 
 		try {
-			sos = response.getOutputStream();
+			 ServletOutputStream sos = response.getOutputStream();
 			ChartUtilities.writeChartAsJPEG(sos, 1.0f, chart, 500, 250,null);
 			  //ImageIO.write(buffImg, "jpeg", sos);
 		  sos.close();

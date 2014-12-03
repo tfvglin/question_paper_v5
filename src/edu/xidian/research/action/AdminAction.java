@@ -1,7 +1,9 @@
 package edu.xidian.research.action;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -19,7 +21,12 @@ import edu.xidian.research.util.ExcelUtil;
 import edu.xidian.research.util.PagerUtil;
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
+import edu.xidian.research.vo.ListAnswer;
+import edu.xidian.research.vo.MultipleAnswer;
+import edu.xidian.research.vo.Question;
+import edu.xidian.research.vo.SingleAnswer;
 import edu.xidian.research.vo.Students;
+import edu.xidian.research.vo.TextAnswer;
 
 
 @Controller("adminAction")
@@ -100,18 +107,19 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		this.pagerUtil = pageUtil;
 	}
 
+	//管理员登陆
 	public String login()
 	{
 		
 		if(adminServiceImpl.adminLogin(admin))
 		{
 	
-			request.getSession().setAttribute("c", answerServiceImpl.getAnswersNum());
+			request.getSession().setAttribute("c", answerServiceImpl.getAnswersNum());           //session中存入答题人数
 //			List<Question> sqsinlist = paperServiceImpl.getSelsinQuestion();
 //			List<Question> sqmullist = paperServiceImpl.getSelmulQuestion();
 //			Map<Integer, List<SelSinOption>> qsinmap = paperServiceImpl.getSelSinOption();
 //			Map<Integer, List<SelMulOption>> qmulmap = paperServiceImpl.getSelMulOption();
-			request.getSession().setAttribute("qsinmap", paperServiceImpl.getSelSinOption());
+			request.getSession().setAttribute("qsinmap", paperServiceImpl.getSelSinOption());		//session中存入题目和相应选项
 			request.getSession().setAttribute("qmulmap", paperServiceImpl.getSelMulOption());
 			request.getSession().setAttribute("sqsinlist", paperServiceImpl.getSelsinQuestion());
 			request.getSession().setAttribute("sqmullist", paperServiceImpl.getSelmulQuestion());
@@ -124,6 +132,8 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		}
 	}
 	
+	
+	//添加管理员
 	public boolean add(Admin ad)
 	{
 		if(adminServiceImpl.addAdmin(ad))
@@ -139,6 +149,7 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 	
 	
 
+	//生成excel
 	public String creatExcel()
 	{
 		
@@ -161,10 +172,12 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		}
 	}
 
-	
+	//显示所有学生
 public String showStudents()
 {
 	List<Students> stus=studentsServiceImpl.list();
+	
+	//加入分页程序
 	if(request.getSession().getAttribute("pager")==null)
 	{
 		
@@ -172,32 +185,26 @@ public String showStudents()
 	}
 	pagerUtil =(PagerUtil)request.getSession().getAttribute("pager");
 	pagerUtil.setBigList(stus);
-	//System.out.println(request.getParameter("PageIndex")==null||request.getParameter("pageIndex").equals(""));
 	if(request.getParameter("PageIndex")==null)
 	{
 		pagerUtil.setCurentPageIndex(1);
-//		System.out.println("aa-------------------");
-//		List<Students> list = pageUtil.getSmallList();
-//		Iterator<Students> it = list.iterator();
-//		while(it.hasNext())
-//		{
-//			System.out.println(it.next().getStuname());
-//		}
-//		
+	
 	}
 	else
 	{
-	//	System.out.println("bb-------------------");
 		pagerUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
 	}
 	request.getSession().setAttribute("pager", pagerUtil);
 	return SUCCESS;
 }
 
+
+	//显示答题的学生
 	public String showAnswerStudents()
 	{
 		List<AnswersPaper> ansStudents = answerServiceImpl.getAnswersPaper();
 		
+		//加入分页程序
 		if(request.getSession().getAttribute("pager")==null)
 		{
 			
@@ -218,23 +225,69 @@ public String showStudents()
 		return SUCCESS;
 	}
 	
+	
+	//查看学生提交的调查结果
 	public String showStudentsAnswer()
 	{
 		int num =Integer.parseInt(request.getParameter("num")) ;
 		pagerUtil = (PagerUtil) request.getSession().getAttribute("pager");
-		
-		List<AnswersPaper> smalllist=pagerUtil.getSmallList();
+		List<AnswersPaper> smalllist=pagerUtil.getSmallList();					//获得当前页的学生集合
 		request.getSession().setAttribute("studentcontent",smalllist.get(num));
 		int pID = smalllist.get(num).getpID();
+	
+		//答案
+		List<SingleAnswer> singlelist=answerServiceImpl.getSingleQuestionAnswer(pID);
+		List<MultipleAnswer> multiplelist=answerServiceImpl.getMultipleQuestionAnswer(pID);
+		List<TextAnswer> textlist=answerServiceImpl.getTextQuestionAnswer(pID);
+		List<ListAnswer> listlist=answerServiceImpl.getListQuestionAnswer(pID);
 		
-		request.getSession().setAttribute("singlelist",answerServiceImpl.getSingleQuestionAnswer(pID) );
-		request.getSession().setAttribute("multiplelist",answerServiceImpl.getMultipleQuestionAnswer(pID) );
-		request.getSession().setAttribute("textlist",answerServiceImpl.getTextQuestionAnswer(pID) );
-		request.getSession().setAttribute("listlist",answerServiceImpl.getListQuestionAnswer(pID) );
+		
+		//题目
+		List<Question> sqsinlist = paperServiceImpl.getSelsinQuestion();
+		List<Question> sqmullist = paperServiceImpl.getSelmulQuestion();
+		List<Question> qtextlist = paperServiceImpl.getTextQuestion();
+		List<Question> qlistlist = paperServiceImpl.getListQuestion();
+		
+		request.getSession().setAttribute("listlist", qlistlist);
+		request.getSession().setAttribute("textlist", qtextlist);
+		request.getSession().setAttribute("sqsinlist", sqsinlist);
+		request.getSession().setAttribute("sqmullist", sqmullist);
+		
+		//key=题号  value=答案 组成map对象
+		Map<Integer,SingleAnswer> singlemap = new HashMap<>();
+		Map<Integer,MultipleAnswer> multiplemap = new HashMap<>();
+		Map<Integer,TextAnswer> textmap = new HashMap<>();
+		Map<Integer,ListAnswer> listmap = new HashMap<>();
+		
+		for(int i=0;i<singlelist.size();i++)
+		{
+			
+			singlemap.put(sqsinlist.get(i).getSqnum(), singlelist.get(i));
+		}
+		for(int i=0;i<multiplelist.size();i++)
+		{
+			multiplemap.put(sqmullist.get(i).getSqnum(), multiplelist.get(i));
+		}
+		for(int i=0;i<textlist.size();i++)
+		{
+			textmap.put(qtextlist.get(i).getSqnum(), textlist.get(i));
+		}
+		for(int i=0;i<listlist.size();i++)
+		{
+			listmap.put(qlistlist.get(i).getSqnum(), listlist.get(i));
+		}
+		
+		//map<题号，答案>存入session
+		request.getSession().setAttribute("singlemap", singlemap);
+		request.getSession().setAttribute("multiplemap", multiplemap);
+		request.getSession().setAttribute("textmap", textmap);
+		request.getSession().setAttribute("listmap", listmap);
 		
 		
 		return SUCCESS;
 	}
+	
+	
 	@Override
 	public Admin getModel() {
 		// TODO Auto-generated method stub

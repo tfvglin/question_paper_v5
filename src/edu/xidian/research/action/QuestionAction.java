@@ -27,6 +27,7 @@ public class QuestionAction extends SuperAction{
 		this.questionServiceImpl = questionServiceImpl;
 	}
 
+	//ÃÌº”Œ Ã‚
 	public void add()
 	{
 		int questiontype = Integer.parseInt(request.getParameter("questiontype"));
@@ -39,11 +40,8 @@ public class QuestionAction extends SuperAction{
 		if( questiontype!=3 && questiontype!=4 )
 		{
 			int onum =Integer.parseInt(request.getParameter("optionnum"));
-			//int optiontype = Integer.parseInt(request.getParameter("optiontype"));
 			if(questiontype==1)
 			{
-				
-				
 				for(int i=1;i<=onum;i++)
 				{
 					SelSinOption so = new SelSinOption();
@@ -56,7 +54,6 @@ public class QuestionAction extends SuperAction{
 			}
 			else
 			{
-				
 				for(int i=1;i<=onum;i++)
 				{
 					SelMulOption mo = new SelMulOption();

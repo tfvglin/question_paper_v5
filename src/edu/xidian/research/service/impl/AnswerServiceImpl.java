@@ -82,7 +82,7 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	
-	
+	@Transactional
 	public int getAnswersOptionNum(int qnum, String sans) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getAnswersOptionNum(qnum, sans);
@@ -91,12 +91,14 @@ public class AnswerServiceImpl implements AnswerService {
 	
 	
 	@Override
+	@Transactional
 	public List<Integer> getSingleAnswerOptionNum(int qnum,
 			int questionOptionNum) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getSingleAnswerOptionNum(qnum, questionOptionNum);
 	}
 
+	@Transactional
 	public List<Integer> getAnswersOptionNumList(int sqtype, int qnum,
 			int questionOptionNum) {
 		// TODO Auto-generated method stub
@@ -105,8 +107,9 @@ public class AnswerServiceImpl implements AnswerService {
 
 	
 	
-	
+	//获得多选题选项答案并返回数组集合
 	@Override
+	@Transactional
 	public List<String[]> getMultipleQuestionOptionAnswer(int sqnum) {
 		// TODO Auto-generated method stub
 		List<String> list = new ArrayList<String>();
@@ -129,30 +132,35 @@ public class AnswerServiceImpl implements AnswerService {
 	
 	
 	@Override
+	@Transactional
 	public List<SingleAnswer> getSingleQuestionAnswer(int pID) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getSingleQuestionAnswer(pID);
 	}
 
 	@Override
+	@Transactional
 	public List<MultipleAnswer> getMultipleQuestionAnswer(int pID) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getMultipleQuestionAnswer(pID);
 	}
 
 	@Override
+	@Transactional
 	public List<TextAnswer> getTextQuestionAnswer(int pID) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getTextQuestionAnswer(pID);
 	}
 
 	@Override
+	@Transactional
 	public List<ListAnswer> getListQuestionAnswer(int pID) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getListQuestionAnswer(pID);
 	}
 
 	@Override
+	@Transactional
 	public boolean checkStudents(Students stu) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.checkStudents(stu);

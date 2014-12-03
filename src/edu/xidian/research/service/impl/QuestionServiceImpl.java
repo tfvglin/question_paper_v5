@@ -57,11 +57,13 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDAOImpl.getquestionnum(sqtype);
 	}
 
+	@Transactional
 	public int getSingleQuestionOptionNum(int sqnum) {
 		// TODO Auto-generated method stub
 		return questionDAOImpl.getSingleQuestionOptionNum(sqnum);
 	}
 
+	@Transactional
 	public int getQuestionOptionNum(int sqnum, int sqtype) {
 		// TODO Auto-generated method stub
 		return questionDAOImpl.getQuestionOptionNum(sqnum, sqtype);

@@ -16,9 +16,11 @@ public interface QuestionDAO {
 	
 	public int getquestionnum(int sqtype);
 	
+	//由题号获得单选选项数
 	public int getSingleQuestionOptionNum(int sqnum);
 	
-	public int getQuestionOptionNum(final int sqnum,final int sqtype);
+	//有题目类型和题号获得选择题选项数
+	public int getQuestionOptionNum( int sqnum, int sqtype);
 	
 
 

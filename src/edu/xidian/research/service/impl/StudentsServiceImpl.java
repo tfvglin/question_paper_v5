@@ -43,6 +43,7 @@ public class StudentsServiceImpl implements StudentsService {
 	}
 
 	@Override
+	@Transactional
 	public String getStuDepartment(Students stu) {
 		// TODO Auto-generated method stub
 		return studentsDAOImpl.getStuDepartment(stu);

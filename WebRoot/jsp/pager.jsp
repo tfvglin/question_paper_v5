@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<s:param name="PageIndex" value="%{pageindex}"></s:param>
 	</s:url>
 	<s:property  value="javascript:document.getElementById('pageN').value;"/>
-	<s:a href="#" onclick="javascript:location.href='%{actionname}?PageIndex='+document.getElementById('pageN').value;">转到</s:a>
+	<s:a href="#" onclick="javascript:location.href='%{actionname}?PageIndex='+document.getElementById('pageN').value;return false;">转到</s:a>
 	<s:textfield id="pageN" name="pageIndex" var="pageindex" maxLength="3" style="width:25px"/>页
 	
 	共<s:property value="#session.pager.pageCount" />页

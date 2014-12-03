@@ -51,6 +51,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	@Transactional
 	public boolean addStudent(Students stu) {
 		// TODO Auto-generated method stub
 		return studentsDAOImpl.addStudent(stu);

@@ -19,8 +19,10 @@ public interface AnswerDAO {
 	
 	public boolean addTextAnswer(TextAnswer ta);
 	
+	//获得答案集合
 	public List<AnswersPaper> getAnswersPaper();
 	
+	//过得答题总人数
 	public long getAnswersNum();
 	
 	//由题号和选项得到选择该选项的人数

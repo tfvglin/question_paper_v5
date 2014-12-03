@@ -48,6 +48,7 @@ public class AnswerAction extends SuperAction{
 	}
 
 
+	//添加答案
 	public String add()
 	{
 	
@@ -164,6 +165,8 @@ public class AnswerAction extends SuperAction{
 			la.setQnum(i);
 			ap.getListanswer().add(la);
 		}
+		
+		//添加结果成功后清空相关session
 		if(answerServiceImpl.addAnswerPaper(ap))
 		{
 			request.getSession().removeAttribute("stuname");

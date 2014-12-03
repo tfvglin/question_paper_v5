@@ -20,25 +20,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+    <s:set value="#session.singlemap" var="sa"  ></s:set>
+    <s:set value="#session.multiplemap" var="ma" ></s:set>
+    <s:set value="#session.textmap" var="ta" ></s:set>
+    <s:set value="#session.listmap" var="la" ></s:set>
+ 
   </head>
   
   <body>
-   <s:property value="#session.studentcontent.stuname" />
-  <!-- <s:set value="#session.student.singleanswer" name="single" ></s:set>
-    -->
-   <s:iterator value="#session.singlelist" var="s" >
-   	<s:property value="#s.sans" />
+  <div>姓名： <s:property value="#session.studentcontent.stuname" /></div>
+  <div>答题时间： <s:property value="#session.studentcontent.time" /></div>
+  <div>联系方式： <s:property value="#session.studentcontent.phone" /></div>
+
+
+ <div><h5>一、单选题</h5></div>
+ <div>
+   <s:iterator value="#session.sqsinlist" var="sq" >
+   <div><s:property value="#sq.sqnum" />、<s:property value="#sq.sque" /></div>
+   <div>答案：<s:property value="#sa[#sq.sqnum].sans"/></div>
+   <div>
+  	 <s:if test="#sa[#sq.sqnum].other!=''">
+		其他：<s:property value="#sa[#sq.sqnum].other"/>
+  	 </s:if>
+   </div>
    </s:iterator>
-   <s:iterator value="#session.multiplelist" var="m" >
-   	<s:property value="#m.mans" />
+ </div>   
+   <div><h5>二、多选题</h5></div>    
+   <s:iterator value="#session.sqmullist" var="mq" >
+   	<div><s:property value="#mq.sqnum" />、<s:property value="#mq.sque" /></div>
+   	<div>答案：<s:property value="#ma[#mq.sqnum].mans"/></div>
+	  <div>
+  	 <s:if test="#ma[#mq.sqnum].other!=''">
+		其他：<s:property value="#ma[#mq.sqnum].other"/>
+  	 </s:if>
+   </div>   
    </s:iterator>
-   <s:iterator value="#session.textlist" var="t" >
-   	<s:property value="#t.tans" />
+  
+  <div><h5>三、简答题</h5></div>  
+   <s:iterator value="#session.textlist" var="tq" >
+   <div><s:property value="#tq.sqnum" />、<s:property value="#tq.sque" /></div>
+   	<div>答案：<s:property value="#ta[#tq.sqnum].tans"/></div>
+    </s:iterator>    
+  
+  
+  <div><h5>四、列举题</h5></div>  
+   <s:iterator value="#session.listlist" var="lq" >
+   <div><s:property value="#lq.sqnum" />、<s:property value="#lq.sque" /></div>
+   	<div>答案：<s:property value="#la[#lq.sqnum].lans"/></div>
    </s:iterator>
-   <s:iterator value="#session.listlist" var="l" >
-   	<s:property value="#l.lans" />
-   </s:iterator>
+
+ 
+ 
  
   </body>
 </html>
