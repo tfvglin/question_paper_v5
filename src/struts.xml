@@ -47,7 +47,12 @@
 	</package>
 
 	<package name="admin" namespace="/" extends="default">
-
+	
+		<action name="creatDrawPaper" class="adminAction" method="creatDrawPaper">
+			<result type="chain" name="success">
+				adminuser_showDrawPaper
+			</result>
+		</action>
 	
 		<action name="adminuser_*" class="adminAction" method="{1}">
 	
@@ -71,6 +76,16 @@
 		<action name="showChart" class="chartAction" method="showChart">
 			<param name="sqtype">1</param>
 			<param name="sqnum">1</param>
+		</action>
+		<action name="showChartBySex" class="chartAction" method="showChartBySex">
+			<param name="sqtype">1</param>
+			<param name="sqnum">1</param>
+			<param name="sex">1</param>
+		</action>
+		<action name="showChartByHukou" class="chartAction" method="showChartByHukou">
+			<param name="sqtype">1</param>
+			<param name="sqnum">1</param>
+			<param name="hukou">1</param>
 		</action>
 	</package>
 </struts>    

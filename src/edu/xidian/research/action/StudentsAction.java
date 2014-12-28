@@ -95,7 +95,9 @@ public class StudentsAction extends SuperAction implements ModelDriven<Students>
 			request.getSession().setAttribute("stuname", student.getStuname());
 			request.getSession().setAttribute("cardid", student.getCardid());
 			request.getSession().setAttribute("studepartment",student.getStudepartment());
-			
+			request.getSession().setAttribute("sex", student.getSex());
+			request.getSession().setAttribute("province", student.getProvince());
+			request.getSession().setAttribute("hukou", student.getHukou());
 			return SUCCESS;
 			}
 		}

@@ -9,6 +9,7 @@ import junit.framework.TestCase;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import edu.xidian.research.dao.impl.PaperDAOImpl;
 import edu.xidian.research.service.impl.AnswerServiceImpl;
 
 public class AnswerTest extends TestCase{
@@ -55,6 +56,39 @@ public class AnswerTest extends TestCase{
 		}
 		
 		
+		
+	}
+	
+	public void testgetPIDbySex()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext(  
+                "applicationContext.xml");  
+		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
+		List<Integer> list =answerServiceImpl.getAnswerpaperPidBySex("1");
+		Iterator it = list.iterator();
+		//while(it.hasNext())
+	//	{
+			//System.out.println(it.next().toString());
+		//}
+		String pIDstr = list.toString();
+		pIDstr=pIDstr.replaceAll("\\[", "(").replaceAll("\\]", ")");
+		System.out.println(pIDstr);
+		
+		
+	}
+	
+	public void testgetansoptionnumbysex()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext(  
+                "applicationContext.xml");  
+		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
+		
+		List<Integer> list =answerServiceImpl.getSingleAnswerOptionNumBySex(1, 5, "0");
+		Iterator it = list.iterator();
+		while(it.hasNext())
+		{
+			System.out.println(it.next());
+		}
 		
 	}
 

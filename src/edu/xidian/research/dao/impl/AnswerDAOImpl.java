@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +18,7 @@ import edu.xidian.research.vo.Students;
 import edu.xidian.research.vo.TextAnswer;
 
 
-@Repository("anserDAOImpl")
+@Repository("answerDAOImpl")
 public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	
 	public boolean addAnswerPaper(AnswersPaper ap)
@@ -191,9 +190,47 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	                        	for(int i=0;i<questionOptionNum;i++)
 	                			{
 	                        		query.setParameter("sans",String.valueOf((char)(65+i)));
-	                        		System.out.println(String.valueOf((char)(65+i)));
+	                        		//System.out.println(String.valueOf((char)(65+i)));
 	                        		long a = (Long) query.uniqueResult();
-	                        		System.out.println(a);
+	                        		//System.out.println(a);
+	                        		list.add((int)a);
+	                        		
+	                			}
+	                        	return list;
+	                        }
+						});	 
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return numlist;
+		}
+	}
+
+	
+	
+	@Override
+	public List<Integer> getSingleAnserOptionNumByPID(final int qnum,
+			final int questionOptionNum,String pIDstr) {
+		final String hql = "select count(*) from  SingleAnswer  where qnum=:qnum and sans=:sans and pID in "+pIDstr;
+		List<Integer> numlist =new ArrayList<Integer>();
+		try
+		{
+			
+			
+			return this.getHibernateTemplate().execute(
+						new HibernateCallback(){
+	                        public Object doInHibernate(Session session)
+	                        {
+	                        	List<Integer> list =new ArrayList<Integer>();
+	                        	Query query = session.createQuery(hql);
+	                        	query.setParameter("qnum", qnum);
+	                        	for(int i=0;i<questionOptionNum;i++)
+	                			{
+	                        		query.setParameter("sans",String.valueOf((char)(65+i)));
+	                        		//System.out.println(String.valueOf((char)(65+i)));
+	                        		long a = (Long) query.uniqueResult();
+	                        		//System.out.println(a);
 	                        		list.add((int)a);
 	                        		
 	                			}
@@ -279,6 +316,34 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	}
 	
 	
+	
+	
+	
+	@Override
+	public List<String> getMultipleQuestionOptionAnswerByPID(final int sqnum, String pIDstr) {
+		List<String> anslist = new ArrayList<String>();
+		try
+		{
+			
+			final String hql = "select mans from MultipleAnswer where qnum=:sqnum and pID in "+pIDstr;
+			anslist =this.getHibernateTemplate().execute(new HibernateCallback() {
+				public Object doInHibernate(Session session)
+				{
+					Query query = session.createQuery(hql);
+					query.setParameter("sqnum", sqnum);
+					return query.list();
+			
+				}
+			});
+			return anslist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return anslist;
+		}
+	}
+
 	@Override
 	public List<SingleAnswer> getSingleQuestionAnswer(int pID) {
 		List<SingleAnswer> singlelist = new ArrayList<SingleAnswer>();
@@ -352,6 +417,114 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 			ex.printStackTrace();
 		
 			return listlist;
+		}
+	}
+
+	
+	
+	@Override
+	public List<Integer> getAnswerpaperPidBySex(String sex) {
+		
+		List<Integer> pIDlist = new ArrayList<Integer>();
+		try
+		{
+			String hql = "select pID from AnswersPaper where sex=?";
+			
+			pIDlist = this.getHibernateTemplate().find(hql,sex);
+			
+			return pIDlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return pIDlist;
+		}
+	}
+
+	
+	
+	@Override
+	public List<Integer> getAnswerpaperPidByHukou(String hukou) {
+		List<Integer> pIDlist = new ArrayList<Integer>();
+		try
+		{
+			String hql = "select pID from AnswersPaper where hukou=?";
+			
+			pIDlist = this.getHibernateTemplate().find(hql,hukou);
+			
+			return pIDlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return pIDlist;
+		}
+	}
+
+	
+	
+	
+	
+	@Override
+	public Integer getMinPID() {
+		Integer minPid=null;
+		try
+		{
+			String hql = "select min(pID) from AnswersPaper ";
+			
+			List<Integer> pid= this.getHibernateTemplate().find(hql);
+			minPid=pid.get(0);
+			return minPid;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return minPid;
+		}
+	}
+
+	@Override
+	public Integer getMaxPID() {
+		Integer maxPid=null;
+		try
+		{
+			String hql = "select max(pID) from AnswersPaper ";
+			
+			List<Integer> pid= this.getHibernateTemplate().find(hql);
+			maxPid=pid.get(0);
+			return maxPid;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return maxPid;
+		}
+	}
+
+	
+	
+	
+	@Override
+	public List<AnswersPaper> getAnswersPaperByPidstr(String pidstr) {
+		
+		List<AnswersPaper> aplist = new ArrayList<AnswersPaper>();
+		try
+		{
+			String hql = "from AnswersPaper where pID in "+pidstr;
+			
+			aplist = this.getHibernateTemplate().find(hql);
+			
+			return aplist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return aplist;
 		}
 	}
 

@@ -98,6 +98,32 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerDAOImpl.getSingleAnswerOptionNum(qnum, questionOptionNum);
 	}
 
+	
+	
+	
+	@Override
+	public List<Integer> getSingleAnswerOptionNumBySex(int qnum,
+			int questionOptionNum, String sex) {
+		List<Integer> anspIDlist = new ArrayList<Integer>();
+		anspIDlist = answerDAOImpl.getAnswerpaperPidBySex(sex);
+		String pIDstr = anspIDlist.toString();
+		
+		pIDstr=pIDstr.replaceAll("\\[", "(").replaceAll("\\]", ")");
+		return answerDAOImpl.getSingleAnserOptionNumByPID(qnum, questionOptionNum, pIDstr);
+		
+	}
+
+	public List<Integer> getSingleAnswerOptionNumByHukou(int qnum,
+			int questionOptionNum, String hukou) {
+		List<Integer> anspIDlist = new ArrayList<Integer>();
+		anspIDlist = answerDAOImpl.getAnswerpaperPidByHukou(hukou);
+		String pIDstr = anspIDlist.toString();
+		
+		pIDstr=pIDstr.replaceAll("\\[", "(").replaceAll("\\]", ")");
+		return answerDAOImpl.getSingleAnserOptionNumByPID(qnum, questionOptionNum, pIDstr);
+		
+	}
+	
 	@Transactional
 	public List<Integer> getAnswersOptionNumList(int sqtype, int qnum,
 			int questionOptionNum) {
@@ -107,7 +133,7 @@ public class AnswerServiceImpl implements AnswerService {
 
 	
 	
-	//获得多选题选项答案并返回数组集合
+	//获得全部多选题选项答案并返回数组集合
 	@Override
 	@Transactional
 	public List<String[]> getMultipleQuestionOptionAnswer(int sqnum) {
@@ -130,7 +156,55 @@ public class AnswerServiceImpl implements AnswerService {
 
 	
 	
-	
+	//获得多选题答案选项并返回数组集合BY性别
+		public List<String[]> getMultipleQuestionOptionAnswerBySex(int sqnum, String sex) {
+		// TODO Auto-generated method stub
+		List<String> list = new ArrayList<String>();
+		List<String[]> mulanslist = new ArrayList<String[]>();
+		List<Integer> anspIDlist = answerDAOImpl.getAnswerpaperPidBySex(sex);
+		String pIDstr = anspIDlist.toString();
+		
+		pIDstr=pIDstr.replaceAll("\\[", "(").replaceAll("\\]", ")");
+		list = answerDAOImpl.getMultipleQuestionOptionAnswerByPID(sqnum,pIDstr);
+	 	Iterator<String> it = list.iterator();
+		while(it.hasNext())
+		{
+			String str = it.next();
+			String sig="[\\]\\[\\s]";
+			str=str.replaceAll(sig, "");
+			String[] strl = str.split(",");
+			mulanslist.add(strl);
+			
+		}
+		return mulanslist;
+	}
+
+		
+		
+		//获得多选题答案选项并返回数组集合BY户口
+	@Override
+		public List<String[]> getMultipleQuestionOptionAnswerByHukou(int sqnum,
+				String hukou) {
+			List<String> list = new ArrayList<String>();
+			List<String[]> mulanslist = new ArrayList<String[]>();
+			List<Integer> anspIDlist = answerDAOImpl.getAnswerpaperPidByHukou(hukou);
+			String pIDstr = anspIDlist.toString();
+			
+			pIDstr=pIDstr.replaceAll("\\[", "(").replaceAll("\\]", ")");
+			list = answerDAOImpl.getMultipleQuestionOptionAnswerByPID(sqnum,pIDstr);
+		 	Iterator<String> it = list.iterator();
+			while(it.hasNext())
+			{
+				String str = it.next();
+				String sig="[\\]\\[\\s]";
+				str=str.replaceAll(sig, "");
+				String[] strl = str.split(",");
+				mulanslist.add(strl);
+				
+			}
+			return mulanslist;
+		}
+
 	@Override
 	@Transactional
 	public List<SingleAnswer> getSingleQuestionAnswer(int pID) {
@@ -157,6 +231,22 @@ public class AnswerServiceImpl implements AnswerService {
 	public List<ListAnswer> getListQuestionAnswer(int pID) {
 		// TODO Auto-generated method stub
 		return answerDAOImpl.getListQuestionAnswer(pID);
+	}
+
+	
+	
+	@Override
+	public List<Integer> getAnswerpaperPidBySex(String sex) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getAnswerpaperPidBySex(sex);
+	}
+
+	
+	
+	@Override
+	public List<Integer> getAnswerpaperPidByHukou(String hukou) {
+		// TODO Auto-generated method stub
+		return answerDAOImpl.getAnswerpaperPidByHukou(hukou);
 	}
 
 	@Override

@@ -287,6 +287,39 @@ public String showStudents()
 		return SUCCESS;
 	}
 	
+	public String creatDrawPaper()
+	{
+		int count = Integer.parseInt(request.getParameter("count"));
+		List<AnswersPaper> drawStudents = adminServiceImpl.getDrawPaper(count);
+		request.getSession().setAttribute("drawplist", drawStudents);
+		return SUCCESS;
+	}
+	
+	
+	public String showDrawPaper()
+	{
+		List<AnswersPaper> drawStudents = (List<AnswersPaper>) request.getSession().getAttribute("drawplist");
+		
+		//加入分页程序
+		if(request.getSession().getAttribute("pager")==null)
+		{
+			
+			request.getSession().setAttribute("pager", pagerUtil);
+		}
+		pagerUtil =(PagerUtil)request.getSession().getAttribute("pager");
+		pagerUtil.setBigList(drawStudents);
+		if(request.getParameter("PageIndex")==null)
+		{
+			pagerUtil.setCurentPageIndex(1);
+		
+		}
+		else
+		{
+			pagerUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
+		}
+		request.getSession().setAttribute("pager", pagerUtil);
+		return SUCCESS;
+	}
 	
 	@Override
 	public Admin getModel() {
@@ -294,4 +327,6 @@ public String showStudents()
 		return admin;
 	}
 
+	
+	
 }

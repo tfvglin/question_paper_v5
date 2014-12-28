@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul class="childmenu hide">
 					<li><a href="<%=path%>/adminuser_showStudents.action">所有学生</a></li>
 					<li><a href="<%=path%>/adminuser_showAnswerStudents.action">答题学生</a></li>
-					<li><a href="">修改题目</a></li>
+					<li><a href="<%=path%>/adminsidebar_drawPaper.action">抽奖</a></li>
 				</ul>
 			</li>
 		</ul>

@@ -16,7 +16,9 @@ public class Students {
 	private String stunum;
 	private String cardid;
 	private String studepartment;
-	
+	private String sex;
+	private String hukou;
+	private String province;
 	//@GeneratedValue(generator="sid")
 	//@GenericGenerator(name="sid",strategy="assigned")
 	public int getID() {
@@ -50,6 +52,24 @@ public class Students {
 	public void setStudepartment(String studepartment) {
 		this.studepartment = studepartment;
 	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getHukou() {
+		return hukou;
+	}
+	public void setHukou(String hukou) {
+		this.hukou = hukou;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
 	
-
+	
 }

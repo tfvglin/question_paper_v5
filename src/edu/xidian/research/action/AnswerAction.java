@@ -66,6 +66,9 @@ public class AnswerAction extends SuperAction{
 		ap.setStuname((String)request.getSession().getAttribute("stuname"));
 		ap.setCardid((String)request.getSession().getAttribute("cardid"));
 		ap.setStudepartment((String)request.getSession().getAttribute("studepartment"));
+		ap.setHukou((String)request.getSession().getAttribute("hukou"));
+		ap.setProvince((String)request.getSession().getAttribute("province"));
+		ap.setSex((String)request.getSession().getAttribute("sex"));
 		ap.setTime(df.format(date));
 		//添加单选题结果
 		for(int i = 1 ; i<=singlecount ; i++)
@@ -179,6 +182,9 @@ public class AnswerAction extends SuperAction{
 			request.getSession().removeAttribute("sqsinlist");
 			request.getSession().removeAttribute("sqmullist");
 			request.getSession().removeAttribute("studepartment");
+			request.getSession().removeAttribute("province");
+			request.getSession().removeAttribute("sex");
+			request.getSession().removeAttribute("hukou");
 			return "addsuccess";
 		}
 		else

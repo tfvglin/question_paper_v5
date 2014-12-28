@@ -22,7 +22,7 @@ public interface AnswerDAO {
 	//获得答案集合
 	public List<AnswersPaper> getAnswersPaper();
 	
-	//过得答题总人数
+	//获得答题总人数
 	public long getAnswersNum();
 	
 	//由题号和选项得到选择该选项的人数
@@ -31,12 +31,19 @@ public interface AnswerDAO {
 	//由单选题号得到该题各选项人数list
 	public List<Integer> getSingleAnswerOptionNum(int qnum,int questionOptionNum);
 	
+	//由指定pid和单选题号得到该题各选项人数list
+	public List<Integer> getSingleAnserOptionNumByPID(int qnum,int questionOptionNum,String pIDstr);
+	
 	//单选多选合并得到结果人数
 	public List<Integer> getAnswersOptionNumList(int sqtype,int qnum,int questionOptionNum);
 	
 	
+	
 	//得到多选选项结果集
 	List<String> getMultipleQuestionOptionAnswer(int sqnum);
+	
+	//由指定pid和多选题号得到该题各选项结果集
+	List<String> getMultipleQuestionOptionAnswerByPID(int sqnum,String pIDstr);
 	
 	//得到单选结果集
 	List<SingleAnswer> getSingleQuestionAnswer(int pID);
@@ -50,7 +57,21 @@ public interface AnswerDAO {
 	//得到列举结果集
 	List<ListAnswer> getListQuestionAnswer(int pID);
 
+	//获得男、女生答题结果pID
+	List<Integer> getAnswerpaperPidBySex(String sex);
 	
+	//获得城镇、农村答题记过pid
+	List<Integer> getAnswerpaperPidByHukou(String hukou);
+	
+	
+	//获得最小pID
+	Integer getMinPID();
+	
+	//获得最大PID
+	Integer getMaxPID();
+	
+	//由PIDstr获得结果list
+	List<AnswersPaper> getAnswersPaperByPidstr(String pidstr);
 	
 	public boolean checkStudents(Students stu);
 

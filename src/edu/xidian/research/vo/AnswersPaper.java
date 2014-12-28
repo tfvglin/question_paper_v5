@@ -25,6 +25,9 @@ public class AnswersPaper {
 	private String phone;
 	private String studepartment;
 	private String time;
+	private String sex;
+	private String hukou;
+	private String province;
 	@OneToMany(fetch=FetchType.LAZY,targetEntity=SingleAnswer.class,cascade={CascadeType.ALL})
 	@JoinColumns(value={@JoinColumn(name="pID",referencedColumnName="pID")})
 	private List<SingleAnswer> singleanswer = new ArrayList<SingleAnswer>();
@@ -116,6 +119,24 @@ public class AnswersPaper {
 	}
 	public void setListanswer(List<ListAnswer> listanswer) {
 		this.listanswer = listanswer;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getHukou() {
+		return hukou;
+	}
+	public void setHukou(String hukou) {
+		this.hukou = hukou;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
 	}
 	
 	

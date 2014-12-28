@@ -54,5 +54,33 @@ public class ChartTest extends TestCase {
 		
 		
 	}
+	
+	
+	public void testChartbysex()
+	{
+		CountUtil countUtil = new CountUtil();
+		ApplicationContext context = new ClassPathXmlApplicationContext(  
+                "applicationContext.xml"); 
+		
+		questionServiceImpl = (QuestionServiceImpl) context.getBean("questionServiceImpl");
+		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
+		chartutil = new ChartUtil();
+		int sqtype =1 ;
+		int qnum=1 ;
+		int questionOptionNum = questionServiceImpl.getSingleQuestionOptionNum(qnum);
+		if(sqtype==1)
+		{
+			List<Integer> olist = answerServiceImpl.getSingleAnswerOptionNumBySex(qnum, questionOptionNum, "1");
+			chartutil.creatBarChart(sqtype, qnum, questionOptionNum, olist);
+	
+		}
+		else if(sqtype==2)
+		{
+			List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswer(qnum);
+			List<Integer> olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
+			chartutil.creatBarChart(sqtype, qnum, questionOptionNum, olist);
+		}
+		
+	}
 
 }

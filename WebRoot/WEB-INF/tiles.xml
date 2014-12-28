@@ -30,6 +30,12 @@
   	<definition  name="adminTiles_showStudentsAnswer" extends="adminTiles">
        <put-attribute name="CONTENT" value="/jsp/stu_ans.jsp" ></put-attribute>
     </definition>
+  	<definition  name="adminTiles_drawPaper" extends="adminTiles">
+       <put-attribute name="CONTENT" value="/jsp/drawpaper.jsp" ></put-attribute>
+    </definition>
+  	<definition  name="adminTiles_showDrawPaper" extends="adminTiles">
+       <put-attribute name="CONTENT" value="/jsp/drawpaper_list.jsp" ></put-attribute>
+    </definition>
   	<definition  name="adminTiles_creatExcel" extends="adminTiles">
     </definition>
 <!--    <definition  name="studentsTiles" template="/WEB-INF/commons/layout.jsp">
