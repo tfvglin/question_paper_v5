@@ -23,9 +23,9 @@ import edu.xidian.research.vo.TextAnswer;
 @Component("excelUtil")
 public class ExcelUtil {
 	
-	public void creatExcel(int singlecount,int multiplecount,int textcount,int listcount,List aplist)throws RowsExceededException, WriteException, IOException
+	public void creatExcel(int singlecount,int multiplecount,int textcount,int listcount,List aplist,String path)throws RowsExceededException, WriteException, IOException
 	{
-		 WritableWorkbook wb = Workbook.createWorkbook(new File("D:/answer.xls"));
+		 WritableWorkbook wb = Workbook.createWorkbook(new File(path+"data\\answer.xls"));
 		 WritableSheet st = wb.createSheet("调查结果", 0);
 
 		

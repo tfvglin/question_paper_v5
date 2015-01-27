@@ -11,14 +11,14 @@
 
    <definition  name="adminTiles_login" extends="adminTiles">
     </definition>
-   <definition  name="adminTiles_addquestion" extends="adminTiles">
+   <definition  name="adminTiles_addQuestion" extends="adminTiles">
       <put-attribute name="CONTENT" value="/jsp/questionadd.jsp" ></put-attribute>
     </definition>
    <definition  name="adminTiles_creatChart" extends="adminTiles">
-      <put-attribute name="CONTENT" value="/jsp/anschart.jsp" ></put-attribute>
+      <put-attribute name="CONTENT" value="/jsp/anstable.jsp" ></put-attribute>
     </definition>
 
-  	<definition  name="adminTiles_resultquestion" extends="adminTiles">
+  	<definition  name="adminTiles_resultQuestion" extends="adminTiles">
        <put-attribute name="CONTENT" value="/jsp/ansresult.jsp" ></put-attribute>
     </definition>
   	<definition  name="adminTiles_showStudents" extends="adminTiles">
@@ -35,6 +35,9 @@
     </definition>
   	<definition  name="adminTiles_showDrawPaper" extends="adminTiles">
        <put-attribute name="CONTENT" value="/jsp/drawpaper_list.jsp" ></put-attribute>
+    </definition>
+  	<definition  name="adminTiles_editQuestion" extends="adminTiles">
+       <put-attribute name="CONTENT" value="/jsp/editpaper.jsp" ></put-attribute>
     </definition>
   	<definition  name="adminTiles_creatExcel" extends="adminTiles">
     </definition>

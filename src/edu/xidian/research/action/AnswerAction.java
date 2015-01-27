@@ -69,6 +69,7 @@ public class AnswerAction extends SuperAction{
 		ap.setHukou((String)request.getSession().getAttribute("hukou"));
 		ap.setProvince((String)request.getSession().getAttribute("province"));
 		ap.setSex((String)request.getSession().getAttribute("sex"));
+		ap.setStumarjor((String)request.getSession().getAttribute("stumarjor"));
 		ap.setTime(df.format(date));
 		//添加单选题结果
 		for(int i = 1 ; i<=singlecount ; i++)
@@ -130,7 +131,7 @@ public class AnswerAction extends SuperAction{
 			//List<Question> questionlist =(List<Question>)request.getSession().getAttribute("sqsinlist");
 			
 			String str =request.getParameter("textquestion"+i);
-			System.out.println(str+"---------------");
+			
 			if(str.equals(null)||str.equals(""))
 			{
 				ta.setTans("无");
@@ -185,6 +186,7 @@ public class AnswerAction extends SuperAction{
 			request.getSession().removeAttribute("province");
 			request.getSession().removeAttribute("sex");
 			request.getSession().removeAttribute("hukou");
+			request.getSession().removeAttribute("stumarjor");
 			return "addsuccess";
 		}
 		else

@@ -19,6 +19,7 @@ public class Students {
 	private String sex;
 	private String hukou;
 	private String province;
+	private String stumarjor;
 	//@GeneratedValue(generator="sid")
 	//@GenericGenerator(name="sid",strategy="assigned")
 	public int getID() {
@@ -69,6 +70,12 @@ public class Students {
 	}
 	public void setProvince(String province) {
 		this.province = province;
+	}
+	public String getStumarjor() {
+		return stumarjor;
+	}
+	public void setStumarjor(String stumarjor) {
+		this.stumarjor = stumarjor;
 	}
 	
 	

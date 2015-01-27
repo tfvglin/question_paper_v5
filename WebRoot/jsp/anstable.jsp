@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-<script src="js/jquery-answer.js" type="text/javascript"></script>
+<script src="js/jquery-table.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/admin-styles.css">
 
   </head>
@@ -33,29 +33,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			</s:iterator> 
     		</div>
     		<div>
-	    		<button class="all" style="float:left;margin-left:2px;">总体情况</button>
+	    		<button class="all" style="float:left;margin-left:2px;" onclick="totaltable(1,<s:property value='#q.sqnum '/>)">总体情况</button>
 	    		<button class="sex" style="float:left;margin-left:10px;">男女情况</button>	
 	    		<button class="hukou" style="float:left;margin-left:10px;">农村城镇情况</button>	
-	    		
-	    		
-	 <!--    		<select id="singlequestiondepartment<s:property value='#q.sqnum '/>" >
-	 	    			<option value="">--请选择学院--</option>
-					<option value="电子工程">电子工程学院</option>
-					<option value="通信工程">通信工程学院</option>
-					<option value="计算机">计算机学院</option>
-					<option value="物理与光电工程">物理与光电工程学院</option>
-					<option value="机电工程">机电工程学院</option>
-					<option value="微电子">微电子学院</option>
-					<option value="软件">软件学院</option>
-					<option value="空间科学与技术">空间科学与技术学院</option>
-					<option value="数学与统计">数学与统计学院</option>
-					<option value="先进材料与纳米科技">先进材料与纳米科技学院</option>
-					<option value="人文">人文学院</option>
-					</select>
-					-->	
-					<div style="clear:both;"></div>
+
+				<div style="clear:both;"></div>
 	    		<div style="float:left;padding-top:6px;">
-	    			<s:select id="singlequestiondepartment%{#q.sqnum}" list="#session.departmentmap"  headerKey="" headerValue="--选择学院--"></s:select> 
+	    		<s:select id="singlequestiondepartment%{#q.sqnum}" list="#session.departmentmap"  headerKey="" headerValue="--选择学院--"></s:select> 
 	    	
 				</div>	
 				<button style="float:left;margin-left:10px;margin-top:6px;" class="department" onclick="checkdepartment(1,<s:property value='#q.sqnum '/>)">学院情况</button>
@@ -76,38 +60,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<img src="<%=path%>/img/arrowsup.gif" style="width:10px;height:10px"/>
     			</div>
 	    		<div style="clear:both;"></div>
-    			<div style="clear:both;"></div>
-	    		<s:url var="selshowchart" action="showChart.action" escapeAmp="false">
-	    			<s:param name="sqtype" value="1"/>
-					<s:param name="sqnum" value="%{#q.sqnum}" />
-	    		</s:url>
-	    		<s:url var="selshowchartbysex" action="showChartBySex.action" escapeAmp="false">
-	    			<s:param name="sqtype" value="1"/>
-					<s:param name="sqnum" value="%{#q.sqnum}" />
-	    		</s:url>
-	    		<s:url var="selshowchartbyhukou" action="showChartByHukou.action" escapeAmp="false">
-	    			<s:param name="sqtype" value="1"/>
-					<s:param name="sqnum" value="%{#q.sqnum}" />
-	    		</s:url>
-	    		<div class="chartall hide"><img src="<s:property value="selshowchart"/>" /></div>
-	    		
-	    		<div class="chartsex hide">
-	    			<img src="<s:property value="selshowchartbysex"/>&sex=1" />
-	    			<img src="<s:property value="selshowchartbysex"/>&sex=0" />
-	    		</div>
-	    		<div class="charthukou hide">
-	    			<img src="<s:property value="selshowchartbyhukou"/>&hukou=1" />
-	    			<img src="<s:property value="selshowchartbyhukou"/>&hukou=0" />
-	    		</div>
-	    		<div class="chartdepartment hide">
-	    			<img id="singlequestiondepartmentchart<s:property value='#q.sqnum'/>" src="" />
-	    		</div>
-	    		<div class="chartmarjor hide">
-	    			<img id="singlequestionmarjorchart<s:property value='#q.sqnum'/>" src="" />
-	    		</div>
-	    		<div class="chartprovince hide">
-	    			<img id="singlequestionprovincechart<s:property value='#q.sqnum'/>" src="" />
-	    		</div>
+    			<div class="firsttable">
+    				<table id="firsttable<s:property value='#q.sqnum '/>" class="table">
+    				</table>
+    			</div>	
+    			<div>
+    				<table id="secondtable">
+    				</table>
+    			</div>
 	    		<div><hr/></div>
     		</div>
     		</s:iterator>

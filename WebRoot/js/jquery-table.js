@@ -1,11 +1,5 @@
 ﻿$(document).ready(function(){
-	$(".all").click(function(){
-		$(this).siblings(".hide").hide();
-			$(this).siblings(".chartall").slideDown();
-	
-		
-		});
-	
+
 	$(".sex").click(function(){
 		$(this).siblings(".hide").hide();
 		$(this).siblings(".chartsex").slideDown();
@@ -21,7 +15,7 @@
 	});
 	
 	$(".pointer").click(function(){
-		$(this).siblings(".hide").slideUp();
+		$(this).siblings(".aa").slideUp();
 	});
 	
   $(".department").click(function(){
@@ -38,6 +32,49 @@
   });
 	
 });
+function totaltable(qtype,qnum)
+{
+	$.ajax({
+		type:"GET",
+		data: {
+			'sqtype': qtype,
+			'sqnum': qnum,
+		},
+		url:"showTable.action",
+		dataType:"json",
+		success: function(data){
+		console.log(data);
+		$('#firsttable'+qnum).empty();
+		var html='';
+		var all = 0;
+		var i = 0;
+		var pernum ;
+		var per;
+		var width;
+		for(var key in data.omap){
+				
+				i = parseInt(data.omap[key]);
+				//alert(i);
+				all += i; 
+			}
+		//	alert(all);
+			for(var key in data.omap){
+					//alert(key+"--"+data.omap[key]);
+					pernum =  (parseInt(data.omap[key])/all);
+					//alert(pernum);
+					width = pernum*194;
+					per=(pernum*100).toFixed(1)+"%";
+					
+					//per=pernum*10 ;
+					
+					html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+			}
+			$('#firsttable'+qnum).html(html);
+		}
+	});
+	$(this).siblings(".firsttable").slideDown();
+	
+}
 
 function checkdepartment(qtype,qnum)
 {

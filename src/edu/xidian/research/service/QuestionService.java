@@ -14,10 +14,24 @@ public interface QuestionService {
 	
 	public boolean addSelMulOption(SelMulOption so);
 	
+	public void delSelSinOption(SelSinOption so);
+	
+	public void delSelMulOption(SelMulOption so);	
+	
+	public void updateQuestion(Question q);
+	
+	public boolean updateSelSinOption(SelSinOption so);
+	
+	public boolean updateSelMulOption(SelMulOption so);
+	
 	public int getquestionnum(int sqtype);
 	
 	public int getSingleQuestionOptionNum(final int sqnum);
 	
 	public int getQuestionOptionNum(final int sqnum,final int sqtype);
+	
+	public SelMulOption getSelMulOption(int qnum,char item);
+	
+	public SelSinOption getSelSinOption(int qnum,char item);
 
 }

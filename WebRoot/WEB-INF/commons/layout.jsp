@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="<%=path %>/js/jquery-admin.js" type="text/javascript"></script>
 	
 	  
-<link rel="stylesheet" type="text/css" href="<%=path %>/css/admin-styles.css">
+	<link rel="stylesheet" type="text/css" href="<%=path %>/css/admin-styles.css" />
 	
 
   </head>
@@ -42,6 +42,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<tiles:insertAttribute name="FOOTER" ></tiles:insertAttribute>
     	</div>	
     </div>	
-    <s:debug></s:debug>
+    
   </body>
 </html>

@@ -29,16 +29,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <center>
    	<b>学生资料</b>
    	
-   		<table bgcolor="#e4effe" border="1" width="600px">
+   		<table  border="1" width="600px" class="stutable">
    			<tr>
-   				<td>
-   					<b>序号</b>
-   				</td>
+
    				<td>
    					<b>姓名</b>
    				</td>
    				<td>
-   					<b>学号</b>
+   					<b>电话</b>
    				</td>
    				<td>
    					<b>身份证</b>
@@ -46,21 +44,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				<td>
    					<b>院系</b>
    				</td>
-   			
+   				<td>
+   					<b>省份</b>
+   				</td>	
    				<td align="center">
    					<b>操作</b>
    				</td>
    			</tr>
    			<s:iterator value="#session.pager.smallList" var="s" >
    			<tr>
-   				<td>
-   					<s:property value="#s.ID" />
-   				</td>
+ 
    				<td>
    					<s:property value="#s.stuname" />
    				</td>
    				<td>
-   					<s:property value="#s.stunum" />
+   					<s:property value="#s.phone" />
    				</td>
    				<td>
    					<s:property value="#s.cardid" />
@@ -68,8 +66,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				<td>
    					<s:property value="#s.studepartment" />
    				</td>
-   
-
+   				<td>
+					<s:property value="#s.province" />
+				</td>
    				<td align="center">
    					<b><a href="<%=path%>/adminuser_showStudentsAnswer.action?num=<%=stucount++%>">查看</a></b>
    				</td>	

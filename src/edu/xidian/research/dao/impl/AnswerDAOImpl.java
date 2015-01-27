@@ -140,6 +140,108 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	
 	
 	
+	@Override
+	public long getAnswersNumBySex(String sex) {
+		long answernum = 0;
+		try
+		{
+			final String hql = "select count(*) from AnswersPaper where sex = "+sex;
+		
+			answernum =  this.getHibernateTemplate().execute(
+					new HibernateCallback(){
+                        public Object doInHibernate(Session session)
+                        {
+                        	Query query = session.createQuery(hql);
+                        	return query.uniqueResult();
+                        }
+					});
+			
+			return answernum;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return answernum;
+		}
+	}
+
+	@Override
+	public long getAnswersNumByHukou(String hukou) {
+		long answernum = 0;
+		try
+		{
+			final String hql = "select count(*) from AnswersPaper where hukou = "+hukou;
+		
+			answernum =  this.getHibernateTemplate().execute(
+					new HibernateCallback(){
+                        public Object doInHibernate(Session session)
+                        {
+                        	Query query = session.createQuery(hql);
+                        	return query.uniqueResult();
+                        }
+					});
+			
+			return answernum;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return answernum;
+		}
+	}
+
+	@Override
+	public long getAnswersNumByProvince(String province) {
+		long answernum = 0;
+		try
+		{
+			final String hql = "select count(*) from AnswersPaper where province = "+"'"+province+"'";
+		
+			answernum =  this.getHibernateTemplate().execute(
+					new HibernateCallback(){
+                        public Object doInHibernate(Session session)
+                        {
+                        	Query query = session.createQuery(hql);
+                        	return query.uniqueResult();
+                        }
+					});
+			
+			return answernum;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return answernum;
+		}
+	}
+
+	
+	
+	@Override
+	public long getAnswersNumByDepartment(String department) {
+		long answernum = 0;
+		try
+		{
+			final String hql = "select count(*) from AnswersPaper where studepartment = "+"'"+department+"'";
+		
+			answernum =  this.getHibernateTemplate().execute(
+					new HibernateCallback(){
+                        public Object doInHibernate(Session session)
+                        {
+                        	Query query = session.createQuery(hql);
+                        	return query.uniqueResult();
+                        }
+					});
+			
+			return answernum;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			return answernum;
+		}
+	}
+
 	public int getAnswersOptionNum(final int qnum,final String sans ) {
 		int answeronum = 0;
 		try
@@ -468,6 +570,61 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 	
 	
 	@Override
+	public List<Integer> getAnswerpaperPidByDepartment(String department) {
+		List<Integer> pIDlist = new ArrayList<Integer>();
+		try
+		{
+			String hql = "select pID from AnswersPaper where studepartment=?";
+			
+			pIDlist = this.getHibernateTemplate().find(hql,department);
+			
+			return pIDlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return pIDlist;
+		}
+	}
+
+	@Override
+	public List<Integer> getAnswerpaperPidByMarjor(String marjor) {
+		List<Integer> pIDlist = new ArrayList<Integer>();
+		try
+		{
+			String hql = "select pID from AnswersPaper where stumarjor=?";
+			
+			pIDlist = this.getHibernateTemplate().find(hql,marjor);
+			
+			return pIDlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return pIDlist;
+		}
+	}
+	public List<Integer> getAnswerpaperPidByProvince(String province) {
+		List<Integer> pIDlist = new ArrayList<Integer>();
+		try
+		{
+			String hql = "select pID from AnswersPaper where province=?";
+			
+			pIDlist = this.getHibernateTemplate().find(hql,province);
+			
+			return pIDlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			
+			return pIDlist;
+		}
+	}
+
+	@Override
 	public Integer getMinPID() {
 		Integer minPid=null;
 		try
@@ -525,6 +682,66 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 			ex.printStackTrace();
 		
 			return aplist;
+		}
+	}
+
+	
+	
+	
+	@Override
+	public List<String> getAnswersPaperDepartment() {
+		List<String> departmentlist = new ArrayList<String>();
+		try
+		{
+			final String hql = "select studepartment from AnswersPaper group by studepartment";
+		
+			departmentlist = this.getHibernateTemplate().find(hql);
+			
+			return departmentlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return departmentlist;
+		}
+	}
+
+	@Override
+	public List<String> getAnswersPaperMarjor() {
+		List<String> marjorlist = new ArrayList<String>();
+		try
+		{
+			String hql = "select stumarjor from AnswersPaper group by stumarjor";
+		
+			marjorlist = this.getHibernateTemplate().find(hql);
+			
+			return marjorlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return marjorlist;
+		}
+	}
+
+	@Override
+	public List<String> getAnswersPaperProvince() {
+		List<String> provincelist = new ArrayList<String>();
+		try
+		{
+			String hql = "select province from AnswersPaper group by province";
+			
+			provincelist = this.getHibernateTemplate().find(hql);
+			
+			return provincelist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		
+			return provincelist;
 		}
 	}
 

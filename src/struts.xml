@@ -34,21 +34,40 @@
 	<package name="answer" namespace="/" extends="default">
 	
 	  	<action name="answer_*" class="answerAction" method="{1}">
+		   
 		   	
-		   	<interceptor-ref name="token"></interceptor-ref>
+		 	<interceptor-ref name="token"></interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			<result  name="invalid.token" >/WEB-INF/errorjsp/token.jsp</result>
 			<result name="addsuccess" type="redirect">/success.jsp</result>
+			<result name="login">index.jsp</result>
 			
+		</action>	
+		
+	
+	</package>
+	
+	<package name="question" namespace="/" extends="default">
+	
+	  	<action name="question_*" class="questionAction" method="{1}">
+		   	
+		  
+		
+			<result name="adminlogin">admin.jsp</result>
+			<result type="tiles" name="success">
+				adminTiles
+			</result>
 			
 		</action>	
 		
 	
 	</package>
 
+
 	<package name="admin" namespace="/" extends="default">
 	
 		<action name="creatDrawPaper" class="adminAction" method="creatDrawPaper">
+			<result name="login">admin.jsp</result>
 			<result type="chain" name="success">
 				adminuser_showDrawPaper
 			</result>
@@ -56,7 +75,7 @@
 	
 		<action name="adminuser_*" class="adminAction" method="{1}">
 	
-			
+			<result name="login">admin.jsp</result>
 			<result type="tiles" name="success">
 				adminTiles_{1}
 			</result>
@@ -64,12 +83,7 @@
 			<result name="input">/admin.jsp</result>
 		</action>
 	
-		<action name="adminsidebar_*">
-			 
-			<result type="tiles" >
-				adminTiles_{1}
-			</result>
-		</action>
+
 	</package>
 	
 	<package name="chart" namespace="/" extends="default">
@@ -86,6 +100,28 @@
 			<param name="sqtype">1</param>
 			<param name="sqnum">1</param>
 			<param name="hukou">1</param>
+		</action>
+		<action name="showChartByDepartment" class="chartAction" method="showChartByDepartment">
+			<param name="sqtype">1</param>
+			<param name="sqnum">1</param>
+			<param name="department">1</param>
+		</action>
+		<action name="showChartByMarjor" class="chartAction" method="showChartByMarjor">
+			<param name="sqtype">1</param>
+			<param name="sqnum">1</param>
+			<param name="marjor">1</param>
+		</action>
+		<action name="showChartByProvince" class="chartAction" method="showChartByProvince">
+			<param name="sqtype">1</param>
+			<param name="sqnum">1</param>
+			<param name="province">1</param>
+		</action>
+
+	</package>
+	<package name="table" namespace="/" extends="json-default">
+			<action name="showTable" class="tableAction" method="showTable">
+				<result type="json">
+			</result>
 		</action>
 	</package>
 </struts>    

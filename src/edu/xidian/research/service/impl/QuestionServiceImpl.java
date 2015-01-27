@@ -50,6 +50,46 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDAOImpl.addSelMulOption(so);
 	}
 
+	
+	
+	@Override
+	@Transactional
+	public void delSelSinOption(SelSinOption so) {
+		questionDAOImpl.delSelSinOption(so);
+		
+	}
+
+	@Override
+	@Transactional
+	public void delSelMulOption(SelMulOption so) {
+		questionDAOImpl.delSelMulOption(so);
+		
+	}
+
+	@Override
+	@Transactional
+	public void updateQuestion(Question q) {
+		int qID = questionDAOImpl.getQuestionID(q.getSqnum(),q.getSqtype());
+		Question question=questionDAOImpl.getQuestion(qID);
+		question.setSque(q.getSque());
+		questionDAOImpl.updateQuestion(question);
+		
+	}
+
+	@Override
+	@Transactional
+	public boolean updateSelSinOption(SelSinOption so) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	@Transactional
+	public boolean updateSelMulOption(SelMulOption so) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	@Override
 	@Transactional
 	public int getquestionnum(int sqtype) {
@@ -67,6 +107,20 @@ public class QuestionServiceImpl implements QuestionService {
 	public int getQuestionOptionNum(int sqnum, int sqtype) {
 		// TODO Auto-generated method stub
 		return questionDAOImpl.getQuestionOptionNum(sqnum, sqtype);
+	}
+
+	@Override
+	@Transactional
+	public SelMulOption getSelMulOption(int qnum, char item) {
+		// TODO Auto-generated method stub
+		return questionDAOImpl.getSelMulOption(qnum, item);
+	}
+
+	@Override
+	@Transactional
+	public SelSinOption getSelSinOption(int qnum, char item) {
+		// TODO Auto-generated method stub
+		return questionDAOImpl.getSelSinOption(qnum, item);
 	}
 	
 	

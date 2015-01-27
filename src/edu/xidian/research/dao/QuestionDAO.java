@@ -14,6 +14,11 @@ public interface QuestionDAO {
 	
 	public boolean addSelMulOption(SelMulOption so);
 	
+	public void delSelSinOption(SelSinOption so);
+	
+	public void delSelMulOption(SelMulOption so);
+	
+	
 	public int getquestionnum(int sqtype);
 	
 	//由题号获得单选选项数
@@ -22,6 +27,15 @@ public interface QuestionDAO {
 	//有题目类型和题号获得选择题选项数
 	public int getQuestionOptionNum( int sqnum, int sqtype);
 	
-
+	public Question getQuestion(int qid);
+	
+	public SelMulOption getSelMulOption(int qnum,char item);
+	
+	public SelSinOption getSelSinOption(int qnum,char item);
+	
+	public int getQuestionID(int qnum,int qtype);
+	
+	public void updateQuestion(Question q);
+	
 
 }

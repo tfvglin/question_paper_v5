@@ -25,6 +25,18 @@ public interface AnswerDAO {
 	//获得答题总人数
 	public long getAnswersNum();
 	
+	//获得答题人数by性别
+	public long getAnswersNumBySex(String sex);
+	
+	//获得答题人数by户口
+	public long getAnswersNumByHukou(String hukou);
+	
+	//获得答题人数by省份
+	public long getAnswersNumByProvince(String province);
+	
+	//获得答题人数by学院
+	public long getAnswersNumByDepartment(String department);
+	
 	//由题号和选项得到选择该选项的人数
 	public int getAnswersOptionNum(int qnum,String sans);
 	
@@ -60,9 +72,17 @@ public interface AnswerDAO {
 	//获得男、女生答题结果pID
 	List<Integer> getAnswerpaperPidBySex(String sex);
 	
-	//获得城镇、农村答题记过pid
+	//获得城镇、农村答题结果pid
 	List<Integer> getAnswerpaperPidByHukou(String hukou);
 	
+	//获得学院答题结果pid
+	List<Integer> getAnswerpaperPidByDepartment(String department);
+	
+	//获得专业答题结果pid
+	List<Integer> getAnswerpaperPidByMarjor(String marjor);
+	
+	//获得省份答题结果pid
+	List<Integer> getAnswerpaperPidByProvince(String province);
 	
 	//获得最小pID
 	Integer getMinPID();
@@ -72,6 +92,18 @@ public interface AnswerDAO {
 	
 	//由PIDstr获得结果list
 	List<AnswersPaper> getAnswersPaperByPidstr(String pidstr);
+	
+	//获得answerpaper中所有不同的department
+	List<String> getAnswersPaperDepartment();
+	
+	//获得answerpaper中所有不同的marjor
+	List<String> getAnswersPaperMarjor();
+	
+	//获得answerpaper中所有不同的province
+	List<String> getAnswersPaperProvince();
+
+	
+	//
 	
 	public boolean checkStudents(Students stu);
 

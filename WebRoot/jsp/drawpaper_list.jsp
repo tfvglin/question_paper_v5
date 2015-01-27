@@ -29,11 +29,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <center>
    	<b>学生资料</b>
    	
-   		<table bgcolor="#e4effe" border="1" width="600px">
+   		<table  border="1" width="600px" class="stutable">
    			<tr>
-   				<td>
-   					<b>序号</b>
-   				</td>
+
    				<td>
    					<b>姓名</b>
    				</td>
@@ -53,9 +51,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    			</tr>
    			<s:iterator value="#session.pager.smallList" var="s" >
    			<tr>
-   				<td>
-   					<s:property value="#s.ID" />
-   				</td>
+
    				<td>
    					<s:property value="#s.stuname" />
    				</td>

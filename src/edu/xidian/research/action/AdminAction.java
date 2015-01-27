@@ -1,6 +1,7 @@
 package edu.xidian.research.action;
 
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,8 +114,16 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		
 		if(adminServiceImpl.adminLogin(admin))
 		{
+			
+			request.getSession().setAttribute("adminname", admin.getAdminname());
 	
-			request.getSession().setAttribute("c", answerServiceImpl.getAnswersNum());           //session中存入答题人数
+			request.getSession().setAttribute("all", answerServiceImpl.getAnswersNum());           //session中存入答题人数
+			request.getSession().setAttribute("city", answerServiceImpl.getAnswersNumByHukou("1"));           //session中存入城镇户口答题人数
+			request.getSession().setAttribute("country", answerServiceImpl.getAnswersNumByHukou("0"));           //session中存入农村户口答题人数
+			request.getSession().setAttribute("boy", answerServiceImpl.getAnswersNumBySex("1"));           //session中存入男生答题人数
+			request.getSession().setAttribute("girl", answerServiceImpl.getAnswersNumBySex("0"));           //session中存入女生答题人数
+			request.getSession().setAttribute("department", answerServiceImpl.getAnswersNumByDepartment());
+//			System.out.println(answerServiceImpl.getAnswersNumByDepartment().get("电子信息"));
 //			List<Question> sqsinlist = paperServiceImpl.getSelsinQuestion();
 //			List<Question> sqmullist = paperServiceImpl.getSelmulQuestion();
 //			Map<Integer, List<SelSinOption>> qsinmap = paperServiceImpl.getSelSinOption();
@@ -123,6 +132,11 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 			request.getSession().setAttribute("qmulmap", paperServiceImpl.getSelMulOption());
 			request.getSession().setAttribute("sqsinlist", paperServiceImpl.getSelsinQuestion());
 			request.getSession().setAttribute("sqmullist", paperServiceImpl.getSelmulQuestion());
+			request.getSession().setAttribute("textlist", paperServiceImpl.getTextQuestion());
+			request.getSession().setAttribute("listlist", paperServiceImpl.getListQuestion());
+			request.getSession().setAttribute("departmentmap", answerServiceImpl.getAnswersPaperDepartment());
+			request.getSession().setAttribute("marjormap", answerServiceImpl.getAnswersPaperMarjor());
+			request.getSession().setAttribute("provincemap", answerServiceImpl.getAnswersPaperProvince());
 			return "success";
 		}
 		else
@@ -158,10 +172,12 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		int multiplecount = questionServiceImpl.getquestionnum(2);
 		int textcount = questionServiceImpl.getquestionnum(3);
 		int listcount = questionServiceImpl.getquestionnum(4);
+		String path = request.getRealPath("/");
+		
 		 try {
 			
-
-			 excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist);
+			 
+			 excelUtil.creatExcel(singlecount, multiplecount, textcount, listcount, aplist,path);
 
 
             return SUCCESS;
@@ -327,6 +343,32 @@ public String showStudents()
 		return admin;
 	}
 
+	public String drawPaper()
+	{
+		return SUCCESS;
+	}
 	
+	public String addQuestion()
+	{
+		return SUCCESS;
+	}
 	
+	public String editQuestion()
+	{
+		return SUCCESS;
+	}
+	
+	public String resultQuestion()
+	{
+		return SUCCESS;
+	}
+	
+	public String creatChart()
+	{
+		return SUCCESS;
+	}
+	public void test(Date time,String food)
+	{
+		
+	}
 }

@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    <center>
    	<b>学生资料</b>
    	
-   		<table bgcolor="#e4effe" border="1" width="600px">
+   		<table  border="1" width="600px" class="stutable">
    			<tr>
    				<td>
    					<b>序号</b>
@@ -36,9 +36,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				<td>
    					<b>姓名</b>
    				</td>
-   				<td>
-   					<b>学号</b>
-   				</td>
+   			
    				<td>
    					<b>身份证</b>
    				</td>
@@ -58,9 +56,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				<td>
    					<s:property value="#s.stuname" />
    				</td>
-   				<td>
-   					<s:property value="#s.stunum" />
-   				</td>
+   			
    				<td>
    					<s:property value="#s.cardid" />
    				</td>
@@ -70,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
 
    				<td align="center">
-   					<b>删除&nbsp;&nbsp;查看&nbsp;&nbsp;编辑</b>
+   					<b>..</b>
    				</td>	
    				</tr>
    			</s:iterator>
