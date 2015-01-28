@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 
@@ -16,6 +17,7 @@ import com.google.common.collect.Iterables;
 import edu.xidian.research.dao.impl.AnswerDAOImpl;
 import edu.xidian.research.service.AdminService;
 import edu.xidian.research.service.AnswerService;
+import edu.xidian.research.util.CountUtil;
 import edu.xidian.research.vo.Admin;
 import edu.xidian.research.vo.AnswersPaper;
 import edu.xidian.research.vo.ListAnswer;
@@ -30,10 +32,18 @@ public class AnswerServiceImpl implements AnswerService {
 
 	private AnswerDAOImpl answerDAOImpl;
 	
+	private CountUtil countUtil;
 	
 	
 	
-	
+	public CountUtil getCountUtil() {
+		return countUtil;
+	}
+	@Resource
+	public void setCountUtil(CountUtil countUtil) {
+		this.countUtil = countUtil;
+	}
+
 	public AnswerDAOImpl getAnswerDAOImpl() {
 		return answerDAOImpl;
 	}
@@ -154,7 +164,7 @@ public class AnswerServiceImpl implements AnswerService {
 	@Override
 	public Map<Character, Integer> getSingleAnswerOptionNumMap(int qnum,
 			int questionOptionNum) {
-		Map<Character,Integer> omap = new HashMap<>();
+		TreeMap<Character,Integer> omap = new TreeMap<>();
 		List<Integer> olist = new ArrayList<>();
 		olist = getSingleAnswerOptionNum(qnum, questionOptionNum);
 		Iterator<Integer> it = olist.iterator();
@@ -179,6 +189,23 @@ public class AnswerServiceImpl implements AnswerService {
 		
 	}
 
+	
+	
+	@Override
+	public Map<Character, Integer> getSingleAnswerOptionNumBySexMap(int qnum,
+			int questionOptionNum, String sex) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getSingleAnswerOptionNumBySex(qnum, questionOptionNum,sex);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
 	public List<Integer> getSingleAnswerOptionNumByHukou(int qnum,
 			int questionOptionNum, String hukou) {
 		List<Integer> anspIDlist = new ArrayList<Integer>();
@@ -190,7 +217,21 @@ public class AnswerServiceImpl implements AnswerService {
 		
 	}
 	
-	
+	@Override
+	public Map<Character, Integer> getSingleAnswerOptionNumByHukouMap(int qnum,
+			int questionOptionNum, String hukou) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getSingleAnswerOptionNumByHukou(qnum, questionOptionNum,hukou);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
 	
 	
 	
@@ -207,6 +248,22 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	@Override
+	public Map<Character, Integer> getSingleAnswerOptionNumByDepartmentMap(int qnum,
+			int questionOptionNum, String department) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getSingleAnswerOptionNumByDepartment(qnum, questionOptionNum,department);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
+	
+	@Override
 	public List<Integer> getSingleAnswerOptionNumByMarjor(int qnum,
 			int questionOptionNum, String marjor) {
 		List<Integer> anspIDlist = new ArrayList<Integer>();
@@ -217,6 +274,23 @@ public class AnswerServiceImpl implements AnswerService {
 		return answerDAOImpl.getSingleAnserOptionNumByPID(qnum, questionOptionNum, pIDstr);
 	
 	}
+	
+	@Override
+	public Map<Character, Integer> getSingleAnswerOptionNumByMarjorMap(int qnum,
+			int questionOptionNum, String marjor) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getSingleAnswerOptionNumByMarjor(qnum, questionOptionNum,marjor);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
+	
 	@Override
 	public List<Integer> getSingleAnswerOptionNumByProvince(int qnum,
 			int questionOptionNum, String province) {
@@ -229,6 +303,22 @@ public class AnswerServiceImpl implements AnswerService {
 		
 	}
 
+	@Override
+	public Map<Character, Integer> getSingleAnswerOptionNumByProvinceMap(int qnum,
+			int questionOptionNum, String province) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getSingleAnswerOptionNumByProvince(qnum, questionOptionNum,province);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
+	
 	@Transactional
 	public List<Integer> getAnswersOptionNumList(int sqtype, int qnum,
 			int questionOptionNum) {
@@ -241,28 +331,46 @@ public class AnswerServiceImpl implements AnswerService {
 	//获得全部多选题选项答案并返回数组集合
 	@Override
 	@Transactional
-	public List<String[]> getMultipleQuestionOptionAnswer(int sqnum) {
+	public List<Integer> getMultipleQuestionOptionAnswer(int sqnum,int questionOptionNum) {
 		// TODO Auto-generated method stub
 		List<String> list = new ArrayList<String>();
 		List<String[]> mulanslist = new ArrayList<String[]>();
+		//List<Integer>  mulansnumlist = new ArrayList<Integer>();
 	 	list = answerDAOImpl.getMultipleQuestionOptionAnswer(sqnum);
 	 	Iterator<String> it = list.iterator();
 		while(it.hasNext())
 		{
 			String str = it.next();
+		
 			String sig="[\\]\\[\\s]";
 			str=str.replaceAll(sig, "");
 			String[] strl = str.split(",");
 			mulanslist.add(strl);
 			
 		}
-		return mulanslist;
+		return countUtil.multipleAnswerOptionNum(mulanslist, questionOptionNum);
 	}
 
+
 	
+	@Override
+	public Map<Character, Integer> getMultipleQuestionOptionAnswerMap(
+			int sqnum, int questionOptionNum) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getMultipleQuestionOptionAnswer(sqnum, questionOptionNum);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
 	
-	//获得多选题答案选项并返回数组集合BY性别
-		public List<String[]> getMultipleQuestionOptionAnswerBySex(int sqnum, String sex) {
+		//获得多选题答案选项并返回数组集合BY性别
+		public List<Integer> getMultipleQuestionOptionAnswerBySex(int sqnum, String sex,int questionOptionNum) {
 		// TODO Auto-generated method stub
 		List<String> list = new ArrayList<String>();
 		List<String[]> mulanslist = new ArrayList<String[]>();
@@ -281,15 +389,31 @@ public class AnswerServiceImpl implements AnswerService {
 			mulanslist.add(strl);
 			
 		}
-		return mulanslist;
+		return countUtil.multipleAnswerOptionNum(mulanslist, questionOptionNum);
 	}
 
 		
+	
+		@Override
+		public Map<Character, Integer> getMultipleQuestionOptionAnswerBySexMap(
+				int sqnum,String sex, int questionOptionNum) {
+			TreeMap<Character,Integer> omap = new TreeMap<>();
+			List<Integer> olist = new ArrayList<>();
+			olist = getMultipleQuestionOptionAnswerBySex(sqnum, sex,questionOptionNum);
+			Iterator<Integer> it = olist.iterator();
+			int i=0;
+			while(it.hasNext())
+			{
+				omap.put((char)(65+i), it.next());
+				i++;
+			}
+			return omap;
+		}	
 		
 		//获得多选题答案选项并返回数组集合BY户口
 	@Override
-		public List<String[]> getMultipleQuestionOptionAnswerByHukou(int sqnum,
-				String hukou) {
+		public List<Integer> getMultipleQuestionOptionAnswerByHukou(int sqnum,
+				String hukou,int questionOptionNum) {
 			List<String> list = new ArrayList<String>();
 			List<String[]> mulanslist = new ArrayList<String[]>();
 			List<Integer> anspIDlist = answerDAOImpl.getAnswerpaperPidByHukou(hukou);
@@ -307,14 +431,30 @@ public class AnswerServiceImpl implements AnswerService {
 				mulanslist.add(strl);
 				
 			}
-			return mulanslist;
+			return countUtil.multipleAnswerOptionNum(mulanslist, questionOptionNum);
 		}
 		
 		
+	@Override
+	public Map<Character, Integer> getMultipleQuestionOptionAnswerByHukouMap(
+			int sqnum,String hukou, int questionOptionNum) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getMultipleQuestionOptionAnswerByHukou(sqnum, hukou,questionOptionNum);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
+	
 		//获得多选题答案选项并返回数组集合BY学院
 		@Override
-		public List<String[]> getMultipleQuestionOptionAnswerByDepartment(
-				int sqnum, String department) {
+		public List<Integer> getMultipleQuestionOptionAnswerByDepartment(
+				int sqnum, String department,int questionOptionNum) {
 			List<String> list = new ArrayList<String>();
 			List<String[]> mulanslist = new ArrayList<String[]>();
 			List<Integer> anspIDlist = answerDAOImpl.getAnswerpaperPidByDepartment(department);
@@ -332,13 +472,30 @@ public class AnswerServiceImpl implements AnswerService {
 				mulanslist.add(strl);
 				
 			}
-			return mulanslist;
+			return countUtil.multipleAnswerOptionNum(mulanslist, questionOptionNum);
 		}
 
+		
+		@Override
+		public Map<Character, Integer> getMultipleQuestionOptionAnswerByDepartmentMap(
+				int sqnum,String department, int questionOptionNum) {
+			TreeMap<Character,Integer> omap = new TreeMap<>();
+			List<Integer> olist = new ArrayList<>();
+			olist = getMultipleQuestionOptionAnswerByDepartment(sqnum, department,questionOptionNum);
+			Iterator<Integer> it = olist.iterator();
+			int i=0;
+			while(it.hasNext())
+			{
+				omap.put((char)(65+i), it.next());
+				i++;
+			}
+			return omap;
+		}
+		
 	//获得多选题答案选项并返回数组集合BY专业
 	@Override
-		public List<String[]> getMultipleQuestionOptionAnswerByMarjor(int sqnum,
-				String marjor) {
+		public List<Integer> getMultipleQuestionOptionAnswerByMarjor(int sqnum,
+				String marjor,int questionOptionNum) {
 			List<String> list = new ArrayList<String>();
 			List<String[]> mulanslist = new ArrayList<String[]>();
 			List<Integer> anspIDlist = answerDAOImpl.getAnswerpaperPidByMarjor(marjor);
@@ -356,13 +513,30 @@ public class AnswerServiceImpl implements AnswerService {
 				mulanslist.add(strl);
 				
 			}
-			return mulanslist;
+			return countUtil.multipleAnswerOptionNum(mulanslist, questionOptionNum);
 		}	
 		
+	
+	@Override
+	public Map<Character, Integer> getMultipleQuestionOptionAnswerByMarjorMap(
+			int sqnum,String marjor, int questionOptionNum) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		olist = getMultipleQuestionOptionAnswerByMarjor(sqnum, marjor,questionOptionNum);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+	}
+	
 		//获得多选题答案选项并返回数组集合BY省份
 		@Override
-		public List<String[]> getMultipleQuestionOptionAnswerByProvince(int sqnum,
-				String province) {
+		public List<Integer> getMultipleQuestionOptionAnswerByProvince(int sqnum,
+				String province,int questionOptionNum) {
 			List<String> list = new ArrayList<String>();
 			List<String[]> mulanslist = new ArrayList<String[]>();
 			List<Integer> anspIDlist = answerDAOImpl.getAnswerpaperPidByProvince(province);
@@ -380,9 +554,25 @@ public class AnswerServiceImpl implements AnswerService {
 				mulanslist.add(strl);
 				
 			}
-			return mulanslist;
+			return countUtil.multipleAnswerOptionNum(mulanslist, questionOptionNum);
 		}	
 
+		
+		@Override
+		public Map<Character, Integer> getMultipleQuestionOptionAnswerByProvinceMap(
+				int sqnum,String province, int questionOptionNum) {
+			TreeMap<Character,Integer> omap = new TreeMap<>();
+			List<Integer> olist = new ArrayList<>();
+			olist = getMultipleQuestionOptionAnswerByProvince(sqnum, province,questionOptionNum);
+			Iterator<Integer> it = olist.iterator();
+			int i=0;
+			while(it.hasNext())
+			{
+				omap.put((char)(65+i), it.next());
+				i++;
+			}
+			return omap;
+		}
 
 	@Override
 	@Transactional

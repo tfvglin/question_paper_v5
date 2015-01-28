@@ -119,7 +119,11 @@
 
 	</package>
 	<package name="table" namespace="/" extends="json-default">
-			<action name="showTable" class="tableAction" method="showTable">
+		<action name="showTable" class="tableAction" method="showTable">
+				<result type="json">
+			</result>
+		</action>
+		<action name="showTableBy*" class="tableAction" method="showTableBy{1}">
 				<result type="json">
 			</result>
 		</action>

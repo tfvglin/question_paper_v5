@@ -33,41 +33,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			</s:iterator> 
     		</div>
     		<div>
-	    		<button class="all" style="float:left;margin-left:2px;" onclick="totaltable(1,<s:property value='#q.sqnum '/>)">总体情况</button>
-	    		<button class="sex" style="float:left;margin-left:10px;">男女情况</button>	
-	    		<button class="hukou" style="float:left;margin-left:10px;">农村城镇情况</button>	
+	    		<button class="all" style="float:left;margin-left:2px;" onclick="totaltable(1,<s:property value='#q.sqnum '/>,this)">总体情况</button>
+	    		<button class="sex" style="float:left;margin-left:10px;" onclick="sextable(1,<s:property value='#q.sqnum '/>,this)">男女情况</button>	
+	    		<button class="hukou" style="float:left;margin-left:10px;" onclick="hukoutable(1,<s:property value='#q.sqnum '/>,this)">农村城镇情况</button>	
 
 				<div style="clear:both;"></div>
 	    		<div style="float:left;padding-top:6px;">
 	    		<s:select id="singlequestiondepartment%{#q.sqnum}" list="#session.departmentmap"  headerKey="" headerValue="--选择学院--"></s:select> 
 	    	
 				</div>	
-				<button style="float:left;margin-left:10px;margin-top:6px;" class="department" onclick="checkdepartment(1,<s:property value='#q.sqnum '/>)">学院情况</button>
+				<button style="float:left;margin-left:10px;margin-top:6px;" class="department" onclick="departmenttable(1,<s:property value='#q.sqnum '/>,this)">学院情况</button>
 	    		<div style="clear:both;"></div>
 	    		<div style="float:left;padding-top:6px;">
 	    			<s:select id="singlequestionmarjor%{#q.sqnum}" list="#session.marjormap"  headerKey="" headerValue="--选择专业--"></s:select> 
 	    	
 				</div>	
-				<button style="float:left;margin-left:10px;margin-top:6px;" class="marjor" onclick="checkmarjor(1,<s:property value='#q.sqnum '/>)">专业情况</button>
+				<button style="float:left;margin-left:10px;margin-top:6px;" class="marjor" onclick="marjortable(1,<s:property value='#q.sqnum '/>,this)">专业情况</button>
 	    		<div style="clear:both;"></div>
 	    		<div style="float:left;padding-top:6px;">
 	    			<s:select id="singlequestionprovince%{#q.sqnum}" list="#session.provincemap"  headerKey="" headerValue="--选择省份--"></s:select> 
 	    	
 				</div>	
-				<button style="float:left;margin-left:10px;margin-top:6px;" class="province" onclick="checkprovince(1,<s:property value='#q.sqnum '/>)">省份情况</button>
+				<button style="float:left;margin-left:10px;margin-top:6px;" class="province" onclick="provincetable(1,<s:property value='#q.sqnum '/>,this)">省份情况</button>
 	    		<div style="float:right;padding-left:10px;" class="pointer">
 	    			<span style="font-size:15px;color:#8C8C96">收起图表</span>
     				<img src="<%=path%>/img/arrowsup.gif" style="width:10px;height:10px"/>
     			</div>
 	    		<div style="clear:both;"></div>
-    			<div class="firsttable">
-    				<table id="firsttable<s:property value='#q.sqnum '/>" class="table">
+    			
+    			<div class="twotable hide" >
+    				<table id="singlefirsttable<s:property value='#q.sqnum '/>" class="table">
+    				</table>
+    				<table id="singlesecondtable<s:property value='#q.sqnum '/>" class="table">
     				</table>
     			</div>	
-    			<div>
-    				<table id="secondtable">
+    			
+    			<div class="onetable hide">
+    				<table id="singlethirdtable<s:property value='#q.sqnum '/>" class="table">
     				</table>
     			</div>
+
 	    		<div><hr/></div>
     		</div>
     		</s:iterator>
@@ -87,64 +92,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			</s:iterator> 
     		</div>	
     		<div>
-    		<button class="all" style="float:left;margin-left:2px;">总体情况</button>
-	    	<button class="sex" style="float:left;margin-left:10px;">男女情况</button>	
-	    	<button class="hukou" style="float:left;margin-left:10px;">农村城镇情况</button>
-	  		<div style="clear:both;"></div>
-	    	<div style="float:left;padding-top:6px;">
-	    		<s:select id="multiplequestiondepartment%{#q.sqnum}" list="#session.departmentmap"  headerKey="" headerValue="--选择学院--"></s:select> 
+    			<button style="float:left;margin-left:2px;" onclick="totaltable(2,<s:property value='#q.sqnum '/>,this)">总体情况</button>
+	    		<button class="sex" style="float:left;margin-left:10px;" onclick="sextable(2,<s:property value='#q.sqnum '/>,this)">男女情况</button>	
+	    		<button class="hukou" style="float:left;margin-left:10px;" onclick="hukoutable(2,<s:property value='#q.sqnum '/>,this)">农村城镇情况</button>
+	  			<div style="clear:both;"></div>
+	    		<div style="float:left;padding-top:6px;">
+	    			<s:select id="multiplequestiondepartment%{#q.sqnum}" list="#session.departmentmap"  headerKey="" headerValue="--选择学院--"></s:select> 
+	    		</div>	
+				<button style="float:left;margin-left:10px;margin-top:6px;" class="department" onclick="departmenttable(2,<s:property value='#q.sqnum '/>,this)">学院情况</button>
+	    		<div style="clear:both;"></div>
+	    		<div style="float:left;padding-top:6px;">
+	    			<s:select id="multiplequestionmarjor%{#q.sqnum}" list="#session.marjormap"  headerKey="" headerValue="--选择专业--"></s:select> 
 	    	
-			</div>	
-			<button style="float:left;margin-left:10px;margin-top:6px;" class="department" onclick="checkdepartment(2,<s:property value='#q.sqnum '/>)">学院情况</button>
-	    	<div style="clear:both;"></div>
-	    	<div style="float:left;padding-top:6px;">
-	    		<s:select id="multiplequestionmarjor%{#q.sqnum}" list="#session.marjormap"  headerKey="" headerValue="--选择专业--"></s:select> 
+				</div>	
+				<button style="float:left;margin-left:10px;margin-top:6px;" class="marjor" onclick="marjortable(2,<s:property value='#q.sqnum '/>,this)">专业情况</button>
+	    		<div style="clear:both;"></div>
+	    		<div style="float:left;padding-top:6px;">
+	    			<s:select id="multiplequestionprovince%{#q.sqnum}" list="#session.provincemap"  headerKey="" headerValue="--选择省份--"></s:select> 
 	    	
-			</div>	
-			<button style="float:left;margin-left:10px;margin-top:6px;" class="marjor" onclick="checkmarjor(2,<s:property value='#q.sqnum '/>)">专业情况</button>
-	    	<div style="clear:both;"></div>
-	    	<div style="float:left;padding-top:6px;">
-	    		<s:select id="multiplequestionprovince%{#q.sqnum}" list="#session.provincemap"  headerKey="" headerValue="--选择省份--"></s:select> 
+				</div>	
+				<button style="float:left;margin-left:10px;margin-top:6px;" class="province" onclick="provincetable(2,<s:property value='#q.sqnum '/>,this)">省份情况</button>
+	    		<div style="float:right;padding-left:10px;" class="pointer">
+	    			<span style="font-size:15px;color:#8C8C96">收起图表</span>
+    				<img src="<%=path%>/img/arrowsup.gif" style="width:10px;height:10px"/>
+    			</div>
 	    	
-			</div>	
-			<button style="float:left;margin-left:10px;margin-top:6px;" class="province" onclick="checkprovince(2,<s:property value='#q.sqnum '/>)">省份情况</button>
-	    	<div style="float:right;padding-left:10px;" class="pointer">
-	    		<span style="font-size:15px;color:#8C8C96">收起图表</span>
-    			<img src="<%=path%>/img/arrowsup.gif" style="width:10px;height:10px"/>
-    		</div>
-	    	<div style="clear:both;"></div>	<div style="clear:both;"></div>
-    		<s:url var="mulshowchart" action="showChart.action" escapeAmp="false">
-    			<s:param name="sqtype" value="2"/>
-				<s:param name="sqnum" value="%{#q.sqnum}" />
-    		</s:url>
-    		<s:url var="mulshowchartsex" action="showChartBySex.action" escapeAmp="false">
-    			<s:param name="sqtype" value="2"/>
-				<s:param name="sqnum" value="%{#q.sqnum}" />
-    		</s:url>
-    		<s:url var="mulshowcharthukou" action="showChartByHukou.action" escapeAmp="false">
-    			<s:param name="sqtype" value="2"/>
-				<s:param name="sqnum" value="%{#q.sqnum}" />
-    		</s:url>
-    		<div class="chartall hide">
-    				<img src="<s:property value="mulshowchart"/>" />
-    		</div>
-    		<div class="chartsex hide">
-	    			<img src="<s:property value="mulshowchartsex"/>&sex=1" />
-	    			<img src="<s:property value="mulshowchartsex"/>&sex=0" />
-	    	</div>
-	    	<div class="charthukou hide">
-	    			<img src="<s:property value="mulshowcharthukou"/>&hukou=1" />
-	    			<img src="<s:property value="mulshowcharthukou"/>&hukou=0" />
-	   		</div>
-	   		<div class="chartdepartment hide">
-	    		<img id="multiplequestiondepartmentchart<s:property value='#q.sqnum'/>" src="" />
-	    	</div>
-	    	<div class="chartmarjor hide">
-	    		<img id="multiplequestionmarjorchart<s:property value='#q.sqnum'/>" src="" />
-	    	</div>
-	    	<div class="chartprovince hide">
-	    		<img id="multiplequestionprovincechart<s:property value='#q.sqnum'/>" src="" />
-	    	</div>	
+	    		<div style="clear:both;"></div>
+	    		
+	    		
+    			<div class="twotable hide" >
+    				<table id="multiplefirsttable<s:property value='#q.sqnum '/>" class="table">
+    				</table>
+    				<table id="multiplesecondtable<s:property value='#q.sqnum '/>" class="table">
+    				</table>
+    			</div>	
+    			<div class="onetable hide">
+    				<table id="multiplethirdtable<s:property value='#q.sqnum '/>" class="table">
+    				</table>
+    			</div>
     		<div><hr/></div>
     		</div>
     		</s:iterator>

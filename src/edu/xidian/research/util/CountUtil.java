@@ -27,7 +27,7 @@ public class CountUtil {
 	
 	public List<Integer> multipleAnswerOptionNum(List<String[]> maonlist,int questionoptionnum)
 	{
-		int Anum=0,Bnum=0,Cnum=0,Dnum=0,Enum=0,Fnum=0,Gnum=0;
+		Integer Anum=0,Bnum=0,Cnum=0,Dnum=0,Enum=0,Fnum=0,Gnum=0;
 		List<Integer> list =new ArrayList<Integer>();
 		int[] maon= new  int[questionoptionnum];
 		Iterator<String[]> it = maonlist.iterator();
@@ -66,13 +66,35 @@ public class CountUtil {
 			}
 			
 		}
-		list.add(Anum);
-		list.add(Bnum);
-		list.add(Cnum);
-		list.add(Dnum);
-		list.add(Enum);
-		list.add(Fnum);
-		list.add(Gnum);
+		if(Anum!=0)
+		{
+			list.add(Anum);
+		}
+		if(Bnum!=0)
+		{
+			list.add(Bnum);
+		}
+		if(Cnum!=0)
+		{
+			list.add(Cnum);
+		}
+		if(Dnum!=0)
+		{
+			list.add(Dnum);
+		}
+		if(Enum!=0)
+		{
+			list.add(Enum);
+		}
+		if(Fnum!=0)
+		{
+			list.add(Fnum);
+		}
+		if(Gnum!=0)
+		{
+			list.add(Gnum);
+		}
+
 		return list;
 	}
 

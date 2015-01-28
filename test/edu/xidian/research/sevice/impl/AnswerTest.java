@@ -45,21 +45,7 @@ public class AnswerTest extends TestCase{
 	}
 	
 	
-	public void testgetmulans()
-	{
-		ApplicationContext context = new ClassPathXmlApplicationContext(  
-                "applicationContext.xml");  
-		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
-		List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswer(1);
-		Iterator it = list.iterator();
-		while(it.hasNext())
-		{
-			System.out.println(it.next().toString());
-		}
-		
-		
-		
-	}
+
 	
 	public void testgetPIDbySex()
 	{
@@ -151,5 +137,36 @@ public class AnswerTest extends TestCase{
 		}
 		
 		
+	}
+	public void  testgetmutipleoptionMap()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext(  
+				"applicationContext.xml");  
+		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
+		
+		Map<Character,Integer> dmap =answerServiceImpl.getMultipleQuestionOptionAnswerMap(1, 3);
+		Set<Character> set=dmap.keySet();
+		Iterator<Character> it = set.iterator();
+		while(it.hasNext())
+		{
+			Character key = it.next();
+			System.out.println(key);
+			System.out.println("--------------");
+			System.out.println(dmap.get(key));
+		}
+		
+		
+	}
+	public void testgetmutipleoptionlist()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext(  
+				"applicationContext.xml");  
+		answerServiceImpl = (AnswerServiceImpl) context.getBean("answerServiceImpl");
+	
+		List<Integer> list = answerServiceImpl.getMultipleQuestionOptionAnswer(1, 4);
+		Iterator<Integer> it = list.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next());
+		}
 	}
 }

@@ -45,39 +45,50 @@ public interface AnswerService {
 	public Map<Character,Integer> getSingleAnswerOptionNumMap( int qnum, int questionOptionNum);
 	//得到单选结果的选项统计by性别
 	public List<Integer> getSingleAnswerOptionNumBySex(int qnum, int questionOptionNum,String sex);
+	public Map<Character,Integer> getSingleAnswerOptionNumBySexMap(int qnum, int questionOptionNum,String sex);
 	
 	//得到单选结果的选项统计By户口
 	public List<Integer> getSingleAnswerOptionNumByHukou(int qnum, int questionOptionNum,String hukou);
+	public Map<Character,Integer> getSingleAnswerOptionNumByHukouMap(int qnum, int questionOptionNum,String hukou);
 	
 	//得到单选结果的选项统计by学院
 	public List<Integer> getSingleAnswerOptionNumByDepartment(int qnum, int questionOptionNum,String department);
+	public Map<Character,Integer> getSingleAnswerOptionNumByDepartmentMap(int qnum, int questionOptionNum,String department);
 	
 	//得到单选结果的选项统计by专业
 	public List<Integer> getSingleAnswerOptionNumByMarjor(int qnum, int questionOptionNum,String marjor);
+	public Map<Character,Integer> getSingleAnswerOptionNumByMarjorMap(int qnum, int questionOptionNum,String marjor);
 	
 	//得到单选结果的选项统计by省份
 	public List<Integer> getSingleAnswerOptionNumByProvince(int qnum, int questionOptionNum,String province);
+	public Map<Character,Integer> getSingleAnswerOptionNumByProvinceMap(int qnum, int questionOptionNum,String province);
 	
 	
 	public List<Integer> getAnswersOptionNumList(int sqtype,  int qnum, int questionOptionNum);
 	
 	//获得全部多选题答案选项并返回数组集合
-	public List<String[]> getMultipleQuestionOptionAnswer(int sqnum);
+	public List<Integer> getMultipleQuestionOptionAnswer(int sqnum,int questionOptionNum);
+	public Map<Character,Integer> getMultipleQuestionOptionAnswerMap(int sqnum,int questionOptionNum);
 	
 	//获得多选题答案选项并返回数组集合By性别
-	public List<String[]> getMultipleQuestionOptionAnswerBySex(int sqnum,String sex);
+	public List<Integer> getMultipleQuestionOptionAnswerBySex(int sqnum,String sex,int questionOptionNum);
+	public Map<Character,Integer> getMultipleQuestionOptionAnswerBySexMap(int sqnum,String sex,int questionOptionNum);
 	
 	//获得多选题答案选项并返回数组集合By户口
-	public List<String[]> getMultipleQuestionOptionAnswerByHukou(int sqnum,String hukou);
+	public List<Integer> getMultipleQuestionOptionAnswerByHukou(int sqnum,String hukou,int questionOptionNum);
+	public Map<Character,Integer> getMultipleQuestionOptionAnswerByHukouMap(int sqnum,String hukou,int questionOptionNum);
 	
 	//获得多选题答案选项并返回数组集合By学院
-	public List<String[]> getMultipleQuestionOptionAnswerByDepartment(int sqnum,String department);
+	public List<Integer> getMultipleQuestionOptionAnswerByDepartment(int sqnum,String department,int questionOptionNum);
+	public Map<Character,Integer> getMultipleQuestionOptionAnswerByDepartmentMap(int sqnum,String department,int questionOptionNum);
 	
 	//获得多选题答案选项并返回数组集合By专业
-	public List<String[]> getMultipleQuestionOptionAnswerByMarjor(int sqnum,String marjor);
+	public List<Integer> getMultipleQuestionOptionAnswerByMarjor(int sqnum,String marjor,int questionOptionNum);
+	public Map<Character,Integer> getMultipleQuestionOptionAnswerByMarjorMap(int sqnum,String marjor,int questionOptionNum);
 
 	//获得多选题答案选项并返回数组集合By专业
-	public List<String[]> getMultipleQuestionOptionAnswerByProvince(int sqnum,String province);
+	public List<Integer> getMultipleQuestionOptionAnswerByProvince(int sqnum,String province,int questionOptionNum);
+	public Map<Character,Integer> getMultipleQuestionOptionAnswerByProvinceMap(int sqnum,String province,int questionOptionNum);
 	
 	
 	//得到单选结果集

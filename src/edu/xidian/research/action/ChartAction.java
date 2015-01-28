@@ -88,8 +88,7 @@ public class ChartAction extends SuperAction{
 				}
 				else if(sqtype==2)
 				{
-					List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswer(sqnum);
-					olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
+					olist =answerServiceImpl.getMultipleQuestionOptionAnswer(sqnum,questionOptionNum);
 					
 				}
 		JFreeChart chart =chartUtil.creatBarChart(sqtype, sqnum, questionOptionNum, olist);   //生成图表对象
@@ -130,9 +129,8 @@ public class ChartAction extends SuperAction{
 				}
 				else if(sqtype==2)
 				{
-					List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswerBySex(sqnum,sex);
-					olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
-					
+					olist =answerServiceImpl.getMultipleQuestionOptionAnswerBySex(sqnum,sex, questionOptionNum);
+						
 				}
 		JFreeChart chart =chartUtil.creatBarChartBySex(sqtype, sqnum, questionOptionNum, olist,sex);   //生成图表对象
 	
@@ -173,8 +171,7 @@ public class ChartAction extends SuperAction{
 				}
 				else if(sqtype==2)
 				{
-					List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswerByHukou(sqnum,hukou);
-					olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
+					olist =answerServiceImpl.getMultipleQuestionOptionAnswerByHukou(sqnum,hukou, questionOptionNum);
 					
 				}
 		JFreeChart chart =chartUtil.creatBarChartByHukou(sqtype, sqnum, questionOptionNum, olist,hukou);   //生成图表对象
@@ -217,8 +214,7 @@ public class ChartAction extends SuperAction{
 				}
 				else if(sqtype==2)
 				{
-					List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswerByDepartment(sqnum,department);
-					olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
+					olist =answerServiceImpl.getMultipleQuestionOptionAnswerByDepartment(sqnum,department, questionOptionNum);
 					
 				}
 		JFreeChart chart =chartUtil.creatBarChartByDepartment(sqtype, sqnum, questionOptionNum, olist,department);   //生成图表对象
@@ -260,8 +256,7 @@ public class ChartAction extends SuperAction{
 				}
 				else if(sqtype==2)
 				{
-					List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswerByMarjor(sqnum,marjor);
-					olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
+					olist =answerServiceImpl.getMultipleQuestionOptionAnswerByMarjor(sqnum,marjor, questionOptionNum);
 					
 				}
 		JFreeChart chart =chartUtil.creatBarChartByMarjor(sqtype, sqnum, questionOptionNum, olist,marjor);   //生成图表对象
@@ -302,8 +297,7 @@ public class ChartAction extends SuperAction{
 		}
 		else if(sqtype==2)
 		{
-			List<String[]> list =answerServiceImpl.getMultipleQuestionOptionAnswerByProvince(sqnum,province);
-			olist=countUtil.multipleAnswerOptionNum(list, questionOptionNum);
+			olist =answerServiceImpl.getMultipleQuestionOptionAnswerByProvince(sqnum,province, questionOptionNum);
 			
 		}
 		JFreeChart chart =chartUtil.creatBarChartByProvince(sqtype, sqnum, questionOptionNum, olist,province);   //生成图表对象
