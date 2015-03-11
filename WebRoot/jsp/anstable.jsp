@@ -18,7 +18,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <div style="width:680px;margin:0 auto;">
-    	
+    	<div>
+    	 	<h3 class="questiontype">级联查询</h3>
+    	 	<div style="float:left">
+	    		<s:select id="cascadesex" list="#{1:'男',0:'女'}"  headerKey="unselected" headerValue="--选择性别--"></s:select>
+	    		<s:select id="cascadehukou" list="#{1:'城镇',0:'农村'}"  headerKey="unselected" headerValue="--选择户口--"></s:select>
+	    		<s:select id="cascadedepartment" list="#session.departmentmap"  headerKey="unselected" headerValue="--选择学院--"></s:select> 
+	    		<s:select id="cascademarjor" list="#session.marjormap"  headerKey="unselected" headerValue="--选择专业--"></s:select> 
+	    		<s:select id="cascadeprovince" list="#session.provincemap"  headerKey="unselected" headerValue="--选择省份--"></s:select>
+	    		<s:select id="cascadesqtype" list="#{1:'单选',2:'多选'}" headerKey="" headerValue="--题目类别--"></s:select>
+	    		题号：<input id="cascadesqnum" type="text" style="width:20px;">
+    		</div>
+    		<button style="float:left;" onclick="cascadetable(this)">查询</button>
+    		<div style="clear:both;"></div>
+    		<table id="cascadetable" class="table">
+    		
+    		</table>
+    		<div id="remark" style="color:red;"></div>
+    	</div>
     	 <div id="sinquestion"><h3 class="questiontype">一、单选题</h3>
     		<s:iterator value="#session.sqsinlist" var="q" >
     		<div class="question area single" >

@@ -245,5 +245,98 @@ public class TableAction extends SuperAction {
 			
 			return SUCCESS;
 		}
+		//显示图表（级联）
+		public String showTableByCascade() 
+		{
+			String sql="select pID from AnswersPaper ";
+			String whereClause = "";
+			int sqtype=Integer.parseInt(request.getParameter("sqtype"));
+			int sqnum = Integer.parseInt(request.getParameter("sqnum"));
+			String sex = request.getParameter("sex");
+			String hukou = request.getParameter("hukou");
+			String province = request.getParameter("province");
+			String marjor = request.getParameter("marjor");
+			String department = request.getParameter("department");
+			
+			if(sex!="unselected" && !sex.equals("unselected"))
+			{
+				int sexnum = Integer.parseInt(sex);
+				if(whereClause.length()==0)
+					whereClause += " sex=" + sexnum ;
+				else
+					whereClause += " AND sex=" + sexnum + " " ;
+			}
+			if(hukou!="unselected" && !hukou.equals("unselected"))
+			{
+				int hukounum = Integer.parseInt(hukou);
+				if(whereClause.length()==0)
+					whereClause += " hukou=" + hukounum+" " ;
+				else
+					whereClause += " AND hukou=" + hukounum + " ";
+			}
+			if(province!="unselected" && !province.equals("unselected"))
+			{
+				String pro = null;
+				try {
+					pro = new String(province.getBytes("ISO-8859-1"), "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(whereClause.length()==0)
+					whereClause += " province='" + pro+"' " ;
+				else
+					whereClause += " AND province='" + pro + "' ";
+			}
+			if(marjor!="unselected" && !marjor.equals("unselected"))
+			{
+				String mar = null;
+				try {
+					mar = new String(marjor.getBytes("ISO-8859-1"), "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(whereClause.length()==0)
+					whereClause += " stumarjor = '" + mar+"' ";
+				else
+					whereClause += " AND stumarjor = '" + mar + "' ";
+			}
+			if(department!="unselected" && !department.equals("unselected"))
+			{
+				String dep = null;
+				try {
+					dep = new String(department.getBytes("ISO-8859-1"), "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(whereClause.length()==0)
+					whereClause += " studepartment='" + dep+"' ";
+				else
+					whereClause += " AND studepartment='" + dep + "' ";
+			}
+			if(whereClause.length()!=0)
+			{
+				whereClause = " where " + whereClause;
+			}
+			sql = sql + whereClause;
+			
+		
+			int questionOptionNum=questionServiceImpl.getQuestionOptionNum(sqnum, sqtype);
+			if(sqtype==1)
+			{
+				omap = answerServiceImpl.getSingleAnswerOptionNumByCascade(sqnum, questionOptionNum, sql);
+				System.out.println(sql);
+				
+			}
+			else if(sqtype==2)
+			{
+				omap =answerServiceImpl.getMultipleAnswerOptionNumByCascade(sqnum,questionOptionNum,sql);
+				System.out.println(sql);
+			}
+			
+			return SUCCESS;
+		}
 	
 }

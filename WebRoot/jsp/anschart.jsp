@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <div style="width:680px;margin:0 auto;">
-    	
+
     	 <div id="sinquestion"><h3 class="questiontype">一、单选题</h3>
     		<s:iterator value="#session.sqsinlist" var="q" >
     		<div class="question area single" >

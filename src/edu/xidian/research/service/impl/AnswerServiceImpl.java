@@ -319,6 +319,40 @@ public class AnswerServiceImpl implements AnswerService {
 		return omap;
 	}
 	
+	
+	
+
+	//单选级联
+	@Override
+	public Map<Character, Integer> getSingleAnswerOptionNumByCascade(int qnum,
+			int questionOptionNum, String sql) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> ansPIDList = new ArrayList<Integer>();
+		List<Integer> olist = new ArrayList<>();
+		ansPIDList = answerDAOImpl.getAnswerpaperPidByCascade(sql);
+		if(!ansPIDList.isEmpty())
+		{
+		String pIDstr = ansPIDList.toString();
+		pIDstr=pIDstr.replaceAll("\\[", "(").replaceAll("\\]", ")");
+		olist = answerDAOImpl.getSingleAnserOptionNumByPID(qnum, questionOptionNum, pIDstr);
+		Iterator<Integer> it = olist.iterator();
+		int i=0;
+		while(it.hasNext())
+		{
+			omap.put((char)(65+i), it.next());
+			i++;
+		}
+		return omap;
+		}
+		else{
+			return omap;
+		}
+	
+	}
+	
+	
+	
+	
 	@Transactional
 	public List<Integer> getAnswersOptionNumList(int sqtype, int qnum,
 			int questionOptionNum) {
@@ -327,6 +361,45 @@ public class AnswerServiceImpl implements AnswerService {
 	}
 
 	
+	//多选级联
+	@Override
+	public Map<Character, Integer> getMultipleAnswerOptionNumByCascade(
+			int qnum, int questionOptionNum, String sql) {
+		TreeMap<Character,Integer> omap = new TreeMap<>();
+		List<Integer> olist = new ArrayList<>();
+		List<String> list = new ArrayList<String>();
+		List<String[]> mulanslist = new ArrayList<String[]>();
+		
+		List<Integer> anspIDlist = answerDAOImpl.getAnswerpaperPidByCascade(sql);
+		if(!anspIDlist.isEmpty())
+		{
+			String pIDstr = anspIDlist.toString();
+			
+			pIDstr=pIDstr.replaceAll("\\[", "(").replaceAll("\\]", ")");
+			list = answerDAOImpl.getMultipleQuestionOptionAnswerByPID(qnum,pIDstr);
+		 	Iterator<String> it = list.iterator();
+			while(it.hasNext())
+			{
+				String str = it.next();
+				String sig="[\\]\\[\\s]";
+				str=str.replaceAll(sig, "");
+				String[] strl = str.split(",");
+				mulanslist.add(strl);
+				
+			}
+			olist = countUtil.multipleAnswerOptionNum(mulanslist, questionOptionNum);
+			Iterator<Integer> iter = olist.iterator();
+			int i=0;
+			while(iter.hasNext())
+			{
+				omap.put((char)(65+i), iter.next());
+				i++;
+			}
+			return omap;
+		}
+		else
+			return omap;
+	}
 	
 	//获得全部多选题选项答案并返回数组集合
 	@Override

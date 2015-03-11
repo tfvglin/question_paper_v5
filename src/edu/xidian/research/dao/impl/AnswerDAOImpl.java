@@ -623,6 +623,27 @@ public class AnswerDAOImpl extends MyHibernateTemplate implements AnswerDAO {
 			return pIDlist;
 		}
 	}
+	
+	
+
+	@Override
+	public List<Integer> getAnswerpaperPidByCascade(String sql) {
+		List<Integer> pIDlist = new ArrayList<Integer>();
+		try
+		{
+			
+			
+			pIDlist = this.getHibernateTemplate().find(sql);
+			
+			return pIDlist;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+			
+			return pIDlist;
+		}
+	}
 
 	@Override
 	public Integer getMinPID() {

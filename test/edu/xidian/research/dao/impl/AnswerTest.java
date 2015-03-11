@@ -48,4 +48,17 @@ public class AnswerTest extends TestCase {
 		}
 		
 	}
+	public void testCascade()
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext(  
+				"applicationContext.xml");  
+		answerDAOImpl = (AnswerDAOImpl) context.getBean("answerDAOImpl");
+		List list = answerDAOImpl.getAnswerpaperPidByCascade("select pID from AnswersPaper  where  sex=1 AND hukou=1  AND studepartment='电子工程' " );
+		Iterator<Integer> it = list.iterator();
+		while(it.hasNext())
+		{
+			System.out.println(it.next());
+		}
+		
+	}
 }

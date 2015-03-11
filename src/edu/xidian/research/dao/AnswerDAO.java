@@ -84,6 +84,9 @@ public interface AnswerDAO {
 	//获得省份答题结果pid
 	List<Integer> getAnswerpaperPidByProvince(String province);
 	
+	//由级联查询获得pid
+	List<Integer> getAnswerpaperPidByCascade(String sql);
+	
 	//获得最小pID
 	Integer getMinPID();
 	

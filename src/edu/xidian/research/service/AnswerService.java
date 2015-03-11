@@ -63,6 +63,13 @@ public interface AnswerService {
 	public List<Integer> getSingleAnswerOptionNumByProvince(int qnum, int questionOptionNum,String province);
 	public Map<Character,Integer> getSingleAnswerOptionNumByProvinceMap(int qnum, int questionOptionNum,String province);
 	
+	//得到单选结果的选项统计by级联查询
+//	public Map<Character,Integer> getSingleAnswerOptionNumByCascade(int qnum,int questionOptionNum,String sex,String hukou,String department,String marjor,String province);
+	public Map<Character,Integer> getSingleAnswerOptionNumByCascade(int qnum,int questionOptionNum,String sql);
+	
+	//得到多选结果的选项统计by级联查询
+	public Map<Character,Integer> getMultipleAnswerOptionNumByCascade(int qnum,int questionOptionNum,String sql);
+	
 	
 	public List<Integer> getAnswersOptionNumList(int sqtype,  int qnum, int questionOptionNum);
 	

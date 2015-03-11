@@ -37,7 +37,9 @@ function totaltable(qtype,qnum,a)
 				all += i; 
 			}
 		//	alert(all);
-			for(var key in data.omap){
+		var colornum=0;
+		var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
+		for(var key in data.omap){
 					//alert(key+"--"+data.omap[key]);
 					pernum =  (parseInt(data.omap[key])/all);
 					//alert(pernum);
@@ -46,8 +48,9 @@ function totaltable(qtype,qnum,a)
 					
 					//per=pernum*10 ;
 					
-					html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
-			}
+					html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+					colornum++;
+		}
 			
 			if(qtype==1)
 				{
@@ -89,12 +92,15 @@ function sextable(qtype,qnum,a)
 				i = parseInt(data.omap[key]);
 				all += i; 
 			}
-			for(var key in data.omap){
+		var colornum=0;
+		var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
+		for(var key in data.omap){
 					pernum =  (parseInt(data.omap[key])/all);
 					width = pernum*450;
 					per=(pernum*100).toFixed(1)+"%";
-					html1 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
-			}
+					html1 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+					colornum++;
+		}
 
 			
 			all=0;
@@ -104,11 +110,14 @@ function sextable(qtype,qnum,a)
 				all += i; 
 			}
 		//	alert(all);
+			var colornum=0;
+			var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
 			for(var key in data.omap2){
 				pernum =  (parseInt(data.omap2[key])/all);
 				width = pernum*450;
 				per=(pernum*100).toFixed(1)+"%";
-				html2 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap2[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+				html2 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap2[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+				colornum++;
 			}
 		//	alert(html1);
 			if(qtype==1)
@@ -158,11 +167,14 @@ function hukoutable(qtype,qnum,a)
 				i = parseInt(data.omap[key]);
 				all += i; 
 			}
+			var colornum=0;
+			var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
 			for(var key in data.omap){
 				pernum =  (parseInt(data.omap[key])/all);
 				width = pernum*450;
 				per=(pernum*100).toFixed(1)+"%";
-				html1 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+				html1 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+				colornum++;
 			}
 			
 			
@@ -173,11 +185,15 @@ function hukoutable(qtype,qnum,a)
 				all += i; 
 			}
 			//alert(all);
+			
+			var colornum=0;
+			var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
 			for(var key in data.omap2){
 				pernum =  (parseInt(data.omap2[key])/all);
 				width = pernum*450;
 				per=(pernum*100).toFixed(1)+"%";
-				html2 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap2[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+				html2 +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap2[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+				colornum++;
 			}
 			if(qtype==1)
 			{
@@ -230,13 +246,16 @@ function departmenttable(qtype,qnum,a)
 							i = parseInt(data.omap[key]);
 							all += i; 
 						}
-						for(var key in data.omap){
+					var colornum=0;
+					var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
+					for(var key in data.omap){
 								pernum =  (parseInt(data.omap[key])/all);
 								width = pernum*450;
 								per=(pernum*100).toFixed(1)+"%";
 								//alert(per);
-								html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
-						}
+								html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+								colornum++;
+					}
 						if(qtype==1)
 							{
 							$('#singlethirdtable'+qnum).html(html);
@@ -282,12 +301,15 @@ function departmenttable(qtype,qnum,a)
 						i = parseInt(data.omap[key]);
 						all += i; 
 					}
-					for(var key in data.omap){
+				var colornum=0;
+				var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
+				for(var key in data.omap){
 							pernum =  (parseInt(data.omap[key])/all);
 							width = pernum*450;
 							per=(pernum*100).toFixed(1)+"%";
-							html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
-					}
+							html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+							colornum++;
+				}
 					if(qtype==1)
 						{
 						$('#singlethirdtable'+qnum).html(html);
@@ -338,12 +360,15 @@ function marjortable(qtype,qnum,a)
 						i = parseInt(data.omap[key]);
 						all += i; 
 					}
+					var colornum=0;
+					var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
 					for(var key in data.omap){
 						pernum =  (parseInt(data.omap[key])/all);
 						width = pernum*450;
 						per=(pernum*100).toFixed(1)+"%";
 						//alert(per);
-						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						colornum++;
 					}
 					if(qtype==1)
 					{
@@ -390,11 +415,14 @@ function marjortable(qtype,qnum,a)
 						i = parseInt(data.omap[key]);
 						all += i; 
 					}
+					var colornum=0;
+					var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
 					for(var key in data.omap){
 						pernum =  (parseInt(data.omap[key])/all);
 						width = pernum*450;
 						per=(pernum*100).toFixed(1)+"%";
-						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						colornum++;
 					}
 					if(qtype==1)
 					{
@@ -422,7 +450,7 @@ function provincetable(qtype,qnum,a)
 		var province=$("#singlequestionprovince"+qnum+"").val();
 		if(province=="")
 		{
-			alert("请选择专业");
+			alert("请选择省份");
 		}
 		else{
 			
@@ -436,7 +464,7 @@ function provincetable(qtype,qnum,a)
 				url:"showTableByProvince.action",
 				dataType:"json",
 				success: function(data){
-					//console.log(data);
+					console.log(data);
 					$('#firsttable'+qnum).empty();
 					var html='<caption align="top">'+province+'情况</caption>';
 					var all = 0;
@@ -448,12 +476,15 @@ function provincetable(qtype,qnum,a)
 						i = parseInt(data.omap[key]);
 						all += i; 
 					}
+					var colornum=0;
+					var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
 					for(var key in data.omap){
 						pernum =  (parseInt(data.omap[key])/all);
 						width = pernum*450;
 						per=(pernum*100).toFixed(1)+"%";
 						//alert(per);
-						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						colornum++;
 					}
 					if(qtype==1)
 					{
@@ -474,7 +505,7 @@ function provincetable(qtype,qnum,a)
 		var province=$("#multiplequestionprovince"+qnum+"").val();
 		if(province=="")
 		{
-			alert("请选择专业");
+			alert("请选择省份");
 			// return false;
 		}
 		else{
@@ -500,11 +531,14 @@ function provincetable(qtype,qnum,a)
 						i = parseInt(data.omap[key]);
 						all += i; 
 					}
+					var colornum=0;
+					var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
 					for(var key in data.omap){
 						pernum =  (parseInt(data.omap[key])/all);
 						width = pernum*450;
 						per=(pernum*100).toFixed(1)+"%";
-						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><img src="img/progress1.png" width="'+width+'" height="20px"/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[colornum]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+						colornum++;
 					}
 					if(qtype==1)
 					{
@@ -520,5 +554,133 @@ function provincetable(qtype,qnum,a)
 		}
 		
 	}
-	
 }
+	function cascadetable(a)
+	{
+		var getthis = $(a);
+		
+			var sex=$("#cascadesex").val();
+			var hukou=$("#cascadehukou").val();
+			var province=$("#cascadeprovince").val();
+			var department=$("#cascadedepartment").val();
+			var marjor=$("#cascademarjor").val();
+			var sqtype=$("#cascadesqtype").val();
+			var sqnum=$("#cascadesqnum").val();
+			if(sqtype=="")
+			{
+				alert("请选择题目类型");
+			}
+			else if(sqnum=="")
+				{
+				   alert("请输入题号");
+				}
+			else{
+				
+				$.ajax({
+					type:"GET",
+					data: {
+						'sqtype': sqtype,
+						'sqnum': sqnum,
+						'province': province,
+						'hukou': hukou,
+						'sex': sex,
+						'department': department,
+						'marjor': marjor,
+					},
+					url:"showTableByCascade.action",
+					dataType:"json",
+					success: function(data){
+						//console.log(data);
+						$('#cascadetable').empty();
+						$('#remark').empty();
+						var title = "";
+						var condition ="";
+						if(sqtype==1)
+							{
+							title = "单选"+sqnum+"题  ";
+							}
+						else{
+							title = "多选"+sqnum+"题  ";
+						}
+						if(sex!='unselected')
+							{
+								if(sex==1)
+									{
+										condition += "男生  "; 
+									}
+								else{
+										condition += "女生  "; 
+									}
+							}
+						if(hukou!='unselected')
+							{
+								if(hukou==1)
+								{
+									condition += "城镇户口  ";
+								}
+								else{
+									condition += "农村户口  ";
+								}
+							}
+						if(province!='unselected')
+							{
+							condition += province+" ";
+							}
+						if(department!='unselected')
+							{
+							condition += department+"学院  ";
+							}
+						if(marjor!='unselected')
+							{
+							condition += marjor+" ";
+							}
+						if(condition!="")
+							{
+								condition = "（" + condition +"）";
+							}
+						title += condition ;
+						
+						var html='<caption align="top">'+title+'情况</caption>';
+						var all = 0;
+						var i = 0;
+						var pernum ;
+						var per;
+						var width;
+
+						for(var key in data.omap){
+							i = parseInt(data.omap[key]);
+							all += i; 
+						}
+						if(all==0)
+							{
+								
+								$('#remark').html('此条件下查询无结果');
+							}
+						else{
+								var i=0;
+								var colorarray = new Array('00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030','00BFFF','00EE00','EEEE00','FF3030');
+								for(var key in data.omap){
+									pernum =  (parseInt(data.omap[key])/all);
+									width = pernum*450;
+									per=(pernum*100).toFixed(1)+"%";
+									
+									
+									
+									html +='<tr><td class="tableshort">'+key+'</td><td class="tablelong"><div style="height:20px;width:'+width+'px;background-color:#'+colorarray[i]+';"><div/></td><td class="tableshort">'+data.omap[key]+'</td><td class="tableshort">'+per+'</td></tr>';
+									i++;
+								}
+								$('#cascadetable').html(html);	
+						}
+						
+							
+						
+					}
+				});
+//				getthis.siblings(".onetable").slideDown()
+//				.siblings(".twotable").hide();
+			}
+			
+		
+	}	
+		
+	
