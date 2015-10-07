@@ -18,6 +18,9 @@
 		org.springframework.web.context.ContextLoaderListener
 	</listener-class>
   </listener>
+  	<listener>  
+ 		<listener-class>edu.xidian.research.util.CountLineListener</listener-class>   
+	</listener> 
   <context-param>
     <param-name>org.apache.tiles.CONTAINER_FACTORY</param-name>
     <param-value>org.apache.struts2.tiles.StrutsTilesContainerFactory</param-value>

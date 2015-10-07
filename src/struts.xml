@@ -23,9 +23,9 @@
 	<package name="students" namespace="/" extends="default">
 	
 		<action name="begin" class="studentsAction" method="login">
-
 			<result name="success" >/WEB-INF/jsp/paper.jsp</result>
 			<result name="input">/index.jsp</result>
+			<result name="error">/index.jsp</result>
 		</action>
 	
 
@@ -68,13 +68,15 @@
 	
 		<action name="creatDrawPaper" class="adminAction" method="creatDrawPaper">
 			<result name="login">admin.jsp</result>
+			
 			<result type="chain" name="success">
 				adminuser_showDrawPaper
 			</result>
 		</action>
 	
 		<action name="adminuser_*" class="adminAction" method="{1}">
-	
+			
+			<result name="logoutsuccess">admin.jsp</result>
 			<result name="login">admin.jsp</result>
 			<result type="tiles" name="success">
 				adminTiles_{1}

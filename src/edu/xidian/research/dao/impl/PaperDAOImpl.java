@@ -169,6 +169,7 @@ public class PaperDAOImpl extends MyHibernateTemplate implements PaperDAO {
 	
 	public long getQuestionCount(final int sqtype)
 	{
+		
 		long count=0 ;
 		try{
 			final String sql = "select count(*) from Question where sqtype =:sqtype";

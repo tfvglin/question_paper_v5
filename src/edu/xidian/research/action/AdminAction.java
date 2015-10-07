@@ -117,26 +117,26 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 			
 			request.getSession().setAttribute("adminname", admin.getAdminname());
 	
-			request.getSession().setAttribute("all", answerServiceImpl.getAnswersNum());           //session中存入答题人数
-			request.getSession().setAttribute("city", answerServiceImpl.getAnswersNumByHukou("1"));           //session中存入城镇户口答题人数
-			request.getSession().setAttribute("country", answerServiceImpl.getAnswersNumByHukou("0"));           //session中存入农村户口答题人数
-			request.getSession().setAttribute("boy", answerServiceImpl.getAnswersNumBySex("1"));           //session中存入男生答题人数
-			request.getSession().setAttribute("girl", answerServiceImpl.getAnswersNumBySex("0"));           //session中存入女生答题人数
-			request.getSession().setAttribute("department", answerServiceImpl.getAnswersNumByDepartment());
+			request.getSession(false).setAttribute("all", answerServiceImpl.getAnswersNum());           //session中存入答题人数
+			request.getSession(false).setAttribute("city", answerServiceImpl.getAnswersNumByHukou("1"));           //session中存入城镇户口答题人数
+			request.getSession(false).setAttribute("country", answerServiceImpl.getAnswersNumByHukou("0"));           //session中存入农村户口答题人数
+			request.getSession(false).setAttribute("boy", answerServiceImpl.getAnswersNumBySex("1"));           //session中存入男生答题人数
+			request.getSession(false).setAttribute("girl", answerServiceImpl.getAnswersNumBySex("0"));           //session中存入女生答题人数
+			request.getSession(false).setAttribute("department", answerServiceImpl.getAnswersNumByDepartment());
 //			System.out.println(answerServiceImpl.getAnswersNumByDepartment().get("电子信息"));
 //			List<Question> sqsinlist = paperServiceImpl.getSelsinQuestion();
 //			List<Question> sqmullist = paperServiceImpl.getSelmulQuestion();
 //			Map<Integer, List<SelSinOption>> qsinmap = paperServiceImpl.getSelSinOption();
 //			Map<Integer, List<SelMulOption>> qmulmap = paperServiceImpl.getSelMulOption();
-			request.getSession().setAttribute("qsinmap", paperServiceImpl.getSelSinOption());		//session中存入题目和相应选项
-			request.getSession().setAttribute("qmulmap", paperServiceImpl.getSelMulOption());
-			request.getSession().setAttribute("sqsinlist", paperServiceImpl.getSelsinQuestion());
-			request.getSession().setAttribute("sqmullist", paperServiceImpl.getSelmulQuestion());
-			request.getSession().setAttribute("textlist", paperServiceImpl.getTextQuestion());
-			request.getSession().setAttribute("listlist", paperServiceImpl.getListQuestion());
-			request.getSession().setAttribute("departmentmap", answerServiceImpl.getAnswersPaperDepartment());
-			request.getSession().setAttribute("marjormap", answerServiceImpl.getAnswersPaperMarjor());
-			request.getSession().setAttribute("provincemap", answerServiceImpl.getAnswersPaperProvince());
+			request.getSession(false).setAttribute("qsinmap", paperServiceImpl.getSelSinOption());		//session中存入题目和相应选项
+			request.getSession(false).setAttribute("qmulmap", paperServiceImpl.getSelMulOption());
+			request.getSession(false).setAttribute("sqsinlist", paperServiceImpl.getSelsinQuestion());
+			request.getSession(false).setAttribute("sqmullist", paperServiceImpl.getSelmulQuestion());
+			request.getSession(false).setAttribute("textlist", paperServiceImpl.getTextQuestion());
+			request.getSession(false).setAttribute("listlist", paperServiceImpl.getListQuestion());
+			request.getSession(false).setAttribute("departmentmap", answerServiceImpl.getAnswersPaperDepartment());
+			request.getSession(false).setAttribute("marjormap", answerServiceImpl.getAnswersPaperMarjor());
+			request.getSession(false).setAttribute("provincemap", answerServiceImpl.getAnswersPaperProvince());
 			return "success";
 		}
 		else
@@ -146,7 +146,12 @@ public class AdminAction extends SuperAction implements ModelDriven<Admin>{
 		}
 	}
 	
-	
+	//管理员注销
+	public String logout()
+	{
+		request.getSession(false).invalidate();
+		return "logoutsuccess";
+	}
 	//添加管理员
 	public boolean add(Admin ad)
 	{
@@ -194,10 +199,10 @@ public String showStudents()
 	List<Students> stus=studentsServiceImpl.list();
 	
 	//加入分页程序
-	if(request.getSession().getAttribute("pager")==null)
+	if(request.getSession(false).getAttribute("pager")==null)
 	{
 		
-		request.getSession().setAttribute("pager", pagerUtil);
+		request.getSession(false).setAttribute("pager", pagerUtil);
 	}
 	pagerUtil =(PagerUtil)request.getSession().getAttribute("pager");
 	pagerUtil.setBigList(stus);
@@ -210,7 +215,7 @@ public String showStudents()
 	{
 		pagerUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
 	}
-	request.getSession().setAttribute("pager", pagerUtil);
+	request.getSession(false).setAttribute("pager", pagerUtil);
 	return SUCCESS;
 }
 
@@ -221,10 +226,10 @@ public String showStudents()
 		List<AnswersPaper> ansStudents = answerServiceImpl.getAnswersPaper();
 		
 		//加入分页程序
-		if(request.getSession().getAttribute("pager")==null)
+		if(request.getSession(false).getAttribute("pager")==null)
 		{
 			
-			request.getSession().setAttribute("pager", pagerUtil);
+			request.getSession(false).setAttribute("pager", pagerUtil);
 		}
 		pagerUtil =(PagerUtil)request.getSession().getAttribute("pager");
 		pagerUtil.setBigList(ansStudents);
@@ -237,7 +242,7 @@ public String showStudents()
 		{
 			pagerUtil.setCurentPageIndex(Integer.parseInt(request.getParameter("PageIndex")));
 		}
-		request.getSession().setAttribute("pager", pagerUtil);
+		request.getSession(false).setAttribute("pager", pagerUtil);
 		return SUCCESS;
 	}
 	
@@ -248,7 +253,7 @@ public String showStudents()
 		int num =Integer.parseInt(request.getParameter("num")) ;
 		pagerUtil = (PagerUtil) request.getSession().getAttribute("pager");
 		List<AnswersPaper> smalllist=pagerUtil.getSmallList();					//获得当前页的学生集合
-		request.getSession().setAttribute("studentcontent",smalllist.get(num));
+		request.getSession(false).setAttribute("studentcontent",smalllist.get(num));
 		int pID = smalllist.get(num).getpID();
 	
 		//答案
@@ -264,10 +269,10 @@ public String showStudents()
 		List<Question> qtextlist = paperServiceImpl.getTextQuestion();
 		List<Question> qlistlist = paperServiceImpl.getListQuestion();
 		
-		request.getSession().setAttribute("listlist", qlistlist);
-		request.getSession().setAttribute("textlist", qtextlist);
-		request.getSession().setAttribute("sqsinlist", sqsinlist);
-		request.getSession().setAttribute("sqmullist", sqmullist);
+		request.getSession(false).setAttribute("listlist", qlistlist);
+		request.getSession(false).setAttribute("textlist", qtextlist);
+		request.getSession(false).setAttribute("sqsinlist", sqsinlist);
+		request.getSession(false).setAttribute("sqmullist", sqmullist);
 		
 		//key=题号  value=答案 组成map对象
 		Map<Integer,SingleAnswer> singlemap = new HashMap<>();
@@ -307,7 +312,7 @@ public String showStudents()
 	{
 		int count = Integer.parseInt(request.getParameter("count"));
 		List<AnswersPaper> drawStudents = adminServiceImpl.getDrawPaper(count);
-		request.getSession().setAttribute("drawplist", drawStudents);
+		request.getSession(false).setAttribute("drawplist", drawStudents);
 		return SUCCESS;
 	}
 	
@@ -317,10 +322,10 @@ public String showStudents()
 		List<AnswersPaper> drawStudents = (List<AnswersPaper>) request.getSession().getAttribute("drawplist");
 		
 		//加入分页程序
-		if(request.getSession().getAttribute("pager")==null)
+		if(request.getSession(false).getAttribute("pager")==null)
 		{
 			
-			request.getSession().setAttribute("pager", pagerUtil);
+			request.getSession(false).setAttribute("pager", pagerUtil);
 		}
 		pagerUtil =(PagerUtil)request.getSession().getAttribute("pager");
 		pagerUtil.setBigList(drawStudents);

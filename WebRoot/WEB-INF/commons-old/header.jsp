@@ -20,6 +20,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    				<h1><b style="border-right:2px solid #ADADAD;padding-right:10px;margin-right:10px;">本科招生情况调查问卷</b><small >后台管理</small></h1>
    				
    			 </div>
-   			 <a href="<%=path%>/adminuser_logout.action">注销</a>	
+   			 	
 			</div>
 	    </div>

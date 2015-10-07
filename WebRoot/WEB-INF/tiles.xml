@@ -4,6 +4,7 @@
 <tiles-definitions>
    <definition  name="adminTiles" template="/WEB-INF/commons/layout.jsp">
        <put-attribute name="HEADER" value="/WEB-INF/commons/header.jsp"></put-attribute>
+       <put-attribute name="NAVBAR" value="/WEB-INF/commons/navbar.jsp"></put-attribute>
        <put-attribute name="SIDEBAR" value="/WEB-INF/commons/sidebar.jsp"></put-attribute>
        <put-attribute name="CONTENT" value="/WEB-INF/commons/welcome.jsp" ></put-attribute>
        <put-attribute name="FOOTER" value="/WEB-INF/commons/footer.jsp" ></put-attribute>

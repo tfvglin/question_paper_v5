@@ -15,20 +15,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
     <title>后台管理</title>
  	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
-	<script src="<%=path%>/js/jquery-admin.js" type="text/javascript"></script>
-	<link rel="stylesheet" href="<%=path%>/css/bootstrap.min.css" type="text/css"></link>
-	<%-- <link rel="stylesheet" type="text/css" href="<%=path %>/css/admin-styles.css" />
-	 --%>
-	<script type="text/javascript" src="<%=path%>/js/bootstrap.min.js"></script>
-	</head>
+	<script src="<%=path %>/js/jquery-admin.js" type="text/javascript"></script>
+	
+	  
+	<link rel="stylesheet" type="text/css" href="<%=path %>/css/admin-styles.css" />
+	
+
+  </head>
   
   <body>
-  	<div class="container" style="width:1000px;">
+  	<div class="center" style="width:1000px;">
   		<div >
    			<tiles:insertAttribute name="HEADER" ></tiles:insertAttribute>
-    	</div>
-  		<div >
-   			<tiles:insertAttribute name="NAVBAR" ></tiles:insertAttribute>
     	</div>
     	<div>
     	<div style="float: left;width:200px;height:600px;background-color:#FFFF99">

@@ -67,11 +67,15 @@ public class StudentsAction extends SuperAction implements ModelDriven<Students>
 	//学生登录
 	public String login()
 	{
+	
 		Students student =studentsServiceImpl.stuLogin(stu);
+	
 		if(student!=null)
 		{
+		
 			if(answerServiceImpl.checkStudents(stu))
 			{
+			
 				this.addActionMessage("请勿重复作答");
 				return INPUT;
 			}
